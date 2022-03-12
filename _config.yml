@@ -58,7 +58,7 @@ permalink: /:title/
 # The release of Jekyll Now that you're using
 version: v1.2.0
 
-#something
+
 # Jekyll 3 now only supports Kramdown for Markdown
 kramdown:
   # Use GitHub flavored markdown, including triple backtick fenced code blocks
@@ -87,4 +87,9 @@ exclude:
   - CNAME
                                                                       
 
-         
+
+<<<<<<< HEAD
+                                                                                                                                                                                                                                     
+=======
+                                                                                                                                                                                                                               
+>>>>>>> e9412627fa0de3fc95bf563416e9e3e90de5a18a
