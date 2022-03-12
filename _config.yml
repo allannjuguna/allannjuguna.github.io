@@ -58,7 +58,7 @@ permalink: /:title/
 # The release of Jekyll Now that you're using
 version: v1.2.0
 
-# Build theme for the blog
+# Build theme for the blog remote
 theme: minima  
 remote-theme: benbalter/retlab
 
@@ -94,4 +94,8 @@ exclude:
                                                                         
 =======
 >>>>>>> a17526542cb9278fbc4219633d669a294bc56abd
+<<<<<<< HEAD
     
+=======
+   
+>>>>>>> e65cf1a1d09a5320b2113d96f4ee56655c7c1b69
