@@ -13,7 +13,7 @@ password = "abygurl69"
 
 
 ## Ports open
-<blockquote>PORT   STATE SERVICE REASON  VERSION</blockquote>
+<code>PORT   STATE SERVICE REASON  VERSION</code>
 21/tcp open  ftp     syn-ack vsftpd 3.0.3
 80/tcp open  http    syn-ack Apache httpd 2.4.18
 | http-ls: Volume /
