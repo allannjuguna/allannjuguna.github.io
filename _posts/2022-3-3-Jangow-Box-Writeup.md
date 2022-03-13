@@ -13,7 +13,7 @@ password = "abygurl69"
 
 
 ## Ports open
-<code>
+```
 PORT   STATE SERVICE REASON  VERSION
 21/tcp open  ftp     syn-ack vsftpd 3.0.3
 80/tcp open  http    syn-ack Apache httpd 2.4.18
@@ -26,4 +26,5 @@ PORT   STATE SERVICE REASON  VERSION
 |_http-server-header: Apache/2.4.18 (Ubuntu)
 |_http-title: Index of /
 Service Info: Host: 127.0.0.1; OS: Unix
-<code>
+
+```
