@@ -90,6 +90,7 @@ exclude:
   - LICENSE
   - README.md
   - CNAME
+  - favicon.ico
 
                                                    
    
