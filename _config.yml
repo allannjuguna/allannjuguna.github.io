@@ -2,8 +2,8 @@
 # This file contains configuration flags to customize your site
 #
 
-# Name of your  site (displayed in the header)
-name: allannjuguna >_
+# Name of your site (displayed in the header)
+name: allannjuguna>_
 
 # Short bio or description (displayed in the header)
 description: Cyber Security Enthusiast,Gamer,Coder
@@ -11,9 +11,9 @@ description: Cyber Security Enthusiast,Gamer,Coder
 # URL of your avatar or profile pic (you could use your GitHub profile pic)
 avatar: https://avatars.githubusercontent.com/u/48831561?v=4
 
-# comment
+#
 # Flags below are optional
-# skip this
+#
 
 # Includes an icon in the footer for each username you enter
 footer-links:
@@ -21,7 +21,7 @@ footer-links:
   email:
   facebook:
   flickr:
-  github: allannjuguna 
+  github: allannjuguna
   instagram:
   linkedin:
   pinterest:
@@ -41,7 +41,7 @@ google_analytics:
 
 # Your website URL (e.g. http://barryclark.github.io or http://www.barryclark.co)
 # Used for Sitemap.xml and your RSS feed
-url: https://allannjuguna.github.io
+url:
 
 # If you're hosting your site at a Project repository on GitHub pages
 # (http://yourusername.github.io/repository-name)
@@ -57,10 +57,6 @@ permalink: /:title/
 
 # The release of Jekyll Now that you're using
 version: v1.2.0
-
-# Build theme for the blog remote
-theme: minima  
-remote-theme: benbalter/retlab
 
 # Jekyll 3 now only supports Kramdown for Markdown
 kramdown:
@@ -80,8 +76,6 @@ sass:
 gems:
   - jekyll-sitemap # Create a sitemap using the official Jekyll sitemap gem
   - jekyll-feed # Create an Atom feed using the official Jekyll feed gem
-
-
 
 # Exclude these files from your production _site
 exclude:
