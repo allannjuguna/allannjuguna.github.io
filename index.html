@@ -2,44 +2,17 @@
 layout: default
 ---
 
-  <div class="entry">
-    <p><br /></p>
-  <p align="center">
-  <img src="https://readme-typing-svg.herokuapp.com?color=%2336BCF7&amp;center=true&amp;lines=Hi+%2C+I+am+Allan;I+am+a+Student+%F0%9F%A7%91%E2%80%8D%F0%9F%8E%93;I+%E2%9D%A4+Coding+%F0%9F%92%BB;I+%E2%9D%A4+Learning+new+stuff+%F0%9F%8C%B1;I+%E2%9D%A4+Cyber+Security+%F0%9F%95%B5%EF%B8%8F;I+%E2%9D%A4+Automating+Stuff+%F0%9F%94%A7;I+%E2%9D%A4+Collaborating+on+projects+%F0%9F%91%AF" />
-  </p>
-  <p><br /></p>
-
-  <p align="center">
-  <samp>A student,coder,ctf player and cyber security enthusiast from Kenya</samp>
-  <br />
-  <br />
-  <a href="/posts"><strong>All posts »</strong></a>
-  </p>
-
-  <p><br /></p>
-</div>
-
 <div class="posts">
   {% for post in site.posts %}
     <article class="post">
 
-      <h2><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h2>
+      <h1><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h1>
 
       <div class="entry">
         {{ post.excerpt }}
       </div>
-        <i><samp>{{ post.date | date: "%B %e, %Y" }}</samp></i>
-        <br />
-        <br />
-      <a href="{{ site.baseurl }}{{ post.url }}" class="read-more">Read More → </a>
+
+      <a href="{{ site.baseurl }}{{ post.url }}" class="read-more">Read More</a>
     </article>
   {% endfor %}
-</div>
-
-
-<h1>Related Posts</h1>
-<div id="archives">
-{% for post in site.posts %}
-  <h4><a href="{{ site.baseurl }}{{ post.url }}"> {{ post.date | date: "%B %e, %Y" }} » {{post.title}}</a></h4>
-{% endfor %}
 </div>
