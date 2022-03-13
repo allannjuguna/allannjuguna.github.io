@@ -13,7 +13,7 @@ avatar: https://avatars.githubusercontent.com/u/48831561?v=4
 
 #
 # Flags below are optional
-#
+# skip this
 
 # Includes an icon in the footer for each username you enter
 footer-links:
@@ -26,7 +26,7 @@ footer-links:
   linkedin:
   pinterest:
   rss: # just type anything here for a working RSS icon
-  twitter: xubzer0
+  twitter: 
   stackoverflow: # your stackoverflow profile, e.g. "users/50476/bart-kiers"
   youtube: # channel/<your_long_string> or user/<user-name>
   googleplus: # anything in your profile username that comes after plus.google.com/
@@ -90,19 +90,8 @@ exclude:
   - LICENSE
   - README.md
   - CNAME
-  - 12027.ico
-<<<<<<< HEAD
-  - 32357.ico
-  - 13575.ico
-  - 29514.ico
-  - 14818.ico
-  - 11000.ico
-  - 8468.ico
-  - 16573.ico
-  - 29963.ico
-  - 18835.ico
-=======
   - favicon.ico
+<<<<<<< HEAD
 >>>>>>> refs/remotes/origin/main
   - 1038.ico
   - 18729.ico
@@ -111,3 +100,5 @@ exclude:
   - 29990.ico
   - 5548.ico
   - 28825.ico
+=======
+>>>>>>> a5263f53d9756c3939a101c7ff08d67401c04f7f
