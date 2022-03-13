@@ -91,6 +91,4 @@ exclude:
   - README.md
   - CNAME
   - favicon.ico
-
-                                                   
-     - favicon.ico
+  - favicon.ico
