@@ -6,10 +6,10 @@ title: Jangow box writeup
 
 
 ## Credentials for debugging network connectivity
-```
- username = "jangow01" 
- password = "abygurl69"
-```
+
+username = "jangow01" 
+password = "abygurl69"
+
 
 
 ## Ports open
