@@ -28,7 +28,9 @@ layout: default
       <div class="entry">
         {{ post.excerpt }}
       </div>
+      <div class="date">
         <i><samp>{{ post.date | date: "%B %e, %Y" }}</samp></i>
+    </div>
         <br />
         <br />
       <a href="{{ site.baseurl }}{{ post.url }}" class="read-more">Read More → </a>
