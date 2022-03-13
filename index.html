@@ -13,7 +13,7 @@ layout: default
       <div class="entry">
         {{ post.excerpt }}
       </div>
-     <p7> x - {{ post.date | date: "%B %e, %Y" }} </p7><br/>
+     <samp> {{ post.date | date: "%B %e, %Y" }} </samp>
       <a href="{{ site.baseurl }}{{ post.url }}" class="read-more">Read More</a>
     </article>
   {% endfor %}
