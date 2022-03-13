@@ -1,7 +1,6 @@
 ---
 layout: default
 ---
-  <h1>About</h1>
 
   <div class="entry">
     <p><br /></p>
@@ -14,7 +13,7 @@ layout: default
   <samp>A student,coder,ctf player and cyber security enthusiast from Kenya</samp>
   <br />
   <br />
-  <a href="/"><strong>My Portfolio »</strong></a>
+  <a href="/posts"><strong>Posts »</strong></a>
   </p>
 
   <p><br /></p>
@@ -29,7 +28,9 @@ layout: default
       <div class="entry">
         {{ post.excerpt }}
       </div>
-     <!-- <p> {{ post.date | date: "%B %e, %Y" }} </p><br/> -->
+        <samp>{{ post.date | date: "%B %e, %Y" }}</samp>
+        <br />
+        <br />
       <a href="{{ site.baseurl }}{{ post.url }}" class="read-more">Read More</a>
     </article>
   {% endfor %}
