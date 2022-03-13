@@ -1,0 +1,52 @@
+
+//
+// VARIABLES
+//
+
+// Colors
+$blue: #4183C4;
+
+// Grays
+$black: #000;
+$darkerGray: #222;
+$darkGray: #333;
+$gray: #666;
+$lightGray: #eee;
+$white: #fff;
+
+// Font stacks
+$helvetica: Helvetica, Arial, sans-serif;
+$helveticaNeue: "Helvetica Neue", Helvetica, Arial, sans-serif;
+$georgia: Georgia, serif;
+
+// Mobile breakpoints
+@mixin mobile {
+  @media screen and (max-width: 640px) {
+    @content;
+  }
+}
+
+
+
+
+
+
+
+
+
+// TEstground
+
+
+// Colors
+$blue: #79DF9C;
+
+// Grays
+$black: #fff;
+$darkerGray: #B5B6B7; // related posts color
+$darkGray: #fff; //text color
+$gray: #666; // date,//description color
+$lightGray: #eee; // footer bg and separator color
+$white: #15171A;
+
+
+https://readme-typing-svg.herokuapp.com?color=%2379DF9C&center=true&lines=Hi+%2C+I+am+Allan;I+am+a+Student+%F0%9F%A7%91%E2%80%8D%F0%9F%8E%93;I+%E2%9D%A4+Coding+%F0%9F%92%BB;I+%E2%9D%A4+Learning+new+stuff+%F0%9F%8C%B1;I+%E2%9D%A4+Cyber+Security+%F0%9F%95%B5%EF%B8%8F;I+%E2%9D%A4+Automating+Stuff+%F0%9F%94%A7;I+%E2%9D%A4+Collaborating+on+projects+%F0%9F%91%AF
