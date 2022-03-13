@@ -7,12 +7,12 @@
 $blue: #4183C4;
 
 // Grays
-$black: #fff;
+$black: #000;
 $darkerGray: #222;
-$darkGray: #79DF9C;
+$darkGray: #333;
 $gray: #666;
 $lightGray: #eee;
-$white: #15171A;
+$white: #fff;
 
 // Font stacks
 $helvetica: Helvetica, Arial, sans-serif;
