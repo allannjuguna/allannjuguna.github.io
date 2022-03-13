@@ -1,9 +1,8 @@
 ---
 layout: post
-title: You're up and running!
+title: Jangow box writeup
 ---
 
-# Jangow box writeup
 
 
 ## Credentials for debugging network connectivity
