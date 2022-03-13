@@ -59,8 +59,8 @@ permalink: /:title/
 version: v1.2.0
 
 # Build theme for the blog remote
-theme: minima  
-remote-theme: benbalter/retlab
+#theme: minima  
+#remote-theme: benbalter/retlab
 
 # Jekyll 3 now only supports Kramdown for Markdown
 kramdown:
