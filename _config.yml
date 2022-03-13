@@ -3,7 +3,7 @@
 #
 
 # Name of your  site (displayed in the header)
-name: allannjuguna
+name: allannjuguna >_
 
 # Short bio or description (displayed in the header)
 description: Cyber Security Enthusiast,Gamer,Coder
@@ -91,76 +91,3 @@ exclude:
   - README.md
   - CNAME
   - favicon.ico
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> refs/remotes/origin/main
-  - 1038.ico
-  - 18729.ico
-  - 12011.ico
-  - 23456.ico
-  - 29990.ico
-  - 5548.ico
-  - 28825.ico
-=======
->>>>>>> a5263f53d9756c3939a101c7ff08d67401c04f7f
-  - 27495.ico
-  - 19928.ico
-  - 10917.ico
-  - 28453.ico
-  - 9151.ico
-  - 23531.ico
-  - 17264.ico
-  - 10466.ico
-  - 14002.ico
-  - 28149.ico
-  - 29098.ico
-  - 30262.ico
-  - 2685.ico
-  - 14461.ico
-  - 20722.ico
-  - 23218.ico
-  - 28107.ico
-  - 24873.ico
-  - 21197.ico
-  - 18702.ico
-  - 23518.ico
-  - 32623.ico
-  - 24470.ico
-  - 29353.ico
-  - 28105.ico
-  - 10132.ico
-  - 281.ico
-  - 5688.ico
-  - 28295.ico
-  - 26192.ico
-  - 3918.ico
-  - 25774.ico
-  - 26580.ico
-  - 9550.ico
-  - 25510.ico
-  - 27623.ico
-  - 13303.ico
-  - 19261.ico
-  - 2748.ico
-  - 8702.ico
-  - 19943.ico
-  - 21488.ico
-  - 25652.ico
-  - 28579.ico
-  - 26008.ico
-  - 2977.ico
-  - 17161.ico
-  - 21539.ico
-  - 2061.ico
-  - 20903.ico
-  - 18711.ico
-  - 16027.ico
-  - 20930.ico
-  - 13917.ico
-  - 15533.ico
-=======
->>>>>>> refs/remotes/origin/main
-  - 9427.ico
-  - 25648.ico
-  - 24379.ico
-  - 16783.ico
