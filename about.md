@@ -4,7 +4,7 @@ title: About
 permalink: /about/
 ---
 
-My name is Allan Njuguna . I’m currently a student at Dedan Kimathi University, studying a bachelor’s degree in Information Technology.
+My name is Allan Njuguna . I’m currently a student at Dedan Kimathi University, pursuing a Bachelor’s degree in Information Technology.
 
 I love CTFs, I do almost every online CTF available on ctftime.org. My main focus is on web application security. I’m also learning reverse engineering and binary exploitation on the side.
 
