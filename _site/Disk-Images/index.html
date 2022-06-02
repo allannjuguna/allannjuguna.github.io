@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Disk-Images! – allannjuguna – Cyber Security Enthusiast,Gamer,Coder</title>
+
+        <meta charset="utf-8" />
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'>
+
+    
+    <meta name="description" content="Image files
+" />
+    <meta property="og:description" content="Image files
+" />
+    
+    <meta name="author" content="allannjuguna" />
+
+    
+    <meta property="og:title" content="Disk-Images!" />
+    <meta property="twitter:title" content="Disk-Images!" />
+    
+
+    <!--[if lt IE 9]>
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link rel="stylesheet" type="text/css" href="/style.css" />
+    <link rel="alternate" type="application/rss+xml" title="allannjuguna - Cyber Security Enthusiast,Gamer,Coder" href="/feed.xml" />
+
+    <!-- Created with Jekyll Now - http://github.com/barryclark/jekyll-now -->
+  </head>
+
+  <body>
+    <div class="wrapper-masthead">
+      <div class="container">
+        <header class="masthead clearfix">
+          <a href="/" class="site-avatar"><img src="/favicon.ico" /></a>
+
+          <div class="site-info">
+            <h1 class="site-name"><a href="/">allannjuguna</a></h1>
+            <p class="site-description">Cyber Security Enthusiast,Gamer,Coder</p>
+          </div>
+
+          <nav>
+            <a href="/">Blog</a>
+            <a href="/posts">Posts</a>
+            <a href="/categories">Categories</a>
+            <a href="/about">About</a>
+          </nav>
+        </header>
+      </div>
+    </div>
+
+    <div id="main" role="main" class="container">
+      <article class="post">
+  <h2><a href="#">Disk-Images!</a></h2>
+
+  <div class="entry">
+    <h2 id="image-files">Image files</h2>
+
+<p>We have a file named <code class="language-plaintext highlighter-rouge">demo.zip</code>. Running the file command on it we get the following output.</p>
+
+<div class="highlight-code">
+
+<code>➤ allan: /tmp $ file demo.bin</code>
+<code>demo.bin: u-boot legacy uImage, jz_fw, Linux/MIPS, Firmware Image (Not compressed), 11075584 bytes, Thu Aug 20 11:05:28 2020, Load Address: 0x00000000, Entry Point: 0x00000000, Header CRC: 0x8BBFA81F, Data CRC: 0x80B3509C</code><br />
+</div>
+
+<h2 id="what-is-the-size-of-the-kernel">What is the size of the kernel</h2>
+<p>u-boot uImage files have a 64-byte header defined in image.h as follows:</p>
+
+<div class="highlight-code">
+
+<code>#define IH_MAGIC&nbsp;&nbsp;&nbsp;0x27051956&nbsp;&nbsp;&nbsp;/* Image Magic Number&nbsp;&nbsp;&nbsp;*/</code><br />
+<code>#define IH_NMLEN&nbsp;&nbsp;&nbsp;32&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/* Image Name Length&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/</code><br />
+<code></code><br />
+<code>typedef struct image_header {</code><br />
+<code>uint32_t&nbsp;&nbsp;&nbsp;ih_magic;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/* Image Header Magic Number */</code><br />
+<code>uint32_t&nbsp;&nbsp;&nbsp;ih_hcrc;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/* Image Header CRC Checksum */</code><br />
+<code>uint32_t&nbsp;&nbsp;&nbsp;ih_time;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/* Image Creation Timestamp&nbsp;&nbsp;&nbsp;*/</code><br />
+<code>uint32_t&nbsp;&nbsp;&nbsp;ih_size;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/* Image Data Size&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/</code><br />
+<code>uint32_t&nbsp;&nbsp;&nbsp;ih_load;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/* Data&nbsp;&nbsp;&nbsp;Load&nbsp;&nbsp;&nbsp;Address&nbsp;&nbsp;&nbsp;*/</code><br />
+<code>uint32_t&nbsp;&nbsp;&nbsp;ih_ep;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/* Entry Point Address&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/</code><br />
+<code>uint32_t&nbsp;&nbsp;&nbsp;ih_dcrc;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/* Image Data CRC Checksum&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/</code><br />
+<code>uint8_t&nbsp;&nbsp;&nbsp;ih_os;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/* Operating System&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/</code><br />
+<code>uint8_t&nbsp;&nbsp;&nbsp;ih_arch;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/* CPU architecture&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/</code><br />
+<code>uint8_t&nbsp;&nbsp;&nbsp;ih_type;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/* Image Type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/</code><br />
+<code>uint8_t&nbsp;&nbsp;&nbsp;ih_comp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/* Compression Type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/</code><br />
+<code>uint8_t&nbsp;&nbsp;&nbsp;ih_name[IH_NMLEN];&nbsp;&nbsp;&nbsp;/* Image Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/</code><br />
+<code>} image_header_t;</code><br />
+</div>
+
+<p>Running binwalk on the file we get the following output</p>
+
+<div class="highlight-code">
+<code>➤ allan: /tmp $ binwalk demo.bin</code><br />
+<code></code><br />
+<code>DECIMAL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HEXADECIMAL&nbsp;&nbsp;&nbsp;DESCRIPTION</code><br />
+<code>--------------------------------------------------------------------------------</code><br />
+<code>0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0x0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;uImage header, header size: 64 bytes, header CRC: 0x8BBFA81F, created: 2020-08-20 11:05:28, image size: 11075584 bytes, Data Address: 0x0, Entry Point: 0x0, data CRC: 0x80B3509C, OS: Linux, CPU: MIPS, image type: Firmware Image, compression type: none, image name: "jz_fw"</code><br />
+<code>64&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0x40&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;uImage header, header size: 64 bytes, header CRC: 0x6F5948F4, created: 2020-05-26 05:03:55, image size: 1907357 bytes, Data Address: 0x80010000, Entry Point: 0x80421870, data CRC: 0xD8FCDDFA, OS: Linux, CPU: MIPS, image type: OS Kernel Image, compression type: lzma, image name: "Linux-3.10.14"</code><br />
+<code>128&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0x80&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LZMA compressed data, properties: 0x5D, dictionary size: 33554432 bytes, uncompressed size: -1 bytes</code><br />
+<code>2097216&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0x200040&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Squashfs filesystem, little endian, version 4.0, compression:xz, size: 3289960 bytes, 414 inodes, blocksize: 131072 bytes, created: 2020-08-20 09:14:53</code><br />
+<code>5570624&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0x550040&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Squashfs filesystem, little endian, version 4.0, compression:xz, size: 593566 bytes, 13 inodes, blocksize: 131072 bytes, created: 2020-08-20 09:14:54</code><br />
+<code>6225984&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0x5F0040&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;JFFS2 filesystem, little endian</code><br />
+</div>
+
+<p>Previously we saw that the first 64 bytes of a uImage file contain the header info , so we skip that part. The next line (0x64) contains the Kernel Image header which is 64 bytes and runs upto 0x128 then the LZMA compressed data which runs upto 2097216. The kernel is a combination of the OS kernel Image header and the LZMA compressed data, so to get its size we need to calculate 2097216 - 64, which is 2097152</p>
+
+<h2 id="what-are-the-names-of-the-backup-files-in-the-first-root-filesystem">What are the names of the backup files in the first root filesystem</h2>
+<p>We can assume that the first root filesystem is the first squashfs block we see, we need to extract.
+Since it runs from 2097216 to 5570624 meaning it is 3473408 bytes in size. We will use the following dd command to extract it</p>
+
+<div class="highlight-code">
+<code>dd if=demo.bin of=squashfs skip=2097216 count=3473408 bs=1</code><br />
+</div>
+
+<p>The result is</p>
+<div class="highlight-code">
+<code>➤ allan: /tmp $ dd if=demo.bin of=squashfs skip=2097216 count=3473408 bs=1</code><br />
+<code>3473408+0 records in</code><br />
+<code>3473408+0 records out</code><br />
+<code>3473408 bytes (3.5 MB, 3.3 MiB) copied, 10.0029 s, 347 kB/s</code><br />
+</div>
+
+<p>Running file command on the file we can confirm it is a squashfs file</p>
+<div class="highlight-code">
+<code>➤ allan: /tmp $ file squashfs</code><br />
+<code>squashfs: Squashfs filesystem, little endian, version 4.0, 3289960 bytes, 414 inodes, blocksize: 131072 bytes, created: Thu Aug 20 09:14:53 2020</code><br />
+</div>
+
+<p>Mounting the file to a temporary mount point</p>
+<div class="highlight-code">
+<code>➤ allan: /tmp $ mkdir -p mntpnt ; sudo mount -t squashfs squashfs mntpnt/</code><br />
+<code>➤ allan: /tmp $ cd mntpnt/</code><br />
+<code>➤ allan: /tmp/mntpnt $ ls</code><br />
+<code>backupa&nbsp;&nbsp;&nbsp;bin&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;driver&nbsp;&nbsp;&nbsp;linuxrc&nbsp;&nbsp;&nbsp;opt&nbsp;&nbsp;&nbsp;root&nbsp;&nbsp;&nbsp;sys&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tmp</code><br />
+<code>backupd&nbsp;&nbsp;&nbsp;configs&nbsp;&nbsp;&nbsp;etc&nbsp;&nbsp;&nbsp;media&nbsp;&nbsp;&nbsp;params&nbsp;&nbsp;&nbsp;run&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;system&nbsp;&nbsp;&nbsp;usr</code><br />
+<code>backupk&nbsp;&nbsp;&nbsp;dev&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib&nbsp;&nbsp;&nbsp;mnt&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;proc&nbsp;&nbsp;&nbsp;sbin&nbsp;&nbsp;&nbsp;thirdlib&nbsp;&nbsp;&nbsp;var</code><br />
+<code></code><br />
+</div>
+
+<p>The backup folders are backupa backupd and backupk</p>
+
+<h2 id="what-is-the-name-of-the-root-folder-of-the-developer">What is the name of the root folder of the developer</h2>
+
+<h2 id="references">References</h2>
+
+<ul>
+  <li>https://ctf.rip/write-ups/iot/firmware/wormcon-firm/</li>
+  <li>https://linux.die.net/man/1/mkimage</li>
+  <li>http://www.techpository.com/linux-unpacking-and-repacking-u-boot-uimage-files/</li>
+  <li>https://patrickrbc.com/2019/06/02/re-wireless-repeater-2</li>
+  <li>https://reverseengineering.stackexchange.com/questions/20632/help-unpacking-u-boot-firmware</li>
+</ul>
+
+  </div>
+
+  <div class="date">
+    Written on March 15, 2022
+  </div>
+
+  
+</article>
+
+    </div>
+
+    <div class="wrapper-footer">
+      <div class="container">
+        <footer class="footer">
+          
+
+
+
+<a href="https://github.com/allannjuguna"><i class="svg-icon github"></i></a>
+
+
+
+
+<a href="https://www.twitter.com/xubzer0"><i class="svg-icon twitter"></i></a>
+
+
+
+        </footer>
+      </div>
+    </div>
+
+    
+
+  </body>
+</html>

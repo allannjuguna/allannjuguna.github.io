@@ -7,14 +7,10 @@ layout: default
   <p align="center">
   <img src="https://readme-typing-svg.herokuapp.com?color=%2379DF9C&center=true&lines=Hi+%2C+I+am+Allan;I+am+a+Student+%F0%9F%A7%91%E2%80%8D%F0%9F%8E%93;I+%E2%9D%A4+Coding+%F0%9F%92%BB;I+%E2%9D%A4+Learning+new+stuff+%F0%9F%8C%B1;I+%E2%9D%A4+Cyber+Security+%F0%9F%95%B5%EF%B8%8F;I+%E2%9D%A4+Automating+Stuff+%F0%9F%94%A7;I+%E2%9D%A4+Collaborating+on+projects+%F0%9F%91%AF" />
   </p>
-  <p><br /></p>
 
-  <p align="center">
-  <!-- <samp>A student,coder,ctf player and cyber security enthusiast from Kenya</samp> -->
-  <!-- <br /> -->
-  <!-- <br /> -->
+
+  <p align="center" style="font-size: 22px;">
   <samp> Build Stuff . Break Stuff . Fix Stuff . Know Stuff </samp>
-  <br />
   <br />
   <br />
   <a href="/posts"><strong>All posts »</strong></a>
@@ -23,27 +19,28 @@ layout: default
   <p><br /></p>
 </div>
 
-<div class="posts">
+<!-- <div id="archives">
   {% for post in site.posts %}
     <article class="post">
 
-      <h2><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h2>
+      <h2 class="post-heading"><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h2>
 
       <div class="entry">
-        {{ post.excerpt }}
+        <p>{{ post.excerpt }}</p>
       </div>
       <div class="date">
-        <i><samp>{{ post.date | date: "%B %e, %Y" }}</samp></i>
-    </div>
+        <i><samp>{{ post.date | date: "%B %e, %Y" }}</samp></i> 
+        <a href="{{ site.baseurl }}{{ post.url }}" class="read-more">Read More → </a>  
+      </div>
         <br />
-        <br />
-      <a href="{{ site.baseurl }}{{ post.url }}" class="read-more">Read More → </a>
+
+      
     </article>
   {% endfor %}
-</div>
+</div> -->
 
 
-<h1>Related Posts</h1>
+<h1>Recent Posts</h1>
 <div id="archives">
 {% for post in site.posts %}
   <h4><a href="{{ site.baseurl }}{{ post.url }}"> {{ post.date | date: "%B %e, %Y" }} » {{post.title}}</a></h4>
