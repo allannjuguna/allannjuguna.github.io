@@ -1,0 +1,104 @@
+---
+layout: post
+category: ctf
+title: ShehacksKEintervasityCTF!
+---
+
+## Introduction
+This past weekend I got the opportunity to participate in the #ShehacksKEintervasityCTF which was amazing. I played as Team BitClan with my teammates and we managed to scoop second position. The challenges were amazing and I got to learn a thing or two.
+
+![image]({{ site.baseurl }}/images/kcactf/1.png)
+
+In this writeup,I will be explaining how I solved the challenges. Note that this is the approach I took to solve the challenges and not necessarily how they are supposed to be solved.
+
+## OSINT
+I only managed to solve two challenges in this category.
+
+### Hunter 1
+
+![image]({{ site.baseurl }}/images/kcactf/2.png)
+
+The first challenge (Hunter 1) tells that the team uncovered a malicious document with the sha256 hash of `bcff17a1885a330497594ca80b29257313195e3b065f674ad2d205b7c63b919d`. The first thing would be to check the hash of the file in google.
+
+![image]({{ site.baseurl }}/images/kcactf/3.png)
+
+Among the results we found on google, we can see the hash among the result with the title of `2018-04-10 - Malspam pushing Gandcrab ransomware`. Since we are being asked the name of the ransomware behind the Malicious Office Document, we get our flag which is flag{gandcrab}, which is the name of the ransomware
+
+### Last Hunt
+This is one of the challenges i first blooded.It is an easy osint challenge that does not rely on solving the previous challenges in this category.This challenge is asking which other method of payment gandcrab ransomware requested other than BitCoin (BTC). We can search for this in google. Since we know that most threat actors use cryptocurrency as a form of payment, we can search using the following key terms.
+
+![image]({{ site.baseurl }}/images/kcactf/4.png)
+
+From the second and third articles, we can see that gandcrab ransomware demanded for payment in a cryptocurrency known as DASH, hence the flag for the challenge was flag{dash}
+
+
+### References
+I only managed to solve the above two challenges in this category. Below are some references which can provide more information about solving challenges similar to the above
+
+- https://hackmd.io/@tahaafarooq/usiu-ctf-2022-blockhain
+- https://www.h4k-it.com/urchinsec-ctf-competition-2022/
+
+
+## Mobile App
+The next set of challenges were in the Mobile Category.
+
+![image]({{ site.baseurl }}/images/kcactf/5.png)
+
+### FixMe
+The first challenge in this category hints that there is a trick employed to disguise malware. We are also given a file named fixme.so . At first, I thought that this a shared library but after checking the type using the file command, I found that the file has an archive format. From there we can create a temporary folder where we can extract the contents of the file(/tmp/fixme), then extract the contents of the file to that folder using the unzip command as shown below
+
+![image]({{ site.baseurl }}/images/kcactf/7.png)
+
+Once the contents are extracted, we can then change to the directory and try to view the contents of the files.
+
+![image]({{ site.baseurl }}/images/kcactf/8.png)
+
+We find a FixmeKt.class file which contains the flag : flag{i_knew_youd_fix_me}
+
+### Logd
+In this challenge , we are told something about developers forgetting to turn off logging in their applications. We are also given an android application named logga.apk . Since I do not know much about reversing android applications, I used this online tool(`https://www.decompiler.com/`) which I found to be very nifty when it comes to decompiling android applications. The tool allows you to upload an android apk and gives you the ability to download the decompiled files as a zip.
+
+![image]({{ site.baseurl }}/images/kcactf/9.png)
+
+Once we download and extract the contents of the archive, we can view the directory structure and files using code editors such as sublime.
+We get two folders (resources and sources), here we choose the source folder the navigate to (com/chalie/logga/MainActivity.java) file.
+
+![image]({{ site.baseurl }}/images/kcactf/10.png)
+
+Looking at the source code above, we see that there is a notFlag string defined which is merged with another string(line 30) and logged when the enteredSecret string is not empty. The merged string will be the notFlag string i.e MZWGCZ33MFWHOYLZONPWG3 (line 13)
+ plus the hardcoded string i.e DFMFXF6ZDFMJ2WOX3MN5TXG7IK (line 30) which results to `MZWGCZ33MFWHOYLZONPWG3DFMFXF6ZDFMJ2WOX3MN5TXG7IK`. This string looks like an encoding ,however, we don't know what encoding is used on the string. We can try to use the `magic` feature in `https://gchq.github.io/CyberChef/` which tells us that the encoding is base32 and gives us the flag : flag{always_clean_debug_logs}.
+
+![image]({{ site.baseurl }}/images/kcactf/11.png)
+
+### Buits and Bytes
+
+![image]({{ site.baseurl }}/images/kcactf/6.png)
+
+For this challenge, we are given an apk file and told that developers use a byte array trick to hide authentication and api keys and other sensitive information. We can decompile the apk using the same method as before and open the extracted files using sublime as shown
+
+![image]({{ site.baseurl }}/images/kcactf/12.png)
+
+The MainActivity.java file did not seem to have anything interesting. This challenge took me a while to solve because I have little to no experience with android apps😅😅. Before despairing, I decided to check the application resources and files. After several minutes of checking the resource files, I found an interesting file at (byte.apk_Decompiler.com/resources/res/raw/oauth.txt)
+
+![image]({{ site.baseurl }}/images/kcactf/13.png)
+
+
+Opening the file we get some numbers which look like ascii numbers, again we can convert them using `https://gchq.github.io/CyberChef/` which gives us the flag : flag{lol_we_use_byte_arrays_to_hide_stuff}
+
+![image]({{ site.baseurl }}/images/kcactf/14.png)
+
+
+### Firirida
+For this challenge, we are given an apk file which we are supposed to find the flag in. We can decompile the apk using the same method as before and open the extracted files using sublime as shown
+
+![image]({{ site.baseurl }}/images/kcactf/15.png)
+
+Checking the `MainActivity.java` file, we see an interesting line at 15 which seems to load a library called firirida i.e `System.loadLibrary("firirida");` . Since the name is entered as a parameter using double quotes, i had the thought that this library can be found among the resource files.
+Just like I had suspected, i found the library at (resources/lib/armeabi-v7a/libfiririda.so). Even though I used ghidra to obtain the flag, below is an easier way to find the flag.
+
+![image]({{ site.baseurl }}/images/kcactf/16.png)
+
+
+
+## More
+I will upload the writeups to the other challenges soon
