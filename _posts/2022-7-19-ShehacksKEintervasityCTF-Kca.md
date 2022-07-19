@@ -101,4 +101,8 @@ Just like I had suspected, i found the library at (resources/lib/armeabi-v7a/lib
 
 
 ## More
+Here are some writeups from other sources
+- https://hackmd.io/@tahaafarooq/kcau-bootcamp-pwnbox
+- https://trevorsaudi.com/posts/2022-06-13_zipslip-vulnerability-justctf2022/
+
 I will upload the writeups to the other challenges soon
