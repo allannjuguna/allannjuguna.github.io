@@ -142,7 +142,7 @@ There were four challenges in this category of which I only managed to solve the
 
 
 ### Overflow
-The first challenge was quite simple. We get a prompt `Overflow into the buffer to get the flag!`. The first thing I did was to enter many A's on the program's user input to see how it would react.
+The first challenge was quite simple. We get a prompt `'Overflow into the buffer to get the flag!'`. The first thing I did was to enter many A's on the program's user input to see how it would react.
 
 ![image]({{ site.baseurl }}/images/kcactf/23.png)
 
@@ -169,3 +169,8 @@ The solution for this challenge can be found on the author's blog here
 
 ## More
 I will upload the writeups to the other challenges soon
+
+
+[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fallannjuguna.github.io%2FShehacksKEintervasityCTF-Kca%2F&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=views&edge_flat=false)](https://hits.seeyoufarm.com)
+
+<!-- https://hits.seeyoufarm.com/#badge -->
