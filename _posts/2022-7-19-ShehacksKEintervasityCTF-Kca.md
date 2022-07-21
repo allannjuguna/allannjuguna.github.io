@@ -5,7 +5,11 @@ title: ShehacksKEintervasityCTF!
 ---
 
 ## Introduction
-This past weekend I got the opportunity to participate in the #ShehacksKEintervasityCTF which was amazing. I played as Team BitClan with my teammates and we managed to scoop second position. The challenges were amazing and I got to learn a thing or two.
+This past weekend I got the opportunity to participate in the #ShehacksKEintervasityCTF which was amazing. 
+
+<!-- ![image]({{ site.baseurl }}/images/kcactf/0.png) -->
+
+I played as Team BitClan with my teammates and we managed to scoop second position. The challenges were amazing and I got to learn a thing or two.
 
 ![image]({{ site.baseurl }}/images/kcactf/1.png)
 
@@ -56,7 +60,7 @@ Once the contents are extracted, we can then change to the directory and try to 
 We find a FixmeKt.class file which contains the flag : flag{i_knew_youd_fix_me}
 
 ### Logd
-In this challenge , we are told something about developers forgetting to turn off logging in their applications. We are also given an android application named logga.apk . Since I do not know much about reversing android applications, I used this online tool(`https://www.decompiler.com/`) which I found to be very nifty when it comes to decompiling android applications. The tool allows you to upload an android apk and gives you the ability to download the decompiled files as a zip.
+In this challenge , we are told something about developers forgetting to turn off logging in their applications. We are also given an android application named logga.apk . Since I do not know much about reversing android applications, I used this online tool(`https://www.decompiler.com/`) which I found to be very nifty when it comes to decompiling android applications(You can also use other tools such as JADX & Frida to reverse engineer android apps). The tool allows you to upload an android apk and gives you the ability to download the decompiled files as a zip.
 
 ![image]({{ site.baseurl }}/images/kcactf/9.png)
 
@@ -99,10 +103,69 @@ Just like I had suspected, i found the library at (resources/lib/armeabi-v7a/lib
 ![image]({{ site.baseurl }}/images/kcactf/16.png)
 
 
+### References
+- https://httptoolkit.tech/blog/android-reverse-engineering/
 
-## More
-Here are some writeups from other sources
+## RE
+There were two challenges in this category of which I only managed to solve the first one with help from @trustie
+
+![image]({{ site.baseurl }}/images/kcactf/17.png)
+
+
+### Keylet
+In this challenge we are given an android application and a prompt that says `I started writing Java for android , It doesn't really work as it's supposed to be !` . Just like the other android challenges , used `https://www.decompiler.com/` to decompile the application.
+
+Once the apk is decompiled, you can open it with the code editor of your choice, for me I chose sublime. You can traverse to the `MainActivitiy.java` file as shown in the image below.
+![image]({{ site.baseurl }}/images/kcactf/18.png)
+
+From the source code above, we see that the application accepts  user input, removes the text `'flag{'` string from the input (line 22) then checks the secret using the checkSecret function (line 26). If the secret is invalid, it will show 'Access Denied'. 
+
+![image]({{ site.baseurl }}/images/kcactf/19.png)
+
+Looking at the checkSecret function, we can see that it compares the input string byte by byte with the flagBytes array in (line 38). The flagBytes array contains numbers that look like a Decimal representation of a string. We can try to decode the values using `https://gchq.github.io/CyberChef/`.To understand more about octal and decimal representation of characters check this page (https://jbwyatt.com/ascii.html)
+
+
+![image]({{ site.baseurl }}/images/kcactf/20.png)
+
+After decoding, we get the string, we get the result `pe~eIS_Fun_Z`. The first 4 characters seem to be different from the last characters which are all uppercase. This could hint that the encoding on the first 4 characters is different from the last characters. I then tried to decode the first 4 strings as octal using cyberchef and got the following result.
+
+![image]({{ site.baseurl }}/images/kcactf/21.png)
+
+We can now merge the two results to get the flag{JAVAIS_FUN_Z}
+
+
+
+## Pwn
+There were four challenges in this category of which I only managed to solve the first two 
+![image]({{ site.baseurl }}/images/kcactf/22.png)
+
+
+
+### Overflow
+The first challenge was quite simple. We get a prompt `Overflow into the buffer to get the flag!`. The first thing I did was to enter many A's on the program's user input to see how it would react.
+
+![image]({{ site.baseurl }}/images/kcactf/23.png)
+
+Entering many A's gave us the flag ie. flag{buffer_overfl0w_into_m3m0ry}
+
+
+## Forensics
+The solutions for this category can be found on the author's blog here
+- https://05t3.github.io/posts/SheHacksInterUniCTF/
+
+and here:
+- https://medium.com/@zemelusa/first-steps-to-volatile-memory-analysis-dcbd4d2d56a1
+
+## PwnBox
+The solution for this challenge can be found on the author's blog here
 - https://hackmd.io/@tahaafarooq/kcau-bootcamp-pwnbox
 - https://trevorsaudi.com/posts/2022-06-13_zipslip-vulnerability-justctf2022/
 
+
+## Web
+The solution for this challenge can be found on the author's blog here
+- https://trevorsaudi.com/posts/2022-06-13_zipslip-vulnerability-justctf2022/
+
+
+## More
 I will upload the writeups to the other challenges soon
