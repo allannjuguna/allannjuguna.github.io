@@ -159,7 +159,7 @@ and here:
 ## PwnBox
 The solution for this challenge can be found on the author's blog here
 - https://hackmd.io/@tahaafarooq/kcau-bootcamp-pwnbox
-- https://trevorsaudi.com/posts/2022-06-13_zipslip-vulnerability-justctf2022/
+
 
 
 ## Web
