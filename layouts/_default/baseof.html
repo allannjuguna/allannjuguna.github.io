@@ -6,6 +6,9 @@
   {{ end }}
   {{ partial "head.html" . }}
 </head>
+<div id=particles-js style="z-index:-1000;position:absolute;width: 100vw;height: 400%; background-image: url(''); background-repeat: no-repeat; background-size: cover; background-position: 50% 50%;"></div>
+
+
 <body class="{{- ( or .Params.color $.Site.Params.ThemeColor ) -}}">
 {{ $container := cond ($.Site.Params.FullWidthTheme | default false) "container full" (cond ($.Site.Params.CenterTheme | default false) "container center" "container") }}
 

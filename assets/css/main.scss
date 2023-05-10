@@ -8,6 +8,17 @@ html {
   box-sizing: inherit;
 }
 
+em{
+  font-weight:bold;
+  font-style: normal;
+  background-color: rgba(248, 249, 250, 0.2);
+  padding: 1px 6px;
+}
+
+code {
+  border-radius: 4px;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -165,11 +176,13 @@ pre {
   code {
     background: none !important;
     margin: 0;
+    color:gray;
     padding: 0;
     font-size: inherit;
     border: none;
   }
 }
+
 
 blockquote {
   border-top: 1px solid $accent;
