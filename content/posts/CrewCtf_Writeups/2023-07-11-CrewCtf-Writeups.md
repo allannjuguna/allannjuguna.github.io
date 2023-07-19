@@ -3,7 +3,7 @@ layout: post
 title: "CrewCtf Writeups"
 date: 2023-07-11
 categories: [ctf, crewctf]
-tags: [Linux, Volatility, Forensics]
+tags: [Linux, Volatility, Forensics, Truecrypt]
 keywords: ["", ""]
 description: ""
 showFullContent: false
@@ -95,7 +95,7 @@ INFO    : volatility.debug    : Determining profile based on KDBG search...
 ![ㅤ](/images/CrewCtf_Writeups/06.jpg)
 
 
-* All we need to do, is try and figure out if there are any plugins related to encryption, the can use grep to fetch plugins related to encryption as follows
+* All we need to do, is try and figure out if there are any plugins related to encryption, then we can use grep to fetch plugins related to encryption as follows
 
 ```bash
 # Here we search for crypt to find plugins related to encryption and decryption. The word that would match both is crypt
@@ -155,7 +155,7 @@ $ strings 3196.dmp | grep -i "\flag"
 
 ```
 
-* Now that we have both the password and the encrypted file,we can use the `cryptsetup` tool to open the encrypted file `flag` with a type of `tcrypt` (specifies that the encryption type is truecrypt) and then give it a name of `new_flag`. We also type the password we found earlier.
+* Now that we have both the password and the encrypted file,we can use the `cryptsetup` tool to open the encrypted file `flag` . We need to specify a type of `tcrypt` (specifies that the encryption type is truecrypt) and then give a name of `new_flag`. We also type the password we found earlier.
 ```bash
 $ cryptsetup --type tcrypt open flag new_flag
 Enter passphrase for /tmp/testing/flag: Strooooong_Passwword
