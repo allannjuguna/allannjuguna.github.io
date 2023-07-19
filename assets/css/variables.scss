@@ -1,12 +1,16 @@
 /* COLOR VARIABLES */
 $background: mix($accent, #1D1E28, 2%);
 $color: white;
+$codecolor:gray;
+
 
 
 /* LIGHT THEME
 $background: mix($accent, #FFFFFF, 2%);
-$color: black;
+$color: #979797;
+
 */
+
 
 
 
@@ -14,6 +18,9 @@ $border-color: rgba(255, 255, 255, .1);
 /* MEDIA QUERIES */
 $phone: "max-width: 684px";
 $tablet: "max-width: 900px";
+$customwidth:1200px;
+
+
 
 /* variables for js, must be the same as these in @custom-media queries */
 :root {

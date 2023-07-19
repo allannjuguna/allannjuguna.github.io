@@ -57,7 +57,7 @@ body {
   h1,
   h2,
   h3 {
-    font-size: 1.4rem;
+    font-size: 1.7rem;
   }
 
   h4,
@@ -176,13 +176,12 @@ pre {
   code {
     background: none !important;
     margin: 0;
-    color:gray;
+    color:$codecolor;
     padding: 0;
     font-size: inherit;
     border: none;
   }
 }
-
 
 blockquote {
   border-top: 1px solid $accent;
@@ -311,7 +310,7 @@ mark {
   display: flex;
   flex-direction: column;
   padding: 40px;
-  max-width: 864px;
+  max-width: $customwidth;
   min-height: 100vh;
   border-right: 1px solid rgba(255, 255, 255, 0.1);
 
@@ -357,3 +356,10 @@ hr {
 sup {
  line-height: 0;
 }
+
+/*Overwrite colors - also change syntax.scss line 136*/
+code {
+  color:$accent;
+  font-weight:400;
+}
+

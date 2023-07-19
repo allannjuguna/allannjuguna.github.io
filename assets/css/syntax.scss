@@ -135,7 +135,8 @@ pre[class*="language-"] {
 
 	code {
 		display: block;
-		color: inherit;
+		color: $codecolor;
+		font-weight:inherit;
 	}
 
   > .toolbar {
@@ -150,4 +151,9 @@ pre[class*="language-"] {
       user-select:none
     }
   }
+}
+
+
+a {
+text-decoration:none;
 }
