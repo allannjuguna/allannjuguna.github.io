@@ -6,10 +6,10 @@ categories:
   - Ctf
 tags:
   - Linux
-  - "#Ssti"
+  - Ssti
   - DotNet
-  - "#Ctf"
-  - "#ShmooConCTF"
+  - Ctf
+  - ShmooConCTF
 keywords:
   - ""
   - ""
