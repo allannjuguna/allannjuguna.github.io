@@ -20,10 +20,13 @@ images:
 
 
 
-![ㅤ](../../../images/PlayCyber/20240130111129.png)
 
 This blog post is a walk-through of the Orb Pwn Challenge from the Global Cyber Games: New Year Mayhem 2024 CTF . This pwn challenge was a medium level challenge and an interesting  challenge to solve.
 
+<!--more-->
+{{< image src="#" alt=" " position="center" style="border-radius: 8px;" >}}
+
+![ㅤ](../../../images/PlayCyber/20240130111129.png)
 
 ### Binary Information
 `Binary Type`
