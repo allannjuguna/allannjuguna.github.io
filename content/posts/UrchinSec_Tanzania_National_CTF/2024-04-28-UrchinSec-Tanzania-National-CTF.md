@@ -170,10 +170,10 @@ Merging the two , we get the final flag `urchinsec{pr0grt3ss_w1th_4ttached_Detai
 
 ## WormHole
 
-For this challenge , we are provided with  elf binary, and credentials to a machine we can ssh into. Logging in to the machine, we find the `wormhole` binary file which has  the suid bit (`rwsr-sr-x`)  set by the `root` user. This means that when we execute the binary, it will be executed in the context of the root user.
+For this challenge , we are provided with an elf binary, and credentials to a machine we can ssh into. Logging in to the machine, we find the `wormhole` binary file which has  the suid bit (`rwsr-sr-x`)  set by the `root` user. This means that when we execute the binary, it will be executed in the context of the root user.
 ![](/images/UrchinSec_Tanzania_National_CTF/wormhole_1.png)
 
-When we try to run the binary, we get the text `Do the worm hole` and then i hungs/does nothing else. 
+When we try to run the binary, we get the text `Do the worm hole` and then it hungs/does nothing else. 
 ![](/images/UrchinSec_Tanzania_National_CTF/wormhole_2.png)
 
 From here, we can open the binary in Ghidra to see what the binary is doing in the background. Below is the main function of the binary 
