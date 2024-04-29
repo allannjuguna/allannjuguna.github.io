@@ -262,7 +262,7 @@ From the above code snippet, we can derive the following
 * The program checks whether we have set a `LD_PRELOAD` environmental variable, if it finds we have set it , it terminates. This is to prevent us from conducting library hooking for the sleep function
 * This next line sets up a signal handler for the signal number `0xe`(SIGPWR) which is equal to `14` using the signal function. It will call the function `wormhole_handler` when this signal is received.
 * The program then sets the time and the prints the `Do the worm hole` string
-* The program then Sleeps for `10066329` which is equivalent to `116.5084375` days. This makes it impractical to wait for the sleep function to complete
+* The program then Sleeps for `10066329` seconds which is equivalent to `116.5084375` days. This makes it impractical to wait for the sleep function to complete
 * After the sleep function, the program then fetches some information about the flag file and reads the flag. It is important to note that we cannot directly run `cat /flag` since the file is only readable by the `root` user  
 
 
@@ -282,7 +282,7 @@ xxd -p /tmp/wormhole | tr -d '\n' | sed s/e832feffff/9090909090/g | xxd -r -p > 
 
 From the above, we see that we bypassed the `sleep` function and read the flag. But trying this on the provided server did not work. This is because when we create a new binary, it will lose the suid properties and hence cannot read the flag since it is owned by the root user.
 
-To solve the challenge, one was required to terminated the running program with a signal `14 or 0xe` which would cause the `wormhole_handler` to be invoked, hence bypassing the sleep and printing the flag. To achieve that , we can run the binary, then press `ctrl+z` to background it, then find its pid, the kill it using `kill -14 pidhere`. Once that is done, we can return to the exited program using `fg` (foreground the back grounded process) and we get the flag
+To solve the challenge, one was required to terminate the running program with a signal `14 or 0xe` which would cause the `wormhole_handler` to be invoked, hence bypassing the sleep function and printing the flag. To achieve that , we can run the binary, then press `ctrl+z` to background it,  find its pid, then kill it using `kill -14 pidhere`. Once that is done, we can return to the exited program using `fg` (foreground the back grounded process) and we get the flag
 ![](/images/UrchinSec_Tanzania_National_CTF/wormhole_6.png)
 
 
