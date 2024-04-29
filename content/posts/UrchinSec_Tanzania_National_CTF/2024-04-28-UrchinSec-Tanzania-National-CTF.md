@@ -33,7 +33,7 @@ This blogpost is a walkthrough of the UrchinSec Tanzania National CTF challenges
 ## Hatari
 {{< image src="/images/UrchinSec_Tanzania_National_CTF/hatari_desc.png" alt=" " position="center" style="border-radius: 8px;" >}}
 
-This challenge is a Hard rated reverse engineering challenge. Before even going any further, I my approach for solving this challenge was no the intended one, but regardless, the end justifies the means. In this challenge , we are provided with two files, the `hatari` elf binary and a `enc.bin` containing the encrypted flag , which is encrypted using the binary.
+This challenge is a Hard rated reverse engineering challenge. Before even going any further, my approach for solving this challenge was not the intended one, but regardless, the end justifies the means. In this challenge , we are provided with two files, the `hatari` elf binary and an `enc.bin` file containing the encrypted flag , which is encrypted using the binary.
 
 
 Checking the contents of the `enc.bin` file , we find that it contains the encrypted flag 
