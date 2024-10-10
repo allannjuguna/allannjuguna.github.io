@@ -23,7 +23,7 @@ images: []
 This blogpost is a walkthrough of the UrchinSec Tanzania National CTF challenges. The UrchinSec Tanzania National CTF was an interesting  ctf organized by the <a href="https://twitter.com/urchinsec_" target="_blank" rel="noopener">[urchinsec](https://twitter.com/urchinsec_)</a> team . From the ctf, I managed to solve several challenges one of which was a 500 point reverse engineering challenge. 
 
 <!--more-->
-{{< image src="#" alt=" " position="center" style="border-radius: 8px;" >}}
+{{< image src="/images/UrchinSec_Tanzania_National_CTF/banner.png" alt=" " position="center" style="border-radius: 8px;" >}}
 
 # Catalog
 * [Hatari](#hatari)
