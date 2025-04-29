@@ -374,6 +374,11 @@ code {
   font-weight:400;
 }
 
-h1,h2,h3 {
+
+p > a, h1,h2,h3,h4,h5 {
   color:$accent;
+}
+
+li > a {
+  color:rgba(191, 172, 226, 0.67);
 }
