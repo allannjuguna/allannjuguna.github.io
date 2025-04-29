@@ -22,7 +22,8 @@ code {
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Fira Code', Monaco, Consolas, Ubuntu Mono, monospace;
+  /*font-family: 'Fira Code', Monaco, Consolas, Ubuntu Mono, monospace;*/
+  font-family: 'Overpass Semibold',sans-serif;
   font-size: 1rem;
   line-height: 1.54;
   letter-spacing: -0.02em;
@@ -38,6 +39,12 @@ body {
   @media ($phone) {
     font-size: 1rem;
   }
+}
+
+
+.post-title{
+ font-family: 'Fira Code',sans-serif;
+  color:red;
 }
 
 .headings--one-size {
@@ -139,7 +146,7 @@ figure {
 }
 
 code, kbd {
-  font-family: 'Fira Code', Monaco, Consolas, Ubuntu Mono, monospace !important;
+  font-family: 'Monaco Regular', Consolas, Ubuntu Mono, monospace !important;
   font-feature-settings: normal;
   background: transparentize($accent, .8);
   color: $accent;

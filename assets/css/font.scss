@@ -13,3 +13,29 @@
   font-weight: 800;
   src: url("../fonts/JetBrainsMono-Bold.woff") format("woff");
 }
+
+
+@font-face {
+  font-family: 'Overpass';
+  src: url("../fonts/Overpass-Regular.ttf") format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Overpass Semibold';
+  src: url("../fonts/Overpass-SemiBold.ttf") format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+@font-face {
+  font-family: 'Monaco Regular';
+  src: url("../fonts/Monaco.ttf") format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
