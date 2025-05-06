@@ -25,6 +25,16 @@ This past weekend, I had some time to spare and decided to attempt some of the c
 {{< image src="/images/BitWallCTF/Pasted%20image%2020250506173842.png" alt=" " position="center" style="border-radius: 8px;" >}}
 
 
+# Catalog
+* [Baby Canel](#baby-canel)
+* [Baby Canel 2](#baby-canel-2)
+* [Diastema](#diastema)
+* [Invincible](#invincible)
+* [Baby's First Format](#baby's-first-format)
+    * [Binary Information](#binary-information)
+    * [Ghidra](#ghidra)
+    * [Exploit](#exploit)
+
 
 ### Baby Canel
 {{< image src="/images/BitWallCTF/baby_canel.png" alt=" " position="center" style="border-radius: 8px;" >}}
