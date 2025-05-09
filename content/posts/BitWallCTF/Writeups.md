@@ -4,9 +4,10 @@ title: BitSiege Writeups
 date: 2025-05-06
 categories:
   - Ctf
-  - BitwallCTF
+  - BitSiegeCTF
 tags:
   - Forensics
+  - Wordpress
   - Pwn
   - FormatString
   - Driver
@@ -43,7 +44,7 @@ This past weekend, I had some time to spare and decided to attempt some of the c
 {{< image src="/images/BitWallCTF/kiwi.png" alt=" " position="center" style="border-radius: 8px;" >}}
 
 
-This was a relatively simple web challenge, where I achieved first blood and ended up being the sole solver. I was rather surprised that other teams did not manage to solve it. For this challenge, we were provided with an archive `kiwimonster.zip` containing the challenge files.  Extracting the provided archive, we can see the following files which allow us to set up the challenge locally.
+This was a relatively simple web challenge, where I got first blood and ended up being the sole solver. I was rather surprised that other teams did not manage to solve it. For this challenge, we were provided with an archive `kiwimonster.zip` containing the challenge files.  Extracting the provided archive, we can see the following files which allow us to set up the challenge locally.
 ![](/images/BitWallCTF/tree.png)
 
 The files look like a WordPress installation with a custom plugin named `challenge-custom`. The Dockerfile provided installs WordPress and copies the `challenge-custom` plugin to the `wp-content/plugins` directory, and permissions to read the `flag.txt` file are set.
@@ -78,6 +79,7 @@ $ curl 'http://54.152.96.1:9100/wp-content/plugins/kiwiblocks/src/admin-panel/vi
 </div>
 ```
 
+> BitCTF{l0c4l_f1l3_1nc1u510n_a3f5d1c89e4b2a7f}
 
 ### Baby Canel
 {{< image src="/images/BitWallCTF/baby_canel.png" alt=" " position="center" style="border-radius: 8px;" >}}
