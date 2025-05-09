@@ -1,6 +1,6 @@
 ---
 layout: post
-title: BitSiege Writeups
+title: BitSiegeCTF Writeups
 date: 2025-05-06
 categories:
   - Ctf
