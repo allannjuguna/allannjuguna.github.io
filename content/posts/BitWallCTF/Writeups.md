@@ -1,6 +1,6 @@
 ---
 layout: post
-title: BitWallCTF Writeups
+title: BitSiege Writeups
 date: 2025-05-06
 categories:
   - Ctf
@@ -19,13 +19,14 @@ showFullContent: false
 images:
   - ""
 ---
-This past weekend, I had some time to spare and decided to attempt some of the challenges from the Bitwall CTF. The CTF had some interesting challenges which I enjoyed solving and even managed to get a first blood and only solve for one of the challenges. This blog post is a walkthrough of some of the challenges.
+This past weekend, I had some time to spare and decided to attempt some of the challenges from the BitSiege CTF. The CTF had some interesting challenges which I enjoyed solving and even managed to get first blood and only solve for one of the challenges. This blog post is a walkthrough of some of the challenges.
 
 
 {{< image src="/images/BitWallCTF/Pasted%20image%2020250506173842.png" alt=" " position="center" style="border-radius: 8px;" >}}
 
 
 # Catalog
+* [Kiwi Khaos](#kiwi-khaos)
 * [Baby Canel](#baby-canel)
 * [Baby Canel 2](#baby-canel-2)
 * [Diastema](#diastema)
@@ -34,6 +35,48 @@ This past weekend, I had some time to spare and decided to attempt some of the c
     * [Binary Information](#binary-information)
     * [Ghidra](#ghidra)
     * [Exploit](#exploit)
+
+
+
+### Kiwi Khaos
+
+{{< image src="/images/BitWallCTF/kiwi.png" alt=" " position="center" style="border-radius: 8px;" >}}
+
+
+This was a relatively simple web challenge, where I achieved first blood and ended up being the sole solver. I was rather surprised that other teams did not manage to solve it. For this challenge, we were provided with an archive `kiwimonster.zip` containing the challenge files.  Extracting the provided archive, we can see the following files which allow us to set up the challenge locally.
+![](/images/BitWallCTF/tree.png)
+
+The files look like a WordPress installation with a custom plugin named `challenge-custom`. The Dockerfile provided installs WordPress and copies the `challenge-custom` plugin to the `wp-content/plugins` directory, and permissions to read the `flag.txt` file are set.
+![](/images/BitWallCTF/dockerfile.png)
+
+During the CTF, I did not bother setting up the challenge via Docker as it would be time-consuming (pulling the image, etc.) Plus, I already had a WordPress setup on my machine, so I chose to use that instead. The setup was quite simple, I just copied the `challenge-custom` plugin to my `wp-content/plugins` directory and proceeded to the code review phase of the challenge.
+
+
+Navigating through the plugin files, I came  across the `panel.php` file, which contained a local file inclusion vulnerability. Looking at the code, we can see that :
+* It checks for a GET parameter `tab`, if it is set, it will include its value once allowing us to view/load its contents.
+* If the parameter is not set, it will result to a default value `general.php`
+* We can also see that the provided `tab` parameter is insecurely concatenated leading to a path traversal vulnerability
+![](/images/BitWallCTF/code_review.png)
+
+
+We can test the vulnerability by loading the `/etc/passwd` file 
+```
+http://localhost/wordpress/wp-content/plugins/kiwiblocks/src/admin-panel/views/panel.php?tab=../../../../../../../../../../../../../../../../../../etc/passwd
+```
+![](/images/BitWallCTF/lfi.png)
+
+Now that we can confirm an unauthenticated local file read, we can read the flag from the remote instance. 
+```c
+$ curl 'http://54.152.96.1:9100/wp-content/plugins/kiwiblocks/src/admin-panel/views/panel.php?page=kiwiblocks&tab=../../../../../../../../../../../flag.txt'
+   
+<h1 class="kiwi_title">Kiwiblocks</h1>
+
+<div class="kiwi_panel">
+
+    BitCTF{l0c4l_f1l3_1nc1u510n_a3f5d1c89e4b2a7f}
+
+</div>
+```
 
 
 ### Baby Canel
@@ -47,7 +90,7 @@ For this challenge, we are provided with three files
 └── BitwallCanel.sys
 ```
 
-From what i gathered:
+From what I gathered:
 * `bitwallcanel.cat` is a digital signature file used in Windows driver packages and contains cryptographic hashes of the driver files and is signed to verify the integrity and authenticity of the driver
 * `BitwallCanel.inf` is a driver installation script that tells windows how to install the driver and where to copy the related files
 * `BitwallCanel.sys` is the actual driver binary, compiled for windows. It is responsible for interacting directly with the hardware or providing a low-level service.
@@ -58,7 +101,7 @@ Without prior experience working with Windows driver files, I opened the `Bitwal
 
 The code is a simple decryption routine which decrypts the hardcoded encrypted flag using a hardcoded key. From the image, the code:
 * Performs a XOR operation on the hardcoded `xor_key_data` with `0xbc` and stores the result in `new_xor_key`
-* It then performs another XOR operation to decrypt the  `encrypted_flag` using the  `new_xor_key` and after which it then prints the decrypted flag.
+* It then performs another XOR operation to decrypt the  `encrypted_flag` using the  `new_xor_key` and then prints the decrypted flag.
 
 
 Using this information, we can build a decryptor in python
