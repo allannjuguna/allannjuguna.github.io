@@ -1,1 +1,0 @@
-/home/zerofrost/ctf/allnotes/learningallthings.md
