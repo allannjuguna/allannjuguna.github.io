@@ -1,19 +1,10 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Patching on Zerofrost</title>
-    <link>//localhost:1313/tags/patching/</link>
-    <description>Recent content in Patching on Zerofrost</description>
-    <generator>Hugo</generator>
-    <language>en-us</language>
-    <lastBuildDate>Sun, 28 Apr 2024 00:00:00 -0400</lastBuildDate>
-    <atom:link href="//localhost:1313/tags/patching/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>UrchinSec Tanzania National CTF MMXXIV</title>
-      <link>//localhost:1313/blog/urchinsec_tanzania_national_ctf/2024-04-28-urchinsec-tanzania-national-ctf/</link>
-      <pubDate>Sun, 28 Apr 2024 00:00:00 -0400</pubDate>
-      <guid>//localhost:1313/blog/urchinsec_tanzania_national_ctf/2024-04-28-urchinsec-tanzania-national-ctf/</guid>
-      <description>&lt;p&gt;This blogpost is a walkthrough of the UrchinSec Tanzania National CTF challenges. The UrchinSec Tanzania National CTF was an interesting  ctf organized by the &lt;a href=&#34;https://twitter.com/urchinsec_&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;a href=&#34;https://twitter.com/urchinsec_&#34;&#xA;&#xA;&#xA;&#xA;&#xA; target=&#34;_blank&#34;&#xA; &#xA;&#xA;&#xA;&gt;urchinsec&lt;/a&gt;&lt;/a&gt; team . From the ctf, I managed to solve several challenges one of which was a 500 point reverse engineering challenge.&lt;/p&gt;</description>
-    </item>
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Patching on Zerofrost</title><link>/tags/patching/</link><description>Recent content in Patching on Zerofrost</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Sun, 28 Apr 2024 00:00:00 -0400</lastBuildDate><atom:link href="/tags/patching/index.xml" rel="self" type="application/rss+xml"/><item><title>UrchinSec Tanzania National CTF MMXXIV</title><link>/blog/urchinsec_tanzania_national_ctf/2024-04-28-urchinsec-tanzania-national-ctf/</link><pubDate>Sun, 28 Apr 2024 00:00:00 -0400</pubDate><guid>/blog/urchinsec_tanzania_national_ctf/2024-04-28-urchinsec-tanzania-national-ctf/</guid><description>&lt;p>This blogpost is a walkthrough of the UrchinSec Tanzania National CTF challenges. The UrchinSec Tanzania National CTF was an interesting ctf organized by the &lt;a href="https://twitter.com/urchinsec_" target="_blank" rel="noopener">&lt;a href="https://twitter.com/urchinsec_"
+
+
+
+
+ target="_blank"
+ 
+
+
+>urchinsec&lt;/a>&lt;/a> team . From the ctf, I managed to solve several challenges one of which was a 500 point reverse engineering challenge.&lt;/p></description></item></channel></rss>

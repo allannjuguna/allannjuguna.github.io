@@ -1,54 +1,11 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Linux on Zerofrost</title>
-    <link>//localhost:1313/tags/linux/</link>
-    <description>Recent content in Linux on Zerofrost</description>
-    <generator>Hugo</generator>
-    <language>en-us</language>
-    <lastBuildDate>Fri, 29 Nov 2024 00:00:00 -0500</lastBuildDate>
-    <atom:link href="//localhost:1313/tags/linux/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Abusing Legitimate Features in Casaos</title>
-      <link>//localhost:1313/blog/casaos/casaos/</link>
-      <pubDate>Fri, 29 Nov 2024 00:00:00 -0500</pubDate>
-      <guid>//localhost:1313/blog/casaos/casaos/</guid>
-      <description>&lt;p&gt;CasaOs is one of the go-to tools for home server setups among tech and cloud enthusiasts. It is a straight forward interface that simplifies the complexities of server management, allowing users to set up and manage their own servers via a user-friendly interface without the steep learning curve usually associated with traditional server setups. In this blog post, we will explore some of the features in CasaOs and how an attacker could abuse them to compromise the underlying host.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Africa Bug Pwn 2024 Writeups</title>
-      <link>//localhost:1313/blog/africa_bug_pwn_2024_writeups/africa_bug_pwn_2024_writeups/</link>
-      <pubDate>Mon, 21 Oct 2024 00:00:00 -0400</pubDate>
-      <guid>//localhost:1313/blog/africa_bug_pwn_2024_writeups/africa_bug_pwn_2024_writeups/</guid>
-      <description>&lt;p&gt;Recently I took part in the Africa Bug Pwn 2024 Capture the Flag Competition and managed to get second position with 2310 points. The CTF was very interesting and I got to learn a thing or two. This blog post will be a writeup of some of the challenges I managed to solve.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>UrchinSec Tanzania National CTF MMXXIV</title>
-      <link>//localhost:1313/blog/urchinsec_tanzania_national_ctf/2024-04-28-urchinsec-tanzania-national-ctf/</link>
-      <pubDate>Sun, 28 Apr 2024 00:00:00 -0400</pubDate>
-      <guid>//localhost:1313/blog/urchinsec_tanzania_national_ctf/2024-04-28-urchinsec-tanzania-national-ctf/</guid>
-      <description>&lt;p&gt;This blogpost is a walkthrough of the UrchinSec Tanzania National CTF challenges. The UrchinSec Tanzania National CTF was an interesting  ctf organized by the &lt;a href=&#34;https://twitter.com/urchinsec_&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;a href=&#34;https://twitter.com/urchinsec_&#34;&#xA;&#xA;&#xA;&#xA;&#xA; target=&#34;_blank&#34;&#xA; &#xA;&#xA;&#xA;&gt;urchinsec&lt;/a&gt;&lt;/a&gt; team . From the ctf, I managed to solve several challenges one of which was a 500 point reverse engineering challenge.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>ImaginaryCTF Argv Pwn Writeup</title>
-      <link>//localhost:1313/blog/imaginaryctf/argv/</link>
-      <pubDate>Sun, 11 Feb 2024 00:00:00 -0500</pubDate>
-      <guid>//localhost:1313/blog/imaginaryctf/argv/</guid>
-      <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;&#xA;&lt;p&gt;This blog post is a walkthrough of an interesting pwn challenge I came across in the imaginary ctf discord challenge.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>ShmooCon CTF</title>
-      <link>//localhost:1313/blog/shmooconctf/shmooconctf/</link>
-      <pubDate>Sat, 13 Jan 2024 00:00:00 -0500</pubDate>
-      <guid>//localhost:1313/blog/shmooconctf/shmooconctf/</guid>
-      <description>&lt;p&gt;Over the recent weekend, I found some free time that enabled me to participate in the ShmooCon CTF. While it did not have pwn challenges as I had hoped, they offered a variety of challenges I enjoyed solving. This blogpost is a walkthrough of  some of the challenges I managed to solve.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>CrewCtf Writeups</title>
-      <link>//localhost:1313/blog/crewctf_writeups/2023-07-11-crewctf-writeups/</link>
-      <pubDate>Tue, 11 Jul 2023 00:00:00 -0400</pubDate>
-      <guid>//localhost:1313/blog/crewctf_writeups/2023-07-11-crewctf-writeups/</guid>
-      <description>&lt;p&gt;It has been a while since I last participated in a CTF (Capture The Flag) competition. With a few moments to spare this weekend, I decided to immerse myself in CrewCTF by theHackersCrew CTF team. Their event offered a diverse range of challenges, but I chose to focus primarily on the fascinating field of forensics. In this blog, I will share my approach and solutions for the different challenges I managed to solve.&lt;/p&gt;</description>
-    </item>
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Linux on Zerofrost</title><link>/tags/linux/</link><description>Recent content in Linux on Zerofrost</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Fri, 29 Nov 2024 00:00:00 -0500</lastBuildDate><atom:link href="/tags/linux/index.xml" rel="self" type="application/rss+xml"/><item><title>Abusing Legitimate Features in Casaos</title><link>/blog/casaos/casaos/</link><pubDate>Fri, 29 Nov 2024 00:00:00 -0500</pubDate><guid>/blog/casaos/casaos/</guid><description>&lt;p>CasaOs is one of the go-to tools for home server setups among tech and cloud enthusiasts. It is a straight forward interface that simplifies the complexities of server management, allowing users to set up and manage their own servers via a user-friendly interface without the steep learning curve usually associated with traditional server setups. In this blog post, we will explore some of the features in CasaOs and how an attacker could abuse them to compromise the underlying host.&lt;/p></description></item><item><title>Africa Bug Pwn 2024 Writeups</title><link>/blog/africa_bug_pwn_2024_writeups/africa_bug_pwn_2024_writeups/</link><pubDate>Mon, 21 Oct 2024 00:00:00 -0400</pubDate><guid>/blog/africa_bug_pwn_2024_writeups/africa_bug_pwn_2024_writeups/</guid><description>&lt;p>Recently I took part in the Africa Bug Pwn 2024 Capture the Flag Competition and managed to get second position with 2310 points. The CTF was very interesting and I got to learn a thing or two. This blog post will be a writeup of some of the challenges I managed to solve.&lt;/p></description></item><item><title>UrchinSec Tanzania National CTF MMXXIV</title><link>/blog/urchinsec_tanzania_national_ctf/2024-04-28-urchinsec-tanzania-national-ctf/</link><pubDate>Sun, 28 Apr 2024 00:00:00 -0400</pubDate><guid>/blog/urchinsec_tanzania_national_ctf/2024-04-28-urchinsec-tanzania-national-ctf/</guid><description>&lt;p>This blogpost is a walkthrough of the UrchinSec Tanzania National CTF challenges. The UrchinSec Tanzania National CTF was an interesting ctf organized by the &lt;a href="https://twitter.com/urchinsec_" target="_blank" rel="noopener">&lt;a href="https://twitter.com/urchinsec_"
+
+
+
+
+ target="_blank"
+ 
+
+
+>urchinsec&lt;/a>&lt;/a> team . From the ctf, I managed to solve several challenges one of which was a 500 point reverse engineering challenge.&lt;/p></description></item><item><title>ImaginaryCTF Argv Pwn Writeup</title><link>/blog/imaginaryctf/argv/</link><pubDate>Sun, 11 Feb 2024 00:00:00 -0500</pubDate><guid>/blog/imaginaryctf/argv/</guid><description>&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;p>This blog post is a walkthrough of an interesting pwn challenge I came across in the imaginary ctf discord challenge.&lt;/p></description></item><item><title>ShmooCon CTF</title><link>/blog/shmooconctf/shmooconctf/</link><pubDate>Sat, 13 Jan 2024 00:00:00 -0500</pubDate><guid>/blog/shmooconctf/shmooconctf/</guid><description>&lt;p>Over the recent weekend, I found some free time that enabled me to participate in the ShmooCon CTF. While it did not have pwn challenges as I had hoped, they offered a variety of challenges I enjoyed solving. This blogpost is a walkthrough of some of the challenges I managed to solve.&lt;/p></description></item><item><title>CrewCtf Writeups</title><link>/blog/crewctf_writeups/2023-07-11-crewctf-writeups/</link><pubDate>Tue, 11 Jul 2023 00:00:00 -0400</pubDate><guid>/blog/crewctf_writeups/2023-07-11-crewctf-writeups/</guid><description>&lt;p>It has been a while since I last participated in a CTF (Capture The Flag) competition. With a few moments to spare this weekend, I decided to immerse myself in CrewCTF by theHackersCrew CTF team. Their event offered a diverse range of challenges, but I chose to focus primarily on the fascinating field of forensics. In this blog, I will share my approach and solutions for the different challenges I managed to solve.&lt;/p></description></item></channel></rss>
