@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Forensics on Zerofrost</title>
+    <link>//localhost:1313/tags/forensics/</link>
+    <description>Recent content in Forensics on Zerofrost</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 06 May 2025 00:00:00 -0400</lastBuildDate>
+    <atom:link href="//localhost:1313/tags/forensics/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>BitSiegeCTF Writeups</title>
+      <link>//localhost:1313/blog/bitwallctf/writeups/</link>
+      <pubDate>Tue, 06 May 2025 00:00:00 -0400</pubDate>
+      <guid>//localhost:1313/blog/bitwallctf/writeups/</guid>
+      <description>&lt;h3 id=&#34;introduction&#34;&gt;Introduction&lt;/h3&gt;&#xA;&lt;p&gt;This past weekend, I had some time to spare and decided to attempt some of the challenges from the BitSiege CTF. The CTF had some interesting challenges which I enjoyed solving and even managed to get first blood and only solve for one of the challenges. This blog post is a walkthrough of some of the challenges.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Africa Bug Pwn 2024 Writeups</title>
+      <link>//localhost:1313/blog/africa_bug_pwn_2024_writeups/africa_bug_pwn_2024_writeups/</link>
+      <pubDate>Mon, 21 Oct 2024 00:00:00 -0400</pubDate>
+      <guid>//localhost:1313/blog/africa_bug_pwn_2024_writeups/africa_bug_pwn_2024_writeups/</guid>
+      <description>&lt;p&gt;Recently I took part in the Africa Bug Pwn 2024 Capture the Flag Competition and managed to get second position with 2310 points. The CTF was very interesting and I got to learn a thing or two. This blog post will be a writeup of some of the challenges I managed to solve.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>CrewCtf Writeups</title>
+      <link>//localhost:1313/blog/crewctf_writeups/2023-07-11-crewctf-writeups/</link>
+      <pubDate>Tue, 11 Jul 2023 00:00:00 -0400</pubDate>
+      <guid>//localhost:1313/blog/crewctf_writeups/2023-07-11-crewctf-writeups/</guid>
+      <description>&lt;p&gt;It has been a while since I last participated in a CTF (Capture The Flag) competition. With a few moments to spare this weekend, I decided to immerse myself in CrewCTF by theHackersCrew CTF team. Their event offered a diverse range of challenges, but I chose to focus primarily on the fascinating field of forensics. In this blog, I will share my approach and solutions for the different challenges I managed to solve.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

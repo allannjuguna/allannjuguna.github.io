@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Volatility on Zerofrost</title>
+    <link>//localhost:1313/tags/volatility/</link>
+    <description>Recent content in Volatility on Zerofrost</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 11 Jul 2023 00:00:00 -0400</lastBuildDate>
+    <atom:link href="//localhost:1313/tags/volatility/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CrewCtf Writeups</title>
+      <link>//localhost:1313/blog/crewctf_writeups/2023-07-11-crewctf-writeups/</link>
+      <pubDate>Tue, 11 Jul 2023 00:00:00 -0400</pubDate>
+      <guid>//localhost:1313/blog/crewctf_writeups/2023-07-11-crewctf-writeups/</guid>
+      <description>&lt;p&gt;It has been a while since I last participated in a CTF (Capture The Flag) competition. With a few moments to spare this weekend, I decided to immerse myself in CrewCTF by theHackersCrew CTF team. Their event offered a diverse range of challenges, but I chose to focus primarily on the fascinating field of forensics. In this blog, I will share my approach and solutions for the different challenges I managed to solve.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
