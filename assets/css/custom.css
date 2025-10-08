@@ -12,3 +12,8 @@
 .content :where(code):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
   color: #BFACE2;
 }
+
+
+.content :where(h2):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+  color: #BFACE2;
+}
