@@ -1,1 +1,11 @@
 /* Add your own custom styles here */
+.content {
+	color: #C3C3C3;
+}
+
+@layer components {
+  .content {
+    color: #C3C3C3;
+  }
+}
+
