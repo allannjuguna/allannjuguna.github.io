@@ -22,6 +22,7 @@ env:
   HUGO_ENV: production
   HUGO_VERSION: "0.151.0"
   GO_VERSION: "1.23.3"
+  NODE_VERSION: "22.18.0"
   # TINA_CLIENT_ID: ${{ secrets.TINA_CLIENT_ID }}
   # TINA_TOKEN: ${{ secrets.TINA_TOKEN }}
   # TINA_SEARCH_TOKEN: ${{ secrets.TINA_SEARCH_TOKEN }}
@@ -47,6 +48,12 @@ jobs:
           submodules: recursive
           fetch-depth: 0
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
@@ -55,7 +62,7 @@ jobs:
         run: npm run project-setup
 
       - name: Install npm dependencies
-        run: npm install
+        run: npm ci
 
       - name: Build site
         run: npm run build
