@@ -9,3 +9,6 @@
   }
 }
 
+.content :where(code):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+  color: #BFACE2;
+}
