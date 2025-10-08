@@ -113,7 +113,7 @@
     <loc>//localhost:1313/categories/crewctf/</loc>
     <lastmod>2023-07-11T00:00:00-04:00</lastmod>
   </url><url>
-    <loc>//localhost:1313/blog/crewctf_writeups/2023-07-11-crewctf-writeups/</loc>
+    <loc>//localhost:1313/blog/crewctf_writeups/crewctf-writeups/</loc>
     <lastmod>2023-07-11T00:00:00-04:00</lastmod>
   </url><url>
     <loc>//localhost:1313/tags/truecrypt/</loc>
@@ -134,7 +134,7 @@
     <loc>//localhost:1313/categories/shehacks/</loc>
     <lastmod>2022-07-19T00:00:00-04:00</lastmod>
   </url><url>
-    <loc>//localhost:1313/blog/shehacks-intervarsityctf/shehacks-intervarsityctf/</loc>
+    <loc>//localhost:1313/blog/shehacks_intervarsityctf/shehacks_intervarsityctf/</loc>
     <lastmod>2022-07-19T00:00:00-04:00</lastmod>
   </url><url>
     <loc>//localhost:1313/authors/</loc>

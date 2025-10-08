@@ -72,7 +72,7 @@
 
 
 
-  <base href="//localhost:1313/blog/casaos/casaos/" />
+  <base href="//localhost:1313/blog/shehacks_intervarsityctf/shehacks_intervarsityctf/" />
 
 
 
@@ -83,7 +83,7 @@
   
 
 
-<title>Abusing Legitimate Features in Casaos</title>
+<title>SheHacks-IntervarsityCTF</title>
 
 
 
@@ -160,15 +160,15 @@
       
       
       
-        <meta property="og:image" content="//localhost:1313/images/CasaOs/Pasted_20241009150352.png" />
-        <meta name="twitter:image" content="//localhost:1313/images/CasaOs/Pasted_20241009150352.png" />
+        <meta property="og:image" content="//localhost:1313/images/kcactf/1.png" />
+        <meta name="twitter:image" content="//localhost:1313/images/kcactf/1.png" />
         <meta
           name="twitter:card"
           content="summary_large_image" />
       
       
-      <meta property="og:image:width" content="1500" />
-      <meta property="og:image:height" content="644" />
+      <meta property="og:image:width" content="1905" />
+      <meta property="og:image:height" content="743" />
     
 
 
@@ -185,13 +185,13 @@
 
 
 
-<meta property="og:title" content="Abusing Legitimate Features in Casaos" />
+<meta property="og:title" content="SheHacks-IntervarsityCTF" />
 <meta property="og:description" content="Hugo &amp; Tailwindcss Starter" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="//localhost:1313/blog/casaos/casaos/" />
+<meta property="og:url" content="//localhost:1313/blog/shehacks_intervarsityctf/shehacks_intervarsityctf/" />
 
 
-<meta name="twitter:title" content="Abusing Legitimate Features in Casaos" />
+<meta name="twitter:title" content="SheHacks-IntervarsityCTF" />
 <meta name="twitter:description" content="Hugo &amp; Tailwindcss Starter" />
 
 
@@ -824,31 +824,31 @@
         <picture>
           <source
             
-              srcset="/images/CasaOs/Pasted_20241009150352_hu_dd1012668495ee7d.webp"
+              srcset="/images/kcactf/1_hu_47e6f59c1cde902f.webp"
             
             media="(max-width: 575px)" />
           <source
             
-              srcset="/images/CasaOs/Pasted_20241009150352_hu_a32b641a103b1421.webp"
+              srcset="/images/kcactf/1_hu_c101aa5e2607e109.webp"
             
             media="(max-width: 767px)" />
           <source
             
-              srcset="/images/CasaOs/Pasted_20241009150352_hu_3099e459a5819491.webp"
+              srcset="/images/kcactf/1_hu_b323bd92a5625b21.webp"
             
             media="(max-width: 991px)" />
           <source
             
-              srcset="/images/CasaOs/Pasted_20241009150352_hu_c66ca7981f289679.webp"
+              srcset="/images/kcactf/1_hu_98ab14028f8a1d82.webp"
              />
           <img
             
               loading="lazy" decoding="async"
-              src="/images/CasaOs/Pasted_20241009150352_hu_e14f5c0a8cd1f005.png"
+              src="/images/kcactf/1_hu_dbfa5a0511f897bb.png"
             class=" w-full rounded img"
-            alt="Abusing Legitimate Features in Casaos"
-            width="1500"
-            height="644" />
+            alt="SheHacks-IntervarsityCTF"
+            width="1905"
+            height="743" />
         </picture>
       
       
@@ -863,7 +863,7 @@
             </div>
           
           <h1 class="h2 mb-4">
-            Abusing Legitimate Features in Casaos
+            SheHacks-IntervarsityCTF
           </h1>
           <ul class="mb-4">
             <li class="mr-4 inline-block">
@@ -879,16 +879,24 @@
                 <i class="fa-regular fa-folder mr-2"></i>
                 
                   <a
-                    href="/categories/research/"
+                    href="/categories/ctf/"
                     class=""
-                    >Research
+                    >Ctf
+                      ,
+                    
+                  </a>
+                
+                  <a
+                    href="/categories/shehacks/"
+                    class=""
+                    >Shehacks
                   </a>
                 
               </li>
             
             <li class="mr-4 inline-block">
               <i class="fa-regular fa-clock mr-2"></i>
-              November 29, 2024
+              July 19, 2022
             </li>
           </ul>
           <div class="content mb-10">
@@ -905,123 +913,55 @@
   </summary>
   <nav id="TableOfContents">
   <ol>
-    <li>
+    <li><a href="#osint">OSINT</a>
       <ol>
-        <li><a href="#background">Background</a>
-          <ol>
-            <li><a href="#support-and-installation">Support and Installation</a></li>
-            <li><a href="#dashboard">Dashboard</a></li>
-            <li><a href="#app-store">App Store</a></li>
-            <li><a href="#file-manager">File Manager</a></li>
-          </ol>
-        </li>
-        <li><a href="#its-not-a-bug-its-a-feature">It&rsquo;s not a Bug, It&rsquo;s a Feature</a>
-          <ol>
-            <li><a href="#attack-primitive-1">Attack Primitive 1</a></li>
-            <li><a href="#attack-primitive-2">Attack Primitive 2</a></li>
-            <li><a href="#attack-primitive-3">Attack Primitive 3</a></li>
-          </ol>
-        </li>
-        <li><a href="#poc-or-gtfo">POC or GTFO</a></li>
-        <li><a href="#mitigations">Mitigations</a></li>
+        <li><a href="#hunter-1">Hunter 1</a></li>
+        <li><a href="#last-hunt">Last Hunt</a></li>
+        <li><a href="#references">References</a></li>
       </ol>
     </li>
+    <li><a href="#mobile-app">Mobile App</a>
+      <ol>
+        <li><a href="#fixme">FixMe</a></li>
+        <li><a href="#logd">Logd</a></li>
+        <li><a href="#buits-and-bytes">Buits and Bytes</a></li>
+        <li><a href="#firirida">Firirida</a></li>
+        <li><a href="#references-1">References</a></li>
+      </ol>
+    </li>
+    <li><a href="#re">RE</a>
+      <ol>
+        <li><a href="#keylet">Keylet</a></li>
+      </ol>
+    </li>
+    <li><a href="#pwn">Pwn</a>
+      <ol>
+        <li><a href="#overflow">Overflow</a></li>
+      </ol>
+    </li>
+    <li><a href="#forensics">Forensics</a></li>
+    <li><a href="#pwnbox">PwnBox</a></li>
+    <li><a href="#web">Web</a></li>
   </ol>
 </nav>
 </details>
 
-            <p>CasaOs is one of the go-to tools for home server setups among tech and cloud enthusiasts. It is a straight forward interface that simplifies the complexities of server management, allowing users to set up and manage their own servers via a user-friendly interface without the steep learning curve usually associated with traditional server setups. In this blog post, we will explore some of the features in CasaOs and how an attacker could abuse them to compromise the underlying host.</p>
-<h3 id="background">Background</h3>
-<p>The option of setting up personal clouds is lucrative for people who don&rsquo;t want to rely on external service providers and CasaOs offers the ability to do just that through a ton of self-hosting features to help you access all your favorite home lab servers without investing in extra hardware. CasaOs serves as a personal home cloud, a hub for hosting services, a control panel, and a container server, all wrapped up in an intuitive web interface that you can use from any device connected to your home network. Although it has &ldquo;OS&rdquo; in its name, it doesn’t operate as a traditional operating system; rather, it&rsquo;s quite similar to Nextcloud, requiring installation over an existing operating system. CasaOs offers a variety of features including file management, docker support and an app store with pre-configured docker containers that are ready for rapid deployment.</p>
-<h4 id="support-and-installation">Support and Installation</h4>
-<p>CasaOs is lightweight and fully supports custom boards such as ZimaBoard, Intel NUC, and Raspberry Pi with support for amd64/x86-64, arm64 and armv7 architectures. Moreover, it is fully compatible with Ubuntu, Debian, Raspberry Pi OS, and CentOS allowing installation with a one-liner installation.</p>
-<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl -fsSL https://get.casaos.io | sudo bash
-</span></span><span style="display:flex;"><span><span style="color:#7f848e">#OR</span>
-</span></span><span style="display:flex;"><span>wget -qO- https://get.casaos.io | sudo bash
-</span></span></code></pre></div><p>In my case, I installed CasaOs in a kali vm and once successfully installed, the web interface can be accessed via the provided URLs displayed at the bottom. In my case, my CasaOs instance is available at <code>http://192.168.56.109</code>
-<img src="/images/CasaOs/Pasted_20241027120120.png" alt=""></p>
-<p>Visiting the URL we come across a registration page, pretty standard stuff. Create an account and you are set to go, I chose the credentials <code>casaos:casaos</code> here.
-<img src="/images/CasaOs/Pasted_20241027120520.png" alt=""></p>
-<h4 id="dashboard">Dashboard</h4>
-<p>After successful installation and login, you can now access the main dashboard which contains some metrics about the underlying host such as the CPU usage, RAM usage, utilized storage, network status and available interfaces, customizable widget settings, as well as the App Store, File Manager and installed applications.
-<img src="/images/CasaOs/Pasted_20241027120605.png" alt=""></p>
-<h4 id="app-store">App Store</h4>
-<p>CasaOs also has an App Store which contains a ton of applications that can be installed via a one-click installation. These applications are pre-configured docker containers for the respective services with popular services such as nginxproxymanager, Gitea, MongoDB, Nextcloud, Memos, Pi-hole etc.
-<img src="/images/CasaOs/Pasted_20241027120645.png" alt=""></p>
-<p><img src="/images/CasaOs/Pasted_20241027120715.png" alt=""></p>
-<p>For each application, we get details, screenshots and a nifty install button to install the application.
-<img src="/images/CasaOs/Pasted_20241009153421.png" alt=""></p>
-<p>CasaOs also supports deployment of custom containers by allowing you to import custom docker-compose files.
-<img src="/images/CasaOs/Pasted_20241009153724.png" alt=""></p>
-<h4 id="file-manager">File Manager</h4>
-<p>CasaOs also has a file manager which allows managing files on the host via the web interface. Through the file manager, a user can upload, download, create and delete files and folders. Data for all installed applications is stored in the <code>DATA</code> directory.
-<img src="/images/CasaOs/Pasted_20241027120833.png" alt=""></p>
-<p>Using the file manager, we can also access files and directories stored on the host by accessing the <code>ROOT</code> directory.
-<img src="/images/CasaOs/Pasted_20241027120923.png" alt=""></p>
-<p>The file manager also allows sharing folders to other devices on the same network allowing for fast and efficient file sharing.
-<img src="/images/CasaOs/Pasted_20241027121136.png" alt=""></p>
-<h3 id="its-not-a-bug-its-a-feature">It&rsquo;s not a Bug, It&rsquo;s a Feature</h3>
-<p>While playing around with CasaOs, I noticed several attack primitives that an authenticated attacker could abuse to gain root privileges on the host server.</p>
-<h4 id="attack-primitive-1">Attack Primitive 1</h4>
-<p>Using this primitive an authenticated attacker could use the file manager to access the root user&rsquo;s directory allowing them to access sensitive files and folders such as the <code>.ssh</code> folder.</p>
-<p><img src="/images/CasaOs/Pasted_20241009155209.png" alt="">
-An attacker could generate SSH key pairs and upload the public key to <code>.ssh</code> directory with the filename <code>authorized_keys</code>, then login using the private key. It is important to note that for this exploitation primitive to work, the server must have SSH running and is reachable by the attacker</p>
-<blockquote>
-<p>The latest version of CasaOs does not display the contents of the root folder, unless they were created from the dashboard</p></blockquote>
-<p><img src="/images/CasaOs/Pasted_20241027122845.png" alt=""></p>
-<p>When we try to create a folder that we know exists in the <code>/root</code> directory, we get a <code>Folder already exists</code> message.
-<img src="/images/CasaOs/Pasted_20241027122919.png" alt=""></p>
-<p>After intercepting traffic in burp, I realized that the files and folders in the root directory are fetched by the API but are not displayed in the frontend. For example, the request below fetches the contents of the newly created directory <code>test</code>
-<img src="/images/CasaOs/Pasted_20241027123324.png" alt=""></p>
-<p>When we edit the request to fetch the contents of the <code>root</code> directory, we get results.
-<img src="/images/CasaOs/Pasted_20241027123458.png" alt=""></p>
-<p>Checking the <code>.ssh</code> folder, we see a private key and public key. All the attacker has to do is grab the private key and use it to login.
-<img src="/images/CasaOs/Pasted_20241027123408.png" alt=""></p>
-<p>To read the contents of the public key, let&rsquo;s find the request for reading files. I created a simple file, intercepted traffic, then opened it for reading.
-<img src="/images/CasaOs/Pasted_20241027123840.png" alt=""></p>
-<p>This was the request sent to read a file. Let&rsquo;s change it to read the private key
-<img src="/images/CasaOs/Pasted_20241027123903.png" alt=""></p>
-<p>Swapping the filename with <code>/root/.ssh/id_rsa</code> we get the contents of the private key.
-<img src="/images/CasaOs/Pasted_20241027123944.png" alt=""></p>
-<p>Since we did not see an <code>authorized_keys</code> file in the <code>/root/.ssh</code> folder, we can just create one and paste the contents of the <code>public key</code> file in it, we can then download the <code>private key</code> locally, give it the necessary permissions and login as root.
-<img src="/images/CasaOs/Pasted_20241028192156.png" alt=""></p>
-<h4 id="attack-primitive-2">Attack Primitive 2</h4>
-<p>A malicious actor could use the file manager to access the <code>/etc</code> folder. Using this primitive, an attacker could download the <code>shadow</code> file containing password hashes belonging to users.
-<img src="/images/CasaOs/Pasted_20241009155808.png" alt=""></p>
-<p><img src="/images/CasaOs/Pasted_20241027124106.png" alt=""></p>
-<p>Obtained password hashes can then be cracked offline using password cracking tools such as hashcat and John the Ripper
-<img src="/images/CasaOs/Pasted_20241027134231.png" alt=""></p>
-<p>Just like in the previous example, the attacker could the use the cracked credentials to authenticate to the host server via services such as SSH.</p>
-<h4 id="attack-primitive-3">Attack Primitive 3</h4>
-<p>We know that the CasaOs web interface runs as root, well, since it requires root access to do some of the tasks required by CasaOs, such as open certain ports e.g. SMB for file sharing and managing docker containers. This also means that the file manager as well runs as root allowing us to add/edit/delete files. This feature can therefore be exploited to achieve an arbitrary file write
-<img src="/images/CasaOs/Pasted_20241009155339.png" alt=""></p>
-<p>To exploit this primitive, we could download the <code>/etc/passwd</code> file, add an attacker controlled user and the password hash, and then re-upload the modified file. I recommend making a backup of the <code>/etc/passwd</code> file first, before overwriting the file. This attack is similar to the dirtycow exploit.
-<img src="/images/CasaOs/Pasted_20241027124238.png" alt=""></p>
-<p>However for this demonstration, I decided to download the <code>/etc/shadow</code> file and change the password hash for the user <code>kali</code> to an attacker-controlled one, then login with the newly set password.  First things first, let&rsquo;s create a password hash for our new password <code>hackerpass</code>
-<img src="/images/CasaOs/Pasted_20241028194209.png" alt=""></p>
-<p>Download the <code>/etc/shadow</code> file and replace the current hash with the new one.
-<img src="/images/CasaOs/Pasted_20241028194251.png" alt=""></p>
-<p>Upload the modified file using the file manager.
-<img src="/images/CasaOs/Pasted_20241028194537.png" alt=""></p>
-<p>Login as the user with the new password, and get a shell
-<img src="/images/CasaOs/Pasted_20241028194448.png" alt=""></p>
-<blockquote>
-<p>Another approach would be to upload SSH Keys to the root directory then login as root.</p></blockquote>
-<p>Incase SSH is bound locally and is not accessible to the attacker publicly(via the internet), CasaOs implements a terminal feature that can be used for SSH logins via the web interface, how convenient!
-<img src="/images/CasaOs/Pasted_20241028202543.png" alt=""></p>
-<p>Just log in with the new credentials and you get access to the terminal
-<img src="/images/CasaOs/Pasted_20241028202706.png" alt=""></p>
-<h3 id="poc-or-gtfo">POC or GTFO</h3>
-<p>I created a simple proof of concept script to log in and upload an SSH key allowing us to execute commands as root on the underlying host 🥳</p>
-<p><img src="/images/CasaOs/Pasted_20241028201813.png" alt=""></p>
-<p>To get a fully interactive shell, just authenticate to the target using the new SSH Key as follows.</p>
-<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#e06c75">ssh</span> <span style="color:#56b6c2">-</span><span style="color:#e06c75">q</span> <span style="color:#56b6c2">-</span><span style="color:#e06c75">o</span> <span style="color:#e06c75">StrictHostKeyChecking</span><span style="color:#56b6c2">=</span><span style="color:#e06c75">no</span> <span style="color:#56b6c2">-</span><span style="color:#e06c75">o</span> <span style="color:#e06c75">UserKnownHostsFile</span><span style="color:#56b6c2">=/</span><span style="color:#e06c75">dev</span><span style="color:#56b6c2">/</span><span style="color:#e06c75">null</span> <span style="color:#56b6c2">-</span><span style="color:#e06c75">i</span> <span style="color:#56b6c2">/</span><span style="color:#e06c75">tmp</span><span style="color:#56b6c2">/</span><span style="color:#e06c75">id_rsa</span> <span style="color:#e06c75">root</span>@<span style="color:#d19a66">192.168.56.109</span>
-</span></span></code></pre></div><blockquote>
-<p>This approach is not opsec safe and I do not recommend it, it&rsquo;s just the easiest.</p></blockquote>
-<h3 id="mitigations">Mitigations</h3>
-<p>While these can not be really considered as vulnerabilities but intended use cases, they can be detrimental to security and could lead to total compromise of the host leading to lateral movement, deployment of crypto miners or even ransomware.  However, below are some methods to keep CasaOS instances secure.</p>
+            <p>This past weekend I got the opportunity to participate in the #ShehacksKEintervasityCTF which was amazing. I played as Team BitClan with my teammates and we managed to scoop second position. The challenges were amazing and I got to learn a thing or two.In this writeup,I will be explaining how I solved the challenges. Note that this is the approach I took to solve the challenges and not necessarily how they are supposed to be solved.</p>
+<h2 id="osint">OSINT</h2>
+<p>I only managed to solve two challenges in this category.</p>
+<h3 id="hunter-1">Hunter 1</h3>
+<p><img src="/images/kcactf/2.png" alt="image"></p>
+<p>The first challenge (Hunter 1) tells that the team uncovered a malicious document with the sha256 hash of <code>bcff17a1885a330497594ca80b29257313195e3b065f674ad2d205b7c63b919d</code>. The first thing would be to check the hash of the file in google.</p>
+<p><img src="/images/kcactf/3.png" alt="image"></p>
+<p>Among the results we found on google, we can see the hash among the result with the title of <code>2018-04-10 - Malspam pushing Gandcrab ransomware</code>. Since we are being asked the name of the ransomware behind the Malicious Office Document, we get our flag which is flag{gandcrab}, which is the name of the ransomware</p>
+<h3 id="last-hunt">Last Hunt</h3>
+<p>This is one of the challenges i first blooded.It is an easy osint challenge that does not rely on solving the previous challenges in this category.This challenge is asking which other method of payment gandcrab ransomware requested other than BitCoin (BTC). We can search for this in google. Since we know that most threat actors use cryptocurrency as a form of payment, we can search using the following key terms.</p>
+<p><img src="/images/kcactf/4.png" alt="image"></p>
+<p>From the second and third articles, we can see that gandcrab ransomware demanded for payment in a cryptocurrency known as DASH, hence the flag for the challenge was flag{dash}</p>
+<h3 id="references">References</h3>
+<p>I only managed to solve the above two challenges in this category. Below are some references which can provide more information about solving challenges similar to the above</p>
 <ul>
-<li>Make sure the latest CasaOS is installed and is regularly updated. Unpatched CasaOS instances are vulnerable to authorization bypass, as highlighted in this <a href="https://www.sonarsource.com/blog/security-vulnerabilities-in-casaos/"
+<li><a href="https://hackmd.io/@tahaafarooq/usiu-ctf-2022-blockhain"
 
 
 
@@ -1030,12 +970,159 @@ An attacker could generate SSH key pairs and upload the public key to <code>.ssh
  
 
 
->blog</a>.</li>
-<li>Configure firewall rules e.g. UFW to only allow trusted IP address to access the web interfaces and do not expose the CasaOS web interface to public networks e.g. the internet.</li>
-<li>Set strong and secure passwords for the CasaOS web interfaces to prevent bruteforce.</li>
-<li>Restrict Root users from authenticating via SSH.</li>
-</ul>
+>https://hackmd.io/@tahaafarooq/usiu-ctf-2022-blockhain</a></li>
+<li><a href="https://www.h4k-it.com/urchinsec-ctf-competition-2022/"
 
+
+
+
+ target="_blank"
+ 
+
+
+>https://www.h4k-it.com/urchinsec-ctf-competition-2022/</a></li>
+</ul>
+<h2 id="mobile-app">Mobile App</h2>
+<p>The next set of challenges were in the Mobile Category.</p>
+<p><img src="/images/kcactf/5.png" alt="image"></p>
+<h3 id="fixme">FixMe</h3>
+<p>The first challenge in this category hints that there is a trick employed to disguise malware. We are also given a file named fixme.so . At first, I thought that this a shared library but after checking the type using the file command, I found that the file has an archive format. From there we can create a temporary folder where we can extract the contents of the file(/tmp/fixme), then extract the contents of the file to that folder using the unzip command as shown below</p>
+<p><img src="/images/kcactf/7.png" alt="image"></p>
+<p>Once the contents are extracted, we can then change to the directory and try to view the contents of the files.</p>
+<p><img src="/images/kcactf/8.png" alt="image"></p>
+<p>We find a FixmeKt.class file which contains the flag : flag{i_knew_youd_fix_me}</p>
+<h3 id="logd">Logd</h3>
+<p>In this challenge , we are told something about developers forgetting to turn off logging in their applications. We are also given an android application named logga.apk . Since I do not know much about reversing android applications, I used this online tool(<code>https://www.decompiler.com/</code>) which I found to be very nifty when it comes to decompiling android applications(You can also use other tools such as JADX &amp; Frida to reverse engineer android apps). The tool allows you to upload an android apk and gives you the ability to download the decompiled files as a zip.</p>
+<p><img src="/images/kcactf/9.png" alt="image"></p>
+<p>Once we download and extract the contents of the archive, we can view the directory structure and files using code editors such as sublime.
+We get two folders (resources and sources), here we choose the source folder the navigate to (com/chalie/logga/MainActivity.java) file.</p>
+<p><img src="/images/kcactf/10.png" alt="image"></p>
+<p>Looking at the source code above, we see that there is a notFlag string defined which is merged with another string(line 30) and logged when the enteredSecret string is not empty. The merged string will be the notFlag string i.e MZWGCZ33MFWHOYLZONPWG3 (line 13)
+plus the hardcoded string i.e DFMFXF6ZDFMJ2WOX3MN5TXG7IK (line 30) which results to <code>MZWGCZ33MFWHOYLZONPWG3DFMFXF6ZDFMJ2WOX3MN5TXG7IK</code>. This string looks like an encoding ,however, we don&rsquo;t know what encoding is used on the string. We can try to use the <code>magic</code> feature in <code>https://gchq.github.io/CyberChef/</code> which tells us that the encoding is base32 and gives us the flag : flag{always_clean_debug_logs}.</p>
+<p><img src="/images/kcactf/11.png" alt="image"></p>
+<h3 id="buits-and-bytes">Buits and Bytes</h3>
+<p><img src="/images/kcactf/6.png" alt="image"></p>
+<p>For this challenge, we are given an apk file and told that developers use a byte array trick to hide authentication and api keys and other sensitive information. We can decompile the apk using the same method as before and open the extracted files using sublime as shown</p>
+<p><img src="/images/kcactf/12.png" alt="image"></p>
+<p>The MainActivity.java file did not seem to have anything interesting. This challenge took me a while to solve because I have little to no experience with android apps😅😅. Before despairing, I decided to check the application resources and files. After several minutes of checking the resource files, I found an interesting file at (byte.apk_Decompiler.com/resources/res/raw/oauth.txt)</p>
+<p><img src="/images/kcactf/13.png" alt="image"></p>
+<p>Opening the file we get some numbers which look like ascii numbers, again we can convert them using <code>https://gchq.github.io/CyberChef/</code> which gives us the flag : flag{lol_we_use_byte_arrays_to_hide_stuff}</p>
+<p><img src="/images/kcactf/14.png" alt="image"></p>
+<h3 id="firirida">Firirida</h3>
+<p>For this challenge, we are given an apk file which we are supposed to find the flag in. We can decompile the apk using the same method as before and open the extracted files using sublime as shown</p>
+<p><img src="/images/kcactf/15.png" alt="image"></p>
+<p>Checking the <code>MainActivity.java</code> file, we see an interesting line at 15 which seems to load a library called firirida i.e <code>System.loadLibrary(&quot;firirida&quot;);</code> . Since the name is entered as a parameter using double quotes, i had the thought that this library can be found among the resource files.
+Just like I had suspected, i found the library at (resources/lib/armeabi-v7a/libfiririda.so). Even though I used ghidra to obtain the flag, below is an easier way to find the flag.</p>
+<p><img src="/images/kcactf/16.png" alt="image"></p>
+<h3 id="references-1">References</h3>
+<ul>
+<li><a href="https://httptoolkit.tech/blog/android-reverse-engineering/"
+
+
+
+
+ target="_blank"
+ 
+
+
+>https://httptoolkit.tech/blog/android-reverse-engineering/</a></li>
+</ul>
+<h2 id="re">RE</h2>
+<p>There were two challenges in this category of which I only managed to solve the first one with help from @trustie</p>
+<p><img src="/images/kcactf/17.png" alt="image"></p>
+<h3 id="keylet">Keylet</h3>
+<p>In this challenge we are given an android application and a prompt that says <code>I started writing Java for android , It doesn't really work as it's supposed to be !</code> . Just like the other android challenges , used <code>https://www.decompiler.com/</code> to decompile the application.</p>
+<p>Once the apk is decompiled, you can open it with the code editor of your choice, for me I chose sublime. You can traverse to the <code>MainActivitiy.java</code> file as shown in the image below.
+<img src="/images/kcactf/18.png" alt="image"></p>
+<p>From the source code above, we see that the application accepts  user input, removes the text <code>'flag{'</code> string from the input (line 22) then checks the secret using the checkSecret function (line 26). If the secret is invalid, it will show &lsquo;Access Denied&rsquo;.</p>
+<p><img src="/images/kcactf/19.png" alt="image"></p>
+<p>Looking at the checkSecret function, we can see that it compares the input string byte by byte with the flagBytes array in (line 38). The flagBytes array contains numbers that look like a Decimal representation of a string. We can try to decode the values using <code>https://gchq.github.io/CyberChef/</code>.To understand more about octal and decimal representation of characters check this page (<a href="https://jbwyatt.com/ascii.html"
+
+
+
+
+ target="_blank"
+ 
+
+
+>https://jbwyatt.com/ascii.html</a>)</p>
+<p><img src="/images/kcactf/20.png" alt="image"></p>
+<p>After decoding, we get the string, we get the result <code>pe~eIS_Fun_Z</code>. The first 4 characters seem to be different from the last characters which are all uppercase. This could hint that the encoding on the first 4 characters is different from the last characters. I then tried to decode the first 4 strings as octal using cyberchef and got the following result.</p>
+<p><img src="/images/kcactf/21.png" alt="image"></p>
+<p>We can now merge the two results to get the flag{JAVAIS_FUN_Z}</p>
+<h2 id="pwn">Pwn</h2>
+<p>There were four challenges in this category of which I only managed to solve the first two
+<img src="/images/kcactf/22.png" alt="image"></p>
+<h3 id="overflow">Overflow</h3>
+<p>The first challenge was quite simple. We get a prompt <code>'Overflow into the buffer to get the flag!'</code>. The first thing I did was to enter many A&rsquo;s on the program&rsquo;s user input to see how it would react.</p>
+<p><img src="/images/kcactf/23.png" alt="image"></p>
+<p>Entering many A&rsquo;s gave us the flag ie. flag{buffer_overfl0w_into_m3m0ry}</p>
+<h2 id="forensics">Forensics</h2>
+<p>The solutions for this category can be found on the author&rsquo;s blog here</p>
+<ul>
+<li><a href="https://05t3.github.io/posts/SheHacksInterUniCTF/"
+
+
+
+
+ target="_blank"
+ 
+
+
+>https://05t3.github.io/posts/SheHacksInterUniCTF/</a></li>
+</ul>
+<p>and here:</p>
+<ul>
+<li><a href="https://medium.com/@zemelusa/first-steps-to-volatile-memory-analysis-dcbd4d2d56a1"
+
+
+
+
+ target="_blank"
+ 
+
+
+>https://medium.com/@zemelusa/first-steps-to-volatile-memory-analysis-dcbd4d2d56a1</a></li>
+</ul>
+<h2 id="pwnbox">PwnBox</h2>
+<p>The solution for this challenge can be found on the author&rsquo;s blog here</p>
+<ul>
+<li><a href="https://hackmd.io/@tahaafarooq/kcau-bootcamp-pwnbox"
+
+
+
+
+ target="_blank"
+ 
+
+
+>https://hackmd.io/@tahaafarooq/kcau-bootcamp-pwnbox</a></li>
+</ul>
+<h2 id="web">Web</h2>
+<p>The solution for this challenge can be found on the author&rsquo;s blog here</p>
+<ul>
+<li><a href="https://trevorsaudi.com/posts/2022-06-13_zipslip-vulnerability-justctf2022/"
+
+
+
+
+ target="_blank"
+ 
+
+
+>https://trevorsaudi.com/posts/2022-06-13_zipslip-vulnerability-justctf2022/</a></li>
+</ul>
+<p><a href="https://hits.seeyoufarm.com"
+
+
+
+
+ target="_blank"
+ 
+
+
+><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fallannjuguna.github.io%2FShehacksKEintervasityCTF-Kca%2F&amp;count_bg=%2379C83D&amp;title_bg=%23555555&amp;icon=&amp;icon_color=%23E7E7E7&amp;title=views&amp;edge_flat=false" alt="Hits"></a></p>
+<!-- https://hits.seeyoufarm.com/#badge -->
           </div>
           <div class="row items-start justify-between">
             
@@ -1047,24 +1134,8 @@ An attacker could generate SSH key pairs and upload the public key to <code>.ssh
                     <li class="inline-block">
                       <a
                         class="bg-light hover:bg-primary dark:bg-darkmode-light dark:hover:bg-darkmode-primary dark:hover:text-text-dark m-1 block rounded px-3 py-1 hover:text-white"
-                        href="/tags/linux/">
-                        Linux
-                      </a>
-                    </li>
-                  
-                    <li class="inline-block">
-                      <a
-                        class="bg-light hover:bg-primary dark:bg-darkmode-light dark:hover:bg-darkmode-primary dark:hover:text-text-dark m-1 block rounded px-3 py-1 hover:text-white"
-                        href="/tags/casaos/">
-                        Casa os
-                      </a>
-                    </li>
-                  
-                    <li class="inline-block">
-                      <a
-                        class="bg-light hover:bg-primary dark:bg-darkmode-light dark:hover:bg-darkmode-primary dark:hover:text-text-dark m-1 block rounded px-3 py-1 hover:text-white"
-                        href="/tags/rce/">
-                        Rce
+                        href="/tags/ctf/">
+                        Ctf
                       </a>
                     </li>
                   
@@ -1097,7 +1168,7 @@ An attacker could generate SSH key pairs and upload the public key to <code>.ssh
   
     <a
       class="share-link share-facebook"
-      href="https://facebook.com/sharer/sharer.php?u=%2f%2flocalhost%3a1313%2fblog%2fcasaos%2fcasaos%2f"
+      href="https://facebook.com/sharer/sharer.php?u=%2f%2flocalhost%3a1313%2fblog%2fshehacks_intervarsityctf%2fshehacks_intervarsityctf%2f"
       target="_blank"
       rel="noopener"
       aria-label="share facebook">
@@ -1115,7 +1186,7 @@ An attacker could generate SSH key pairs and upload the public key to <code>.ssh
   
     <a
       class="share-link share-x"
-      href="https://x.com/intent/tweet/?text=Abusing%20Legitimate%20Features%20in%20Casaos&amp;url=%2f%2flocalhost%3a1313%2fblog%2fcasaos%2fcasaos%2f"
+      href="https://x.com/intent/tweet/?text=SheHacks-IntervarsityCTF&amp;url=%2f%2flocalhost%3a1313%2fblog%2fshehacks_intervarsityctf%2fshehacks_intervarsityctf%2f"
       target="_blank"
       rel="noopener"
       aria-label="share x">
@@ -1133,7 +1204,7 @@ An attacker could generate SSH key pairs and upload the public key to <code>.ssh
   
     <a
       class="share-link share-email"
-      href="mailto:?subject=Abusing%20Legitimate%20Features%20in%20Casaos&amp;body=%2f%2flocalhost%3a1313%2fblog%2fcasaos%2fcasaos%2f"
+      href="mailto:?subject=SheHacks-IntervarsityCTF&amp;body=%2f%2flocalhost%3a1313%2fblog%2fshehacks_intervarsityctf%2fshehacks_intervarsityctf%2f"
       target="_self"
       rel="noopener"
       aria-label="share email">
@@ -1206,10 +1277,10 @@ An attacker could generate SSH key pairs and upload the public key to <code>.ssh
           type="text"
           placeholder="Enter Fediverse Instance URL"
           class="fediverse-input"
-          onkeypress="handleFediverseShare(event, '\/\/localhost:1313\/blog\/casaos\/casaos\/', 'Abusing Legitimate Features in Casaos')" />
+          onkeypress="handleFediverseShare(event, '\/\/localhost:1313\/blog\/shehacks_intervarsityctf\/shehacks_intervarsityctf\/', 'SheHacks-IntervarsityCTF')" />
         <button
           class="fediverse-check-button"
-          onclick="handleFediverseShareButton(this, '\/\/localhost:1313\/blog\/casaos\/casaos\/', 'Abusing Legitimate Features in Casaos')">
+          onclick="handleFediverseShareButton(this, '\/\/localhost:1313\/blog\/shehacks_intervarsityctf\/shehacks_intervarsityctf\/', 'SheHacks-IntervarsityCTF')">
           Share
         </button>
       </span>
@@ -1221,7 +1292,7 @@ An attacker could generate SSH key pairs and upload the public key to <code>.ssh
   
     <button
       class="share-link share-copy"
-      onclick="copyToClipboard(this, '\/\/localhost:1313\/blog\/casaos\/casaos\/')">
+      onclick="copyToClipboard(this, '\/\/localhost:1313\/blog\/shehacks_intervarsityctf\/shehacks_intervarsityctf\/')">
       <span class="share-icon">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
           <path
@@ -1323,411 +1394,6 @@ An attacker could generate SSH key pairs and upload the public key to <code>.ssh
       
       
       
-      
-        <div class="section pb-0">
-          <h2 class="h3 mb-12">Related Posts</h2>
-          <div class="row">
-            
-              <div class="lg:col-4 md:col-6 mb-14">
-                <div class="bg-body dark:bg-darkmode-body">
-  
-  
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-  
-  
-    
-      
-    
-
-
-    
-    
-
-
-    
-    
-      
-      
-    
-    
-    
-
-
-    
-    
-      
-      
-        
-
-        
-        
-        
-        
-        
-        
-        
-
-
-        
-        
-
-
-        <picture>
-          <source
-            
-              srcset="/images/Africa_Bug_Pwn_2024_Writeups/1_scoreboard_hu_535d5d05d94e9d2a.webp"
-            
-            media="(max-width: 575px)" />
-          <source
-            
-              srcset="/images/Africa_Bug_Pwn_2024_Writeups/1_scoreboard_hu_ace04e9c301d73b8.webp"
-            
-            media="(max-width: 767px)" />
-          <source
-            
-              srcset="/images/Africa_Bug_Pwn_2024_Writeups/1_scoreboard_hu_8fe4df7a8628f993.webp"
-            
-            media="(max-width: 991px)" />
-          <source
-            
-              srcset="/images/Africa_Bug_Pwn_2024_Writeups/1_scoreboard_hu_a17d4db83f469ce7.webp"
-             />
-          <img
-            
-              loading="lazy" decoding="async"
-              src="/images/Africa_Bug_Pwn_2024_Writeups/1_scoreboard_hu_604846e9fb904706.png"
-            class=" mb-6 w-full rounded img"
-            alt="Africa Bug Pwn 2024 Writeups"
-            width="1501"
-            height="739" />
-        </picture>
-      
-      
-    
-    
-  
-
-
-  
-
-
-  
-  <h4 class="mb-3">
-    <a href="/blog/africa_bug_pwn_2024_writeups/africa_bug_pwn_2024_writeups/">
-      Africa Bug Pwn 2024 Writeups
-    </a>
-  </h4>
-  
-  
-    <ul class="mb-4">
-      <li class="mr-4 inline-block">
-        <a href="/authors/zerofrost/">
-          <i class="fa-regular fa-circle-user mr-2"></i>zerofrost
-        </a>
-      </li>
-      <li class="mr-4 inline-block">
-        <i class="fa-regular fa-folder mr-1"></i>
-        
-          <a
-            href="/categories/ctf/"
-            class="ms-1"
-            >Ctf
-              ,
-            
-          </a>
-        
-          <a
-            href="/categories/pwn/"
-            class="ms-1"
-            >Pwn
-          </a>
-        
-      </li>
-    </ul>
-  
-  <p class="mb-6">Recently I took part in the Africa Bug Pwn 2024 Capture the Flag Competition and managed to get second position with 2310 points. The CTF was very interesting and I got to learn a thing or two. This blog post will be a writeup of some of the challenges I managed to solve.
-</p>
-  <a class="btn btn-outline-primary btn-sm" href="/blog/africa_bug_pwn_2024_writeups/africa_bug_pwn_2024_writeups/">
-    Read More
-  </a>
-</div>
-
-              </div>
-            
-              <div class="lg:col-4 md:col-6 mb-14">
-                <div class="bg-body dark:bg-darkmode-body">
-  
-  
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  <img
-    loading=""
-    decoding="async"
-    src="https://imgcdn.stablediffusionweb.com/2025/2/7/43af290a-fdbf-45eb-9144-731fe2ed39ad.jpg"
-    alt="ImaginaryCTF Argv Pwn Writeup"
-    class="mb-6 w-full rounded img"
-    height=""
-    width="" />
-
-
-  
-  <h4 class="mb-3">
-    <a href="/blog/imaginaryctf/argv/">
-      ImaginaryCTF Argv Pwn Writeup
-    </a>
-  </h4>
-  
-  
-    <ul class="mb-4">
-      <li class="mr-4 inline-block">
-        <a href="/authors/zerofrost/">
-          <i class="fa-regular fa-circle-user mr-2"></i>zerofrost
-        </a>
-      </li>
-      <li class="mr-4 inline-block">
-        <i class="fa-regular fa-folder mr-1"></i>
-        
-          <a
-            href="/categories/pwn/"
-            class="ms-1"
-            >Pwn
-          </a>
-        
-      </li>
-    </ul>
-  
-  <p class="mb-6">Introduction This blog post is a walkthrough of an interesting pwn challenge I came across in the imaginary ctf discord challenge.
-</p>
-  <a class="btn btn-outline-primary btn-sm" href="/blog/imaginaryctf/argv/">
-    Read More
-  </a>
-</div>
-
-              </div>
-            
-              <div class="lg:col-4 md:col-6 mb-14">
-                <div class="bg-body dark:bg-darkmode-body">
-  
-  
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-  
-  
-    
-      
-    
-
-
-    
-    
-
-
-    
-    
-      
-      
-    
-    
-    
-
-
-    
-    
-      
-      
-        
-
-        
-        
-        
-        
-        
-        
-        
-
-
-        
-        
-
-
-        <picture>
-          <source
-            
-              srcset="/images/ShmooconCTF/Pasted%20image%2020240113184503_hu_9cf6a42dbd7c6974.webp"
-            
-            media="(max-width: 575px)" />
-          <source
-            
-              srcset="/images/ShmooconCTF/Pasted%20image%2020240113184503_hu_8743e8561dd8e1ef.webp"
-            
-            media="(max-width: 767px)" />
-          <source
-            
-              srcset="/images/ShmooconCTF/Pasted%20image%2020240113184503_hu_28b8a5b7e3561fd8.webp"
-            
-            media="(max-width: 991px)" />
-          <source
-            
-              srcset="/images/ShmooconCTF/Pasted%20image%2020240113184503_hu_88543f4bd461388a.webp"
-             />
-          <img
-            
-              loading="lazy" decoding="async"
-              src="/images/ShmooconCTF/Pasted%20image%2020240113184503_hu_f4febf90c2966447.png"
-            class=" mb-6 w-full rounded img"
-            alt="ShmooCon CTF"
-            width="1179"
-            height="551" />
-        </picture>
-      
-      
-    
-    
-  
-
-
-  
-
-
-  
-  <h4 class="mb-3">
-    <a href="/blog/shmooconctf/shmooconctf/">
-      ShmooCon CTF
-    </a>
-  </h4>
-  
-  
-    <ul class="mb-4">
-      <li class="mr-4 inline-block">
-        <a href="/authors/zerofrost/">
-          <i class="fa-regular fa-circle-user mr-2"></i>zerofrost
-        </a>
-      </li>
-      <li class="mr-4 inline-block">
-        <i class="fa-regular fa-folder mr-1"></i>
-        
-          <a
-            href="/categories/ctf/"
-            class="ms-1"
-            >Ctf
-          </a>
-        
-      </li>
-    </ul>
-  
-  <p class="mb-6">Over the recent weekend, I found some free time that enabled me to participate in the ShmooCon CTF. While it did not have pwn challenges as I had hoped, they offered a variety of challenges I enjoyed solving. This blogpost is a walkthrough of some of the challenges I managed to solve.
-</p>
-  <a class="btn btn-outline-primary btn-sm" href="/blog/shmooconctf/shmooconctf/">
-    Read More
-  </a>
-</div>
-
-              </div>
-            
-          </div>
-        </div>
       
     </div>
   </section>

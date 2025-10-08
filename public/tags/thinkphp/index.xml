@@ -1,1 +1,19 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>ThinkPHP on Zerofrost</title><link>/tags/thinkphp/</link><description>Recent content in ThinkPHP on Zerofrost</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Mon, 21 Oct 2024 00:00:00 -0400</lastBuildDate><atom:link href="/tags/thinkphp/index.xml" rel="self" type="application/rss+xml"/><item><title>Africa Bug Pwn 2024 Writeups</title><link>/blog/africa_bug_pwn_2024_writeups/africa_bug_pwn_2024_writeups/</link><pubDate>Mon, 21 Oct 2024 00:00:00 -0400</pubDate><guid>/blog/africa_bug_pwn_2024_writeups/africa_bug_pwn_2024_writeups/</guid><description>&lt;p>Recently I took part in the Africa Bug Pwn 2024 Capture the Flag Competition and managed to get second position with 2310 points. The CTF was very interesting and I got to learn a thing or two. This blog post will be a writeup of some of the challenges I managed to solve.&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ThinkPHP on Zerofrost</title>
+    <link>//localhost:1313/tags/thinkphp/</link>
+    <description>Recent content in ThinkPHP on Zerofrost</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 21 Oct 2024 00:00:00 -0400</lastBuildDate>
+    <atom:link href="//localhost:1313/tags/thinkphp/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Africa Bug Pwn 2024 Writeups</title>
+      <link>//localhost:1313/blog/africa_bug_pwn_2024_writeups/africa_bug_pwn_2024_writeups/</link>
+      <pubDate>Mon, 21 Oct 2024 00:00:00 -0400</pubDate>
+      <guid>//localhost:1313/blog/africa_bug_pwn_2024_writeups/africa_bug_pwn_2024_writeups/</guid>
+      <description>&lt;p&gt;Recently I took part in the Africa Bug Pwn 2024 Capture the Flag Competition and managed to get second position with 2310 points. The CTF was very interesting and I got to learn a thing or two. This blog post will be a writeup of some of the challenges I managed to solve.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
