@@ -1,28 +1,39 @@
 /* Add your own custom styles here */
+/* Light mode */
 .content {
-	color: #C3C3C3;
+  color: #C3C3C3;
 }
 
-
-
 .content :where(code):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
-	color: #B974DC;
+  color: #B974DC;
   font-weight: bold;
 }
 
-
-.content :where(h2):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+.content :where(h2, h3, h4, h5, h6, h7):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
   color: #B974DC;
 }
-
-.content :where(h2, h3, h4, h5, h6, h7):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
-	color: #B974DC;
-
-}
-
 
 .content :where(blockquote):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
   color: #C3C3C3;
 }
+
+
+/* Dark mode */
+.content:where(.dark, .dark *) {
+  color: #fff;
+}
+
+.content:where(.dark, .dark *) :where(code):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+  color: #B974DC; /* you can adjust if you want different dark mode color */
+}
+
+.content:where(.dark, .dark *) :where(h2, h3, h4, h5, h6, h7):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+  color: #B974DC; /* or a different color for dark mode */
+}
+
+.content:where(.dark, .dark *) :where(blockquote):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+  color: #fff;
+}
+
 
 
