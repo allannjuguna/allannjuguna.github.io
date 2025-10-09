@@ -6,20 +6,23 @@
 
 
 .content :where(code):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
-  color: #BFACE2;
+	color: #B974DC;
+  font-weight: bold;
 }
 
 
 .content :where(h2):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
-  color: #BFACE2;
+  color: #B974DC;
 }
 
 .content :where(h2, h3, h4, h5, h6, h7):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
-	color: #BFACE2;
+	color: #B974DC;
 
 }
 
 
 .content :where(blockquote):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
-  color: #BFACE2;
+  color: #C3C3C3;
 }
+
+
