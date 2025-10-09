@@ -49,7 +49,7 @@
 
 
 /* For code highlights only not code blocks*/
-.content :where(ul):not(:where([class~="not-prose"], [class~="not-prose"] *)) code {
+.content :where(u,a, ul, ol, p):not(:where([class~="not-prose"], [class~="not-prose"] *)) code {
   color:#B974DC; /* purple */
 }
 
