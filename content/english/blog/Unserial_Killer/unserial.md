@@ -17,7 +17,7 @@ draft: false
 ---
 
 
-### Finding a PHP Serialization Gadget Chain
+
 This is a challenge from  DG'hAck 2022 CTF which involves chasing down a pop gadget and building a pop chain to achieve arbitrary file read.
 
 
@@ -198,7 +198,7 @@ class Stream implements StreamInterface
     }
 ```
 
-💡 **Tip**: From the looks of it, `customMetadata` looks like a class, which should contain a function/method `closeContent` that takes a parameter `size`.
+> From the looks of it, `customMetadata` looks like a class, which should contain a function/method `closeContent` that takes a parameter `size`.
 
 Let's check if there is any class file with the  `closeContent` function defined. Hmm, we do not find any, other than our current one.
 ![](/images/Unserial_Killer/Pasted_image_20250826152315.png)

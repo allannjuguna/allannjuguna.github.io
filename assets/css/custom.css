@@ -15,7 +15,7 @@
   font-weight: bold;
 }
 
-.content :where(h2, h3, h4, h5, h6, h7):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+.content :where(h1,h2, h3, h4, h5, h6, h7):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
   color: #000;
 }
 
@@ -33,7 +33,7 @@
   color: #B974DC; /* you can adjust if you want different dark mode color */
 }
 
-.content:where(.dark, .dark *) :where(h2, h3, h4, h5, h6, h7):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+.content:where(.dark, .dark *) :where(h1,h2, h3, h4, h5, h6, h7):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
   color: #fff; /* or a different color for dark mode */
 }
 
