@@ -1,7 +1,7 @@
 /* Add your own custom styles here */
 /* Light mode */
 .content {
-  color: #C3C3C3;
+  color: #4c4c4c;
 }
 
 .content :where(code):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
@@ -14,13 +14,13 @@
 }
 
 .content :where(blockquote):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
-  color: #C3C3C3;
+  color: #4c4c4c;
 }
 
 
 /* Dark mode */
 .content:where(.dark, .dark *) {
-  color: #fff;
+  color: #bbb;
 }
 
 .content:where(.dark, .dark *) :where(code):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
@@ -32,7 +32,7 @@
 }
 
 .content:where(.dark, .dark *) :where(blockquote):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
-  color: #fff;
+  color: #bbb;
 }
 
 
