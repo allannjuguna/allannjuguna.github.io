@@ -3,11 +3,7 @@
 	color: #C3C3C3;
 }
 
-@layer components {
-  .content {
-    color: #C3C3C3;
-  }
-}
+
 
 .content :where(code):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
   color: #BFACE2;
@@ -16,4 +12,9 @@
 
 .content :where(h2):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
   color: #BFACE2;
+}
+
+.content :where(h2, h3, h4, h5, h6, h7):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+	color: #BFACE2;
+
 }
