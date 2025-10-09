@@ -1,4 +1,10 @@
 /* Add your own custom styles here */
+
+.content :where(h3):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+  font-size: 2.1em;
+}
+
+
 /* Light mode */
 .content {
   color: #4c4c4c;
