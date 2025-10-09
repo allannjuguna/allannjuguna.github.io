@@ -18,7 +18,7 @@ draft: false
 ---
 
 
-### Introduction
+
 This past weekend, I had some time to spare and decided to attempt some of the challenges from the BitSiege CTF. The CTF had some interesting challenges which I enjoyed solving and even managed to get first blood and only solve for one of the challenges. This blog post is a walkthrough of some of the challenges.
 
 

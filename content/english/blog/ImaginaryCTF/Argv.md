@@ -16,8 +16,6 @@ author: "zerofrost"
 draft: false
 ---
 
-## Introduction
-
 This blog post is a walkthrough of an interesting pwn challenge I came across in the imaginary ctf discord challenge.
 
 ### Binary Information
@@ -54,7 +52,7 @@ From the code above, we can see that the binary runs `gets` and `printf` infinit
 
 
 ### Debugging
-To debug the program, I set two break points before the `gets` and `printf` functions. This will help us know the location of where our input is written on the stack, and the location of the `argv[0]` parameter also place on the stack, and if we can use our input to overwrite it.
+To debug the program, I set two break points before the `gets` and `printf` functions. This will help us know the location of where our input is written on the stack, and the location of the `argv[0]` parameter also placed on the stack, and if we can use our input to overwrite it.
 ![](/images/ImaginaryCTF_-_Argv/Pasted_20241110203028.png)
 ![](/images/ImaginaryCTF_-_Argv/Pasted_20241110203242.png)
 
@@ -166,7 +164,7 @@ Initially, we get the address we sent in our payload as the output, but later, o
 
 > This was the method I used to solve this challenge, however, it was not the intended solution
 
-Since the binary is compiled with `FULL RERLO`, we cannot overwrite GOT entries in the binary, however, we can overwrite LIBC Got entries since the last region of libc is marked as writable. Looking at the addresses in the region, we see two interesting address `0x00007ffff7f157e0` and `0x00007ffff7f15400` pointing to `strlen` and `strchrnul` respectively. 
+Since the binary is compiled with `FULL RERLO`, we cannot overwrite GOT entries in the binary, however, we can overwrite LIBC Got entries since the last region of libc is marked as writable. Looking at the addresses in the region, we see two interesting addresses, `0x00007ffff7f157e0` and `0x00007ffff7f15400` pointing to `strlen` and `strchrnul` respectively. 
 
 ![](/images/ImaginaryCTF_-_Argv/Pasted_20241110214053.png)
 

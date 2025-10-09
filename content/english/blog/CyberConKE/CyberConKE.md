@@ -11,7 +11,7 @@ draft: false
 
 This past weekend (12th Nov 2022), I got the opportunity to participate in the <a href="https://twitter.com/CyberConKe">#CyberConKE</a> Finals CTF at United States International University (USIU) which was an amazing experience. I played as Team ShellPhish with my teammates <a href="https://twitter.com/mug3njutsu">mug3njutsu</a> and <a href="https://twitter.com/levanto_0">levanto</a>, and we managed to attain first position. The challenges were amazing and I got to learn a thing or two. The challenges were hosted on cyberranges and are not available at the time of writing this writeup since the competition has already ended. Therefore, In this writeup,I will be covering some of the osint challenges that I can still remember and how I solved them. Below is the final scoreboard from the competition
 
-
+![image](/images/CyberConKE/scoreboard.png)
 
 #### Challenge 1
 * `Challenge prompt`
