@@ -52,3 +52,9 @@
 .content :where(ul):not(:where([class~="not-prose"], [class~="not-prose"] *)) code {
   color:#B974DC; /* purple */
 }
+
+
+.content:where(.dark, .dark *) :where(a, ul, ol):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+  color: #bbb;
+}
+
