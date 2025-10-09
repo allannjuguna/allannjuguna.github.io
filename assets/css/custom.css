@@ -16,7 +16,7 @@
 }
 
 .content :where(h2, h3, h4, h5, h6, h7):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
-  color: #B974DC;
+  color: #000;
 }
 
 .content :where(blockquote):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
@@ -34,7 +34,7 @@
 }
 
 .content:where(.dark, .dark *) :where(h2, h3, h4, h5, h6, h7):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
-  color: #B974DC; /* or a different color for dark mode */
+  color: #fff; /* or a different color for dark mode */
 }
 
 .content:where(.dark, .dark *) :where(blockquote):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
@@ -42,4 +42,13 @@
 }
 
 
+.content :is(:where(code):not(:where([class~="not-prose"], [class~="not-prose"] *))) {
+  color: #aab1be;
+}
 
+
+
+/* For code highlights only not code blocks*/
+.content :where(ul):not(:where([class~="not-prose"], [class~="not-prose"] *)) code {
+  color:#B974DC; /* purple */
+}

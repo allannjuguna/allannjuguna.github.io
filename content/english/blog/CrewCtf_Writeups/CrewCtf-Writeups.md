@@ -150,7 +150,7 @@ $ mkdir /mnt/flag
 $ sudo mount -o uid=1000 /dev/mapper/new_flag /mnt/flag
 ```
 * Once mounted, we can view the decrypted file
-```                                                                                           
+```bash                                                                                           
 $ ls -al /mnt/flag
 total 12
 drwxrwxrwx 1 kali root 4096 Feb 16 06:38 .
