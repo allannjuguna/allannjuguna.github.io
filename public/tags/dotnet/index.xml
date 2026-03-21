@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>DotNet on Zerofrost</title>
+    <link>//localhost:1313/tags/dotnet/</link>
+    <description>Recent content in DotNet on Zerofrost</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 13 Jan 2024 00:00:00 -0500</lastBuildDate>
+    <atom:link href="//localhost:1313/tags/dotnet/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ShmooCon CTF</title>
+      <link>//localhost:1313/blog/shmooconctf/shmooconctf/</link>
+      <pubDate>Sat, 13 Jan 2024 00:00:00 -0500</pubDate>
+      <guid>//localhost:1313/blog/shmooconctf/shmooconctf/</guid>
+      <description>&lt;p&gt;Over the recent weekend, I found some free time that enabled me to participate in the ShmooCon CTF. While it did not have pwn challenges as I had hoped, they offered a variety of challenges I enjoyed solving. This blogpost is a walkthrough of  some of the challenges I managed to solve.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

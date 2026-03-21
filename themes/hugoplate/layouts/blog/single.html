@@ -40,15 +40,12 @@
               {{ time.Format ":date_long" .PublishDate }}
             </li>
           </ul>
-          <div class="content mb-10">
-            {{ partial "toc.html" (dict "Class" "blog" "Collapsed" false "TableOfContents" .TableOfContents ) }}
-            {{ .Content }}
-          </div>
+
           <div class="row items-start justify-between">
             {{ $tags:= .Params.tags }}
             {{ if $tags }}
-              <div class="lg:col-6 mb-10 flex items-center lg:mb-0">
-                <h5 class="mr-3">{{ T "tags" }} :</h5>
+              <div class="lg:col-12 mb-10 flex items-center lg:mb-0">
+                <!-- <h5 class="mr-3">{{ T "tags" }} :</h5> -->
                 <ul>
                   {{ range $i,$p:= $tags }}
                     <li class="inline-block">
@@ -62,11 +59,25 @@
                 </ul>
               </div>
             {{ end }}
-            <div class="lg:col-6 flex items-center lg:justify-end">
+          </div>
+
+
+          <div class="content mb-10">
+            {{ partial "toc.html" (dict "Class" "blog" "Collapsed" false "TableOfContents" .TableOfContents ) }}
+            {{ .Content }}
+          </div>
+
+           <div class="row items-start justify-between">
+            <div class="lg:col-12 flex items-center lg:justify-end">
               <h5>{{ T "share" }} :</h5>
               {{ partial "social-share" (dict "Context" . "Class" "share-icons" "Title" .Title "Whatsapp" false "Telegram" false "Linkedin" false "Pinterest" false "Tumblr" false "Vk" false "Reddit" false) }}
             </div>
           </div>
+
+
+
+
+
           <!-- comments -->
   <!--         {{ if site.Config.Services.Disqus.Shortname }}
             <div class="mt-20">
