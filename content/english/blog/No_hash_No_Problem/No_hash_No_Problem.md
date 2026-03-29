@@ -174,9 +174,9 @@ Pre-requisites to abuse Shadow Credentials:
 * Key Trust enabled (via `msDS-KeyCredentialLink`)
 
 ### Resource Based Constrained Delegation
-Another alternative would be to set up Resource Based Constrained Delegation. This attack involves modifying the target's `msDS-AllowedToActOnBehalfOfOtherIdentity` attribute which only requires a privilege like WriteProperty, GenericAll, GenericWrite or WriteDacl on the computer object(DC$), which we have as domain admin. This allows a computer we control(`R3SQL1-PROD\$`) to impersonate other users i.e `DC\$`.
+Another alternative would be to set up Resource Based Constrained Delegation. This attack involves modifying the target's `msDS-AllowedToActOnBehalfOfOtherIdentity` attribute which only requires a privilege like WriteProperty, GenericAll, GenericWrite or WriteDacl on the computer object(DC$), which we have as domain admin. This allows a computer we control(`R3SQL1-PROD$`) to impersonate other users i.e `DC$`.
 
-Why target the domain controller's machine account(`DC\$`)?
+Why target the domain controller's machine account(`DC$`)?
 * The DC machine account already has access to all domain data because DCs are the source of authority for AD.
 * Machine accounts like `DC$` are considered “system-level” and are less likely to trigger alerts because the DC needs to communicate and replicate constantly with other machines.
 * Security tools and EDR are often tuned to detect suspicious activity by human users e.g an Administrator user dumping hashes for the whole domain.
@@ -213,7 +213,7 @@ From the attacker machine, we need to copy the module to the target system. Ther
 zip -r file.zip ADModule-master/*
 ```
 
-We can then prepare the script to modify the attributes. (May require some obfuscation)
+We can then prepare the script to modify the attributes. (May require some obfuscation in some environments)
 ```c
 # Store in update.ps1
 klist
