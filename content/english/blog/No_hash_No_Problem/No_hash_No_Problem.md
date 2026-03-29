@@ -21,7 +21,7 @@ showFullContent: false
 ---
 
 
-In a recent internal assessment, I gained access to a linked MSSQL server running with domain administrator privileges. The initial access vector involved exploiting an arbitrary file read vulnerability on a Windows server, which allowed reading of configuration files, one of which contained MSSQL credentials. This blog post will detail the steps, obstacles, and unexpected turns encountered while testing and understanding privilege escalation paths in a lab scenario.
+In a recent internal assessment, I gained access to a linked MSSQL server running with domain administrator privileges. The initial access vector involved exploiting an arbitrary file read vulnerability on a Windows server, which allowed reading of configuration files, one of which contained MSSQL credentials. This blog post will detail the steps, obstacles, and unexpected turns encountered while testing and understanding privilege escalation paths in the environment.
 
 ### Background
 The initially compromised MSSQL server was running as a low-privilege domain user, but after checking the linked servers, I came across another MSSQL server running with domain administrator privileges. Command execution was trivial using the `xp_cmdshell` function, which was initially disabled but could be enabled using the classic `sp_configure`.
