@@ -58,7 +58,7 @@ NULL
 ```
 
 
-Our account was created successfully, but EDR seems to be blocking addition of suspicious users to privileged groups. Since our rogue account was created, the next thing I usually do is to add a machine account as a backup account. That way, in case my domain account is detected and deleted, I still have a working machine account that can be used in domain enumeration. This happens more often than you’d think: the created domain account is deleted, but the backup machine account is not, and this case was no exception. I usually like giving it a name that will make a SOC analyst think twice before deleting it.
+Our account was created successfully, but EDR seems to be blocking addition of suspicious users to privileged groups. Since our rogue account was created, the next thing I usually do is to add a machine account as a backup account. That way, in case my domain account is detected and deleted, I still have a working machine account that can be used for  domain enumeration. This happens more often than you’d think: the created domain account is deleted, but the backup machine account is not, and this case was no exception. I usually like giving it a name that will make a SOC analyst think twice before deleting it.
 ```c
 addcomputer.py 'REDACTED/SQLPROD':'P@ssw0rd1337#' -method LDAPS -computer-name 'R3SQL1-PROD$' -computer-pass 'P@ssw0rd1337#' -dc-ip 10.10.1.1
 ```
