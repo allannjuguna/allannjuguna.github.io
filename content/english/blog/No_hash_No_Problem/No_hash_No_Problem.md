@@ -305,3 +305,8 @@ secretsdump.py 'MARVEL.local/MARVEL-DC$'@MARVEL-DC.MARVEL.local  -k -no-pass
 ```
 ![](/images/No_hash_No_Problem/rbcd_dump_hashes.png)
 
+
+
+### References
+* https://notes.incendium.rocks/pentesting-notes/windows-pentesting/relay-attacks
+* https://zer1t0.gitlab.io/posts/attacking_ad/
