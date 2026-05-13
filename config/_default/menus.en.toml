@@ -22,11 +22,15 @@ url = "/categories"
 weight = 4
 
 
+[[main]]
+name = "CVEs"
+url = "/cves"
+weight = 5
 
 [[main]]
 name = "About"
 url = "/about"
-weight = 5
+weight = 6
 
 
 

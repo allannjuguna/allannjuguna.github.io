@@ -40,7 +40,7 @@ preloader = "" # use jpg, png, svg or gif format.
 [navigation_button]
 enable = true
 label = "Reach out"
-link = "contact"
+link = "mailto:zerofrost254@gmail.com"
 
 # search
 # search module: https://github.com/gethugothemes/hugo-modules/tree/master/search
