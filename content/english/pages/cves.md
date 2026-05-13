@@ -9,7 +9,7 @@ A list of CVEs I've discovered and responsibly disclosed. Click any card for the
 
 <div class="cve-grid">
 
-  <a href="https://github.com/advisories?query=CVE-2025-64488" class="cve-card" target="_blank" rel="noopener">
+  <a href="https://www.cve.org/CVERecord?id=CVE-2025-64488" class="cve-card" target="_blank" rel="noopener">
     <div class="cve-badge cve-badge--crit">
       <span class="cve-badge__year">2025</span>
       <span class="cve-badge__label">CVE</span>
