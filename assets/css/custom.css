@@ -84,6 +84,16 @@
   transform: translateY(-1px);
 }
 
+
+
+:where(pre):not(:where([class~="not-prose"],[class~="not-prose"] *))
+{
+  white-space: pre-wrap;
+  word-break: break-word;
+  /*overflow-wrap: anywhere;*/
+}
+
+
 /* ===== Certifications grid ===== */
 .cert-grid {
   display: grid;

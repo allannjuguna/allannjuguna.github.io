@@ -20,8 +20,9 @@ difficulty: Medium
 showFullContent: false
 ---
 
+In an internal assessment, I gained access to a linked MSSQL server running with domain administrator privileges. The initial access vector involved exploiting an arbitrary file read vulnerability on a Windows server, which allowed reading of configuration files, one of which contained MSSQL credentials. 
 
-In an internal assessment, I gained access to a linked MSSQL server running with domain administrator privileges. The initial access vector involved exploiting an arbitrary file read vulnerability on a Windows server, which allowed reading of configuration files, one of which contained MSSQL credentials. This blog post will detail the steps, obstacles, and unexpected turns encountered while testing and understanding privilege escalation paths in the environment.
+This blog post will detail the steps, obstacles, and unexpected turns encountered while testing and understanding privilege escalation paths in the environment.
 
 ### Background
 The initially compromised MSSQL server was running as a low-privilege domain user, but after checking the linked servers, I came across another MSSQL server running with domain administrator privileges. Command execution was trivial using the `xp_cmdshell` function, which was initially disabled but could be enabled using the classic `sp_configure`.
@@ -253,6 +254,7 @@ rbcd.py -delegate-from 'ATTACKER$' -delegate-to 'MARVEL-DC$' -action 'write' 'ma
 ```
 ![](/images/No_hash_No_Problem/rbcd_write_attrib.png)
 
+
 First we can obtain a TGT for the attacker's machine account that we control
 ```c
 impacket-getTGT  'MARVEL.local/ATTACKER$:P@ssw0rd1337#' -dc-ip 192.168.56.103;
@@ -309,4 +311,4 @@ secretsdump.py 'MARVEL.local/MARVEL-DC$'@MARVEL-DC.MARVEL.local  -k -no-pass
 
 ### References
 * https://notes.incendium.rocks/pentesting-notes/windows-pentesting/relay-attacks
-* https://zer1t0.gitlab.io/posts/attacking_ad/ 
+* https://zer1t0.gitlab.io/posts/attacking_ad/
