@@ -5,18 +5,19 @@ date: 2026-05-01
 categories:
   - Research
   - Walkthrough
+  - Android
 tags:
   - Linux
   - Android
+  - ADB
+  - Intents
   - RCE
-keywords:
-  - ""
-  - ""
-description: ""
-difficulty: Medium
-showFullContent: false
+  - Python
+author: "zerofrost"
 image: "/images/YTDLnis/banner.png"
+draft: false
 ---
+
 
 
 Recently during my day-to-day Twitter scrolling routine, I came across an interesting vulnerability affecting the Android version of YTDLnis(versions 1.8.4 and prior). YTDLnis is a full-featured audio/video downloader for Android using yt-dlp. The vulnerability was discovered by Paul Gerste from [Sonar](https://www.sonarsource.com/) and does not currently have a CVE assigned to it.  
