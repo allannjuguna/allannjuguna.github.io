@@ -18,15 +18,18 @@ showFullContent: false
 image: "/images/YTDLnis/banner.png"
 ---
 
-Recently during my day-to-day Twitter scrolling routine, I came across an interesting vulnerability affecting the Android version of YTDL (YTDLnis), versions 1.8.4 and prior. YTDLnis is a full-featured audio/video downloader for Android using yt-dlp. This vulnerability was discovered by Paul Gerste from [Sonar](https://www.sonarsource.com/) and does not currently have a CVE assigned to it.  
+
+Recently during my day-to-day Twitter scrolling routine, I came across an interesting vulnerability affecting the Android version of YTDLnis(versions 1.8.4 and prior). YTDLnis is a full-featured audio/video downloader for Android using yt-dlp. The vulnerability was discovered by Paul Gerste from [Sonar](https://www.sonarsource.com/) and does not currently have a CVE assigned to it.  
   
-I have always been fascinated by zero-click and 1-click RCEs. The concept of obtaining a shell simply by having someone receive a message or click on a link is fascinating because it bypasses traditional input validation and security measures that are often in place to prevent such attacks. This type of vulnerability can be particularly dangerous, as it allows attackers to exploit an application without requiring any user interaction beyond clicking on a malicious link or visiting an attacker-controlled page.  
+I have always been fascinated by zero-click and 1-click RCEs. The concept of obtaining a shell simply by having someone receive a message or click on a link is mindblowing. This type of vulnerability can be particularly dangerous, as it allows attackers to exploit an application without requiring any user interaction beyond clicking on a malicious link or visiting an attacker-controlled page.  
   
-Most 1-click RCEs that you have probably heard of are mostly related to browser exploitation or memory corruption. Other chains that could lead to RCE are intent/deep link injection chains, which [Ken Gannon](https://x.com/Yogehi) has had success with in Pwn2Own several times. This particular vulnerability lies in the second category and involves chaining together a couple of interesting bugs involving a browsable intent, argument injection, path traversal, and arbitrary file write.  
+Most 1-click RCEs that you have probably heard of are mostly related to browser exploitation or memory corruption. Other chains that could lead to RCE are intent/deep link injection chains, which [Ken Gannon](https://x.com/Yogehi) has had success with in Pwn2Own several times.
+
+This particular vulnerability lies in the second category and involves chaining together a couple of interesting bugs involving a browsable intent, argument injection, path traversal, and arbitrary file write.  
   
 ![](/images/YTDLnis/meme.jpeg)  
   
-I am interested in mobile security with a focus on Android applications, and this vulnerability offered an amazing opportunity for putting my mobile skills to the test. I decided to tackle this vulnerability from a black-box approach with as little knowledge as possible. This involved analyzing the patch implemented to fix the vulnerability, understanding how YTDL works, and eventually building a working proof of concept.  
+I am usually interested in mobile security, focusing on Android applications, and this vulnerability offered an amazing opportunity for putting my mobile skills to the test. I decided to tackle this vulnerability from a black-box approach with as little knowledge as possible. This involved analyzing the patch implemented to fix the vulnerability, understanding how YTDL works, and eventually building a working proof of concept.  
   
 ### Patch Diffing  
   
@@ -128,7 +131,7 @@ Once installed, we can explore the help menu.
   
 ![](/images/YTDLnis/Pasted%20image%2020260519211059.png)  
   
----  
+
   
 #### Arbitrary Read
 ##### Batch File
@@ -419,18 +422,20 @@ intent:
       component=\[string\];  
       scheme=\[string\];  
    end;
-
+W
 ```
 
 Below is a table that shows how we would represent `getStringExtra, getBooleanExtra` etc, with some examples 
 
-| Data Type   | Intent URL Prefix Example                       | Android Code Extraction (Kotlin / Java)                               |
-| ----------- | ----------------------------------------------- | --------------------------------------------------------------------- |
-| **String**  | `S.browser_fallback_url=http%3A%2F%2Fzxing.org` | `val fallbackUrl = intent.getStringExtra("browser_fallback_url")`     |
-| **Boolean** | `B.BACKGROUND_MODE=true`                        | `val isBackground = intent.getBooleanExtra("BACKGROUND_MODE", false)` |
-| **Integer** | `i.view_columns=3`                              | `val columns = intent.getIntExtra("view_columns", 0)`                 |
-| **Long**    | `l.album_id=9876543210`                         | `val albumId = intent.getLongExtra("album_id", 0L)`                   |
-| **Float**   | `f.playback_speed=1.5`                          | `val speed = intent.getFloatExtra("playback_speed", 1.0f)`            |
+
+| Data Type   | Intent URL Prefix Example                       |
+| ----------- | ----------------------------------------------- |
+| **String**  | `S.browser_fallback_url=http%3A%2F%2Fzxing.org` |
+| **Boolean** | `B.BACKGROUND_MODE=true`                        |
+| **Integer** | `i.view_columns=3`                              |
+| **Long**    | `l.album_id=9876543210`                         |
+| **Float**   | `f.playback_speed=1.5`                          |
+
 
 
 We can also represent the above in one line. For example, starting a youtube video download would be represented as follows. 
@@ -474,7 +479,7 @@ python3 -m http.server 3030
 
 
 
-The final step is to click the link on the android device. But first, we can confirm the version
+Confirm the version
 ![](/images/YTDLnis/Pasted%20image%2020260520234814.png)
 
 Visit `http://192.168.0.102:3030` to view the link. 
@@ -485,7 +490,7 @@ Clicking the link spawns a shell on our attacker device
 
 
 
-Since we corrupted the `re` module with our malicious reverse shell code, every time the app launches , we get a reverse shell, which creates some persistence for our attack.
+Since we compromised the `re` module by adding malicious code to spawn a reverse shell, every time the app launches , we will get a reverse shell on our attacker machine, which establishes persistence for our attack.
 
 
 
