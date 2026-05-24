@@ -429,13 +429,15 @@ W
 Below is a table that shows how we would represent `getStringExtra, getBooleanExtra` etc, with some examples 
 
 
-| Data Type   | Intent URL Prefix Example                       |
-| ----------- | ----------------------------------------------- |
-| **String**  | `S.browser_fallback_url=http%3A%2F%2Fzxing.org` |
+| Data Type   | Intent URL Prefix Example                     |
+| ----------- | --------------------------------------------- |
+| **String**  | `S.browser_fallback_url=http%3A%2F%2Fx.yz`      |
 | **Boolean** | `B.BACKGROUND_MODE=true`                        |
-| **Integer** | `i.view_columns=3`                              |
+| **Integer** | `i.view_columns=3`                             |
 | **Long**    | `l.album_id=9876543210`                         |
 | **Float**   | `f.playback_speed=1.5`                          |
+
+
 
 
 
