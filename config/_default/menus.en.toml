@@ -28,9 +28,15 @@ url = "/cves"
 weight = 5
 
 [[main]]
+name = "Achievements"
+url = "/achievements"
+weight = 6
+
+
+[[main]]
 name = "About"
 url = "/about"
-weight = 6
+weight = 7
 
 
 
