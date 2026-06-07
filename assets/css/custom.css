@@ -438,3 +438,740 @@ background: linear-gradient(135deg, #818cf8 0%, #4f46e5 50%, #312e81 100%);
   opacity: 0.6;
   margin: 0;
 }
+
+
+
+/* ==========================================================
+   zerofrost / custom.css
+   ----------------------------------------------------------
+   Pirsch-style editorial sections, drop into any Hugo theme.
+
+   Dynamic primary: reads --color-primary from your theme
+   (Hugoplate ships it via assets/css/generated-theme.css).
+   Dark mode swaps automatically when `.dark` is on <html>.
+   ========================================================== */
+
+:root {
+  /* ---- Pull theme tokens, with safe fallbacks ---- */
+  --zf-primary:      var(--color-primary,        #7c3aed);
+  --zf-body:         var(--color-body,           #ffffff);
+  --zf-text:         var(--color-text,           #444444);
+  --zf-text-dark:    var(--color-text-dark,      #040404);
+  --zf-text-light:   var(--color-text-light,     #717171);
+  --zf-border:       var(--color-border,         #eaeaea);
+  --zf-light:        var(--color-light,          #f6f6f6);
+
+  /* ---- Derived tints (color-mix is Baseline 2023) ---- */
+  --zf-primary-soft: color-mix(in srgb, var(--zf-primary) 12%, transparent);
+  --zf-primary-tint: color-mix(in srgb, var(--zf-primary) 35%, transparent);
+}
+
+.dark {
+  --zf-primary:    var(--color-darkmode-primary,    #d8b4fe);
+  --zf-body:       var(--color-darkmode-body,       #1c1c1c);
+  --zf-text:       var(--color-darkmode-text,       #b4afb6);
+  --zf-text-dark:  var(--color-darkmode-text-dark,  #ffffff);
+  --zf-text-light: var(--color-darkmode-text-light, #b4afb6);
+  --zf-border:     var(--color-darkmode-border,     #3e3e3e);
+  --zf-light:      var(--color-darkmode-light,      #222222);
+}
+
+/* ==========================================================
+   EDITORIAL SECTION WRAPPER
+   Use <div class="zf-section"> ... </div> around each block.
+   ========================================================== */
+.zf-section {
+  max-width: 1100px;
+  margin: 5rem auto;
+  padding: 0 1.5rem;
+  text-align: center;
+  position: relative;
+}
+.zf-section + .zf-section { margin-top: 6rem; }
+
+/* ==========================================================
+   STEP BADGE — numbered pill marker (Pirsch signature)
+   Use: <div class="step-badge"><span class="step-num">01</span><span class="step-name">SKILLS</span></div>
+   ========================================================== */
+.step-badge {
+  display: inline-flex;
+  align-items: stretch;
+  border: 1px solid var(--zf-text-dark);
+  border-radius: 9999px;
+  margin: 0 auto 1.75rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  overflow: hidden;
+  background: transparent;
+  line-height: 1;
+}
+.step-badge .step-num {
+  display: grid;
+  place-items: center;
+  width: 30px; min-height: 30px;
+  background: var(--zf-primary);
+  color: var(--zf-body);
+  border-right: 1px solid var(--zf-text-dark);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+.step-badge .step-name {
+  padding: 8px 16px 7px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--zf-text-dark);
+  display: inline-flex;
+  align-items: center;
+}
+
+/* ==========================================================
+   DISPLAY HEADLINE + HIGHLIGHT SWEEP
+   Use: <h2>What I <span class="zf-hl">work on</span>.</h2>
+   ========================================================== */
+.zf-section h2 {
+  font-size: clamp(2rem, 5vw, 3.4rem) !important;
+  line-height: 1.08 !important;
+  letter-spacing: -0.022em !important;
+  font-weight: 600 !important;
+  color: var(--zf-text-dark);
+  margin: 0 auto 1.25rem !important;
+  max-width: 16ch;
+}
+
+/* The signature highlight sweep — animates in on mount */
+.zf-hl {
+  position: relative;
+  display: inline-block;
+  padding: 0 0.12em;
+  z-index: 0;
+}
+.zf-hl::before {
+  content: "";
+  position: absolute;
+  left: 0; bottom: 0.08em;
+  height: 0.55em;
+  width: 100%;
+  background: var(--zf-primary);
+  z-index: -1;
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: zf-sweep 1.1s cubic-bezier(.2,.7,.2,1) 0.5s forwards;
+  border-radius: 2px;
+}
+@keyframes zf-sweep { to { transform: scaleX(1); } }
+
+.zf-subhead {
+  font-size: 1.075rem;
+  line-height: 1.55;
+  color: var(--zf-text-light);
+  max-width: 60ch;
+  margin: 0 auto 3rem !important;
+  text-align: justify; 
+  max-width: 90ch; 
+  line-height: 1.6;
+
+
+
+}
+
+/* ==========================================================
+   SKILL GRID — "What I work on"
+   ========================================================== */
+.skill-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5rem;
+  margin: 2rem auto 1.5rem;
+  text-align: left;
+}
+@media (max-width: 980px) { .skill-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .skill-grid { grid-template-columns: 1fr; } }
+
+.skill-card {
+  display: flex;
+  flex-direction: column;
+  padding: 1.75rem;
+  border: 1px solid var(--zf-text-dark);
+  border-radius: 24px;
+  background: transparent;
+  position: relative;
+  overflow: hidden;
+  transition: transform .35s cubic-bezier(.2,.7,.2,1),
+              background-color .3s ease,
+              border-color .3s ease;
+}
+.skill-card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 4px;
+  background: var(--zf-primary);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .45s cubic-bezier(.2,.7,.2,1);
+}
+.skill-card:hover {
+  transform: translateY(-6px);
+  background: var(--zf-primary-soft);
+}
+.skill-card:hover::before { transform: scaleX(1); }
+
+.skill-pill {
+  align-self: flex-start;
+  padding: 5px 14px;
+  border: 1px solid var(--zf-text-dark);
+  border-radius: 9999px;
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--zf-text-dark);
+  background: transparent;
+  margin-bottom: 0.9rem;
+  line-height: 1;
+  transition: background-color .3s ease, color .3s ease, border-color .3s;
+}
+.skill-card:hover .skill-pill {
+  background: var(--zf-primary);
+  color: var(--zf-body);
+  border-color: var(--zf-primary);
+}
+
+.skill-card h3 {
+  font-size: 1.35rem !important;
+  font-weight: 600 !important;
+  line-height: 1.2 !important;
+  letter-spacing: -0.008em !important;
+  margin: 0 !important;
+  color: var(--zf-text-dark);
+}
+.skill-card p {
+  font-size: 0.98rem !important;
+  line-height: 1.55 !important;
+  color: var(--zf-text-light) !important;
+  margin: 0.55rem 0 0 !important;
+}
+
+/* ==========================================================
+   IMAGE FRAME — wraps the skill-matrix SVG (and any image)
+   1px ink hairline, 16px radius, no shadow.
+   ========================================================== */
+.image-frame {
+  display: block;
+  margin: 1rem auto 3rem;
+  max-width: 900px;
+  border: 1px solid var(--zf-text-dark);
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--zf-body);
+  padding: 0;
+}
+.image-frame img,
+.image-frame svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* ==========================================================
+   CVE TABLE — Pirsch-style data table
+   ========================================================== */
+.cve-table-wrap {
+  max-width: 1000px;
+  margin: 2rem auto;
+  border: 1px solid var(--zf-text-dark);
+  border-radius: 24px;
+  overflow: hidden;
+  text-align: left;
+}
+.cve-table-scroll {
+  width: 100%;
+  overflow-x: auto;
+}
+.cve-table {
+  width: 100%;
+  min-width: 720px;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+  margin: 0 !important;
+}
+.cve-table thead { background: var(--zf-light); }
+.cve-table th {
+  text-align: left;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--zf-text-light);
+  padding: 1.1rem 1.25rem;
+  border-bottom: 1px solid var(--zf-text-dark);
+  white-space: nowrap;
+}
+.cve-table td {
+  padding: 1.05rem 1.25rem;
+  border-bottom: 1px dashed var(--zf-border);
+  color: var(--zf-text);
+  vertical-align: middle;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+.cve-table tbody tr {
+  transition: background-color .25s ease;
+}
+.cve-table tbody tr:last-child td { border-bottom: none; }
+.cve-table tbody tr:hover { background: var(--zf-primary-soft); }
+.cve-table tbody tr:hover .cve-table__cve a,
+.cve-table tbody tr:hover .cve-table__title {
+  color: var(--zf-primary);
+}
+
+.cve-table__cve {
+  font-family: ui-monospace, 'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  color: var(--zf-text-dark);
+  white-space: nowrap;
+}
+.cve-table__cve a {
+  color: var(--zf-text-dark);
+  text-decoration: none !important;
+  transition: color .25s ease;
+}
+.cve-table__title {
+  font-weight: 600;
+  color: var(--zf-text-dark);
+  transition: color .25s ease;
+}
+.cve-table__year {
+  font-family: ui-monospace, 'JetBrains Mono', monospace;
+  font-weight: 600;
+  color: var(--zf-text-light);
+  font-variant-numeric: tabular-nums;
+}
+.cve-table__source {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.cve-table__source a {
+  color: var(--zf-text-light);
+  text-decoration: none !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: color .25s ease;
+}
+.cve-table__source a span { transition: transform .25s ease; display: inline-block; }
+.cve-table__source a:hover { color: var(--zf-primary); }
+.cve-table__source a:hover span { transform: translateX(3px); }
+
+/* --- Severity pill --- */
+.sev {
+  display: inline-block;
+  padding: 4px 12px;
+  border: 1px solid var(--zf-text-dark);
+  border-radius: 9999px;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  line-height: 1.3;
+  white-space: nowrap;
+}
+.sev--crit {
+  background: #A02121;
+  /*border-color: var(--zf-primary);*/
+  border-style: dashed;
+  /*color: var(--zf-body);*/
+  color: white;
+}
+.sev--high {
+  background: #ED4444;
+  border-style: dashed;
+  /*color: var(--zf-body);*/
+  color: white;
+}
+.sev--med {
+  background: #C95E0E;
+  border-color: transparent;
+  color: white;
+}
+
+/* ==========================================================
+   RECOGNITION — CTF placements + certifications
+   ========================================================== */
+.record-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.85rem;
+  margin: 2rem auto 1rem;
+  max-width: 1000px;
+  text-align: left;
+}
+@media (max-width: 640px) { .record-grid { grid-template-columns: 1fr; } }
+
+.record-card {
+  display: grid;
+  grid-template-columns: 68px 1fr auto;
+  gap: 1rem;
+  align-items: baseline;
+  padding: 0.9rem 1.2rem;
+  border: 1px solid var(--zf-text-dark);
+  border-radius: 16px;
+  background: transparent;
+  transition: background-color .25s ease, transform .25s ease, border-color .25s ease;
+}
+.record-card:hover {
+  transform: translateY(-3px);
+  background: var(--zf-primary-soft);
+}
+.record-place {
+  font-family: ui-monospace, 'JetBrains Mono', SFMono-Regular, Menlo, monospace;
+  font-size: 1.45rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--zf-primary);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.record-event {
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: var(--zf-text-dark);
+  line-height: 1.3;
+}
+.record-year {
+  font-family: ui-monospace, 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--zf-text-light);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.zf-subhead-sm {
+  font-size: 0.7rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.3em !important;
+  text-transform: uppercase !important;
+  color: var(--zf-text-light) !important;
+  margin: 3rem auto 1.25rem !important;
+  text-align: center;
+  position: relative;
+  display: inline-block;
+}
+.zf-subhead-sm::before,
+.zf-subhead-sm::after {
+  content: "";
+  display: inline-block;
+  width: 24px;
+  height: 1px;
+  background: var(--zf-text-dark);
+  vertical-align: middle;
+  margin: 0 12px;
+  opacity: 0.4;
+}
+
+/* ==========================================================
+   CERT CARDS — high-tech identity cards
+   8px radius · mono ID strip · pulsing primary LED ·
+   dot-grid security-paper texture · holo sweep on hover.
+   ========================================================== */
+.cert-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.9rem;
+  margin: 1.5rem auto 0;
+  max-width: 1100px;
+  text-align: left;
+}
+@media (max-width: 880px) { .cert-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 540px) { .cert-grid { grid-template-columns: 1fr; } }
+
+.cert-card {
+  position: relative;
+  isolation: isolate;
+  background: var(--zf-body);
+  border: 1px solid var(--zf-text-dark);
+  border-radius: 8px;
+  padding: 1.1rem 1.1rem 1rem;
+  overflow: hidden;
+  transition: transform .35s cubic-bezier(.2,.7,.2,1),
+              border-color .3s ease;
+}
+
+/* Dot-grid security-paper texture */
+.cert-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(
+    circle at center,
+    var(--zf-text-dark) 0.7px,
+    transparent 1px
+  );
+  background-size: 12px 12px;
+  opacity: 0.045;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Holographic primary sweep on hover */
+.cert-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    110deg,
+    transparent 30%,
+    var(--zf-primary-tint) 48%,
+    var(--zf-primary-soft) 52%,
+    var(--zf-primary-tint) 55%,
+    transparent 70%
+  );
+  transform: translateX(-140%);
+  transition: transform .9s cubic-bezier(.2,.7,.2,1);
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.7;
+  mix-blend-mode: multiply;
+}
+.dark .cert-card::after { mix-blend-mode: screen; opacity: 0.4; }
+
+.cert-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--zf-primary);
+}
+.cert-card:hover::after { transform: translateX(140%); }
+
+.cert-card > * { position: relative; z-index: 2; }
+
+/* --- Header strip: ID + status LED --- */
+.cert-card__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 0.7rem;
+  margin-bottom: 0.95rem;
+  border-bottom: 1px dashed var(--zf-border);
+  font-family: ui-monospace, 'JetBrains Mono', SFMono-Regular, Menlo, monospace;
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+.cert-card__id    { color: var(--zf-text-light); }
+.cert-card__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--zf-text-dark);
+}
+.cert-status-led {
+  position: relative;
+  width: 7px; height: 7px;
+  border-radius: 9999px;
+  background: var(--zf-primary);
+  flex-shrink: 0;
+}
+.cert-status-led::after {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 9999px;
+  background: var(--zf-primary);
+  animation: cert-pulse 1.9s ease-out infinite;
+}
+@keyframes cert-pulse {
+  0%   { transform: scale(1);   opacity: 0.55; }
+  100% { transform: scale(3.2); opacity: 0; }
+}
+
+/* --- Body: acronym + full name --- */
+.cert-card__body {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.05rem;
+}
+.cert-card__acronym {
+  font-family: ui-monospace, 'JetBrains Mono', SFMono-Regular, Menlo, monospace;
+  font-size: 1.65rem;
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: var(--zf-text-dark);
+}
+.cert-card__name {
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--zf-text-light);
+  line-height: 1.35;
+  margin-top: 0.3rem;
+}
+
+/* --- Footer: issuer + year --- */
+.cert-card__foot {
+  display: flex;
+  gap: 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px dashed var(--zf-border);
+}
+.cert-card__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+.cert-card__meta:first-child { flex: 1; }
+.cert-card__label {
+  font-family: ui-monospace, 'JetBrains Mono', monospace;
+  font-size: 0.54rem;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--zf-text-light);
+}
+.cert-card__value {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--zf-text-dark);
+  font-variant-numeric: tabular-nums;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ==========================================================
+   CTA pill button
+   ========================================================== */
+.zf-cta-row {
+  text-align: center;
+  margin: 2.5rem 0 0 !important;
+}
+.zf-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.85rem 1.6rem;
+  border: 1px solid var(--zf-text-dark);
+  border-radius: 9999px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  text-decoration: none !important;
+  color: var(--zf-text-dark);
+  background: transparent;
+  transition: background-color .25s ease,
+              color .25s ease,
+              border-color .25s ease,
+              transform .25s ease;
+}
+.zf-cta:hover {
+  background: var(--zf-primary);
+  color: var(--zf-body);
+  border-color: var(--zf-primary);
+  transform: translateY(-2px);
+}
+.zf-cta span { transition: transform .25s ease; display: inline-block; }
+.zf-cta:hover span { transform: translateX(4px); }
+
+/* ==========================================================
+   STAGGERED REVEAL on mount (CSS-only, no JS)
+   ========================================================== */
+@media (prefers-reduced-motion: no-preference) {
+  .step-badge,
+  .zf-section > h2,
+  .zf-subhead,
+  .image-frame,
+  .skill-card,
+  .cve-table-wrap,
+  .zf-cta-row {
+    opacity: 0;
+    animation: zf-rise 0.75s cubic-bezier(.2,.7,.2,1) both;
+  }
+  .zf-section > .step-badge     { animation-delay: 0.05s; }
+  .zf-section > h2              { animation-delay: 0.15s; }
+  .zf-section > .zf-subhead     { animation-delay: 0.25s; }
+  .zf-section > .image-frame    { animation-delay: 0.35s; }
+  .zf-section > .cve-table-wrap { animation-delay: 0.35s; }
+
+  /* Staggered card reveal inside .skill-grid */
+  .skill-grid > *:nth-child(1) { animation-delay: 0.40s; }
+  .skill-grid > *:nth-child(2) { animation-delay: 0.47s; }
+  .skill-grid > *:nth-child(3) { animation-delay: 0.54s; }
+  .skill-grid > *:nth-child(4) { animation-delay: 0.61s; }
+  .skill-grid > *:nth-child(5) { animation-delay: 0.68s; }
+  .skill-grid > *:nth-child(6) { animation-delay: 0.75s; }
+
+  /* Staggered row reveal inside the CVE table body */
+  .cve-table tbody tr {
+    opacity: 0;
+    animation: zf-rise 0.6s cubic-bezier(.2,.7,.2,1) both;
+  }
+  .cve-table tbody tr:nth-child(1) { animation-delay: 0.50s; }
+  .cve-table tbody tr:nth-child(2) { animation-delay: 0.57s; }
+  .cve-table tbody tr:nth-child(3) { animation-delay: 0.64s; }
+  .cve-table tbody tr:nth-child(4) { animation-delay: 0.71s; }
+  .cve-table tbody tr:nth-child(5) { animation-delay: 0.78s; }
+  .cve-table tbody tr:nth-child(6) { animation-delay: 0.85s; }
+
+  /* Cert cards reveal in sequence after the record grid */
+  .cert-card {
+    opacity: 0;
+    animation: zf-rise 0.6s cubic-bezier(.2,.7,.2,1) both;
+  }
+  .cert-grid > *:nth-child(1)  { animation-delay: 0.85s; }
+  .cert-grid > *:nth-child(2)  { animation-delay: 0.90s; }
+  .cert-grid > *:nth-child(3)  { animation-delay: 0.95s; }
+  .cert-grid > *:nth-child(4)  { animation-delay: 1.00s; }
+  .cert-grid > *:nth-child(5)  { animation-delay: 1.05s; }
+  .cert-grid > *:nth-child(6)  { animation-delay: 1.10s; }
+  .cert-grid > *:nth-child(7)  { animation-delay: 1.15s; }
+  .cert-grid > *:nth-child(8)  { animation-delay: 1.20s; }
+  .cert-grid > *:nth-child(9)  { animation-delay: 1.25s; }
+  .cert-grid > *:nth-child(10) { animation-delay: 1.30s; }
+  .cert-grid > *:nth-child(11) { animation-delay: 1.35s; }
+  .cert-grid > *:nth-child(12) { animation-delay: 1.40s; }
+
+  .zf-section > .zf-cta-row { animation-delay: 0.90s; }
+}
+@keyframes zf-rise {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: none; }
+}
+
+
+.cert-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    margin: 1rem auto 1rem;
+    max-width: 1000px;
+  }
+
+  .cert-pill {
+    padding: 7px 14px;
+    border: 1px solid var(--zf-text-dark);
+    border-radius: 9999px;
+    font-size: 0.66rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--zf-text-dark);
+    background: transparent;
+    line-height: 1;
+    white-space: nowrap;
+    transition: background-color .25s ease,
+                color .25s ease,
+                border-color .25s ease,
+                transform .2s ease;
+  }
+  .cert-pill:hover {
+    background: var(--zf-primary);
+    border-color: var(--zf-primary);
+    color: var(--zf-body);
+    transform: translateY(-2px);
+  }

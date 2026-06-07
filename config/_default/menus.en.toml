@@ -17,26 +17,30 @@ url = "/tags"
 weight = 3
 
 [[main]]
-name = "Categories"
-url = "/categories"
-weight = 4
-
-
-[[main]]
 name = "CVEs"
 url = "/cves"
+weight = 4
+
+[[main]]
+name = "Certifications"
+url = "/certifications"
 weight = 5
+
 
 [[main]]
 name = "Achievements"
 url = "/achievements"
 weight = 6
 
+[[main]]
+name = "Categories"
+url = "/categories"
+weight = 7
 
 [[main]]
 name = "About"
 url = "/about"
-weight = 7
+weight = 8
 
 
 
