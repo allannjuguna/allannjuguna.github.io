@@ -1175,3 +1175,16 @@ background: linear-gradient(135deg, #818cf8 0%, #4f46e5 50%, #312e81 100%);
     color: var(--zf-body);
     transform: translateY(-2px);
   }
+
+a.rounded,span.rounded {
+    /*color: var(--zf-text-dark);*/
+    /*background: transparent; */
+    border: 1px solid var(--zf-text-dark);
+    border-radius: 9999px;
+}
+
+
+a.rounded:hover,span.rounded:hover {
+    border-color: var(--zf-primary);
+    transform: translateY(-2px);
+}
