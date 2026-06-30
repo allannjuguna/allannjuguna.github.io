@@ -5,11 +5,12 @@
         "primary": "#BFACE2",
         "body": "#fff",
         "border": "#eaeaea",
-        "light": "#f6f6f6",
+        "light": "#fff",
+        "black": "#000",
         "dark": "#040404"
       },
       "text_color": {
-        "text": "#444444",
+        "text": "#000000",
         "text_dark": "#040404",
         "text_light": "#717171"
       }
@@ -20,10 +21,13 @@
         "body": "#1c1c1c",
         "border": "#3E3E3E",
         "light": "#222222",
+        "black": "#000",
+        "white": "#fff",
+        "light": "#222222",
         "dark": "#fff"
       },
       "text_color": {
-        "text": "#C3C3C3",
+        "text": "#ffffff",
         "text_dark": "#fff",
         "text_light": "#B4AFB6"
       }
@@ -31,9 +35,9 @@
   },
   "fonts": {
     "font_family": {
-      "primary": "Heebo:wght@400;600",
+      "primary": "Fira Sans:wght@400;600",
       "primary_type": "sans-serif",
-      "secondary": "Signika:wght@500;700",
+      "secondary": "Fira Sans:wght@500;700",
       "secondary_type": "sans-serif"
     },
     "font_size": {

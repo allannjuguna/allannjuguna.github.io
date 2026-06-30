@@ -7,7 +7,7 @@ banner:
     enable: true
     label: "Read My Blog"
     link: "/blog"
-  image: "https://readme-typing-svg.herokuapp.com/?font=Fira+Code&size=22&color=%2379DF9C&center=true&lines=Hi+%2C+I+am+Allan;I+am+a+Student+%F0%9F%A7%91%E2%80%8D%F0%9F%8E%93;I+%E2%9D%A4+Coding+%F0%9F%92%BB;I+%E2%9D%A4+Learning+new+stuff+%F0%9F%8C%B1;I+%E2%9D%A4+Cyber+Security+%F0%9F%95%B5%EF%B8%8F;I+%E2%9D%A4+Automating+Stuff+%F0%9F%94%A7;I+%E2%9D%A4+Collaborating+on+projects+%F0%9F%91%AF"
+  image: "https://readme-typing-svg.herokuapp.com/?font=Fira+Code&size=22&color=%23BEABE0&center=true&lines=Hi+%2C+I+am+Allan;I+am+a+Student+%F0%9F%A7%91%E2%80%8D%F0%9F%8E%93;I+%E2%9D%A4+Coding+%F0%9F%92%BB;I+%E2%9D%A4+Learning+new+stuff+%F0%9F%8C%B1;I+%E2%9D%A4+Cyber+Security+%F0%9F%95%B5%EF%B8%8F;I+%E2%9D%A4+Automating+Stuff+%F0%9F%94%A7;I+%E2%9D%A4+Collaborating+on+projects+%F0%9F%91%AF"
 
 ---
 
@@ -28,32 +28,32 @@ banner:
 
   <div class="skill-grid">
     <article class="skill-card">
-      <span class="skill-pill" style="background: #10B880">Web / API</span>
+      <span class="skill-pill">Web / API</span>
       <h3>Web &amp; API Security</h3>
       <p>BurpSuite Pro, Caido, Nuclei, SQLMap, Ffuf.</p>
     </article>
     <article class="skill-card">
-      <span class="skill-pill" style="background: #F39D0C">AD</span>
+      <span class="skill-pill">AD</span>
       <h3>Active Directory</h3>
       <p>BloodHound, BloodyAD, Impacket, NetExec,Certipy.</p>
     </article>
     <article class="skill-card">
-      <span class="skill-pill" style="background: #EC4998">Mobile</span>
+      <span class="skill-pill">Mobile</span>
       <h3>Mobile Security</h3>
       <p>Frida, Jadx, Drozer, MobSF, ApkTool, HttpToolkit, Objection.</p>
     </article>
     <article class="skill-card">
-      <span class="skill-pill" style="background: #A555F0">Cloud</span>
+      <span class="skill-pill">Cloud</span>
       <h3>Cloud Security</h3>
       <p>Pacu, Prowler, ScoutSuite, AWS-Enumerator.</p>
     </article>
     <article class="skill-card">
-      <span class="skill-pill" style="background: #ED4444">Binary</span>
+      <span class="skill-pill">Binary</span>
       <h3>Binary Exploitation</h3>
       <p>Pwntools, GDB (Gef/Pwndbg), Radare.</p>
     </article>
     <article class="skill-card">
-      <span class="skill-pill" style="background: #3B81F4">RE</span>
+      <span class="skill-pill">RE</span>
       <h3>Reverse Engineering</h3>
       <p>Ghidra, IDA Pro, Binary Ninja, Hopper, dnSpy, Uncompyle6.</p>
     </article>
@@ -150,13 +150,13 @@ banner:
 
   <h2><span class="zf-hl">Achievements</span> &amp; Awards.</h2>
 
-  <p class="zf-subhead">CTF placements, awards, and the certifications behind the work. Picked from a longer list.</p>
+  <p class="zf-subhead">CTF placements for various ctfs.</p>
 
   <div class="record-grid">
     <div class="record-card">
       <span class="record-place">#1</span>
       <span class="record-event">Cyberranges Global Leaderboard</span>
-      <span class="record-year">Ongoing</span>
+      <span class="record-year">2026</span>
     </div>
     <div class="record-card">
       <span class="record-place">#1</span>

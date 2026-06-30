@@ -1,11 +1,60 @@
-/* Add your own custom styles here */
+/* Add your own custom styles here, refer from /data/theme.json */
 
+
+
+/* ==========================================================
+   zerofrost / custom.css
+   ----------------------------------------------------------
+   Pirsch-style editorial sections, drop into any Hugo theme.
+
+   Dynamic primary: reads --color-primary from your theme
+   (Hugoplate ships it via assets/css/generated-theme.css).
+   Dark mode swaps automatically when `.dark` is on <html>.
+   ========================================================== */
+
+:root {
+  /* ---- Pull theme tokens, with safe fallbacks ---- */
+  --zf-primary:      var(--color-primary,        #7c3aed);
+  --zf-body:         var(--color-body,           #ffffff);
+  --zf-text:         var(--color-text,           #444444);
+  --zf-text-dark:    var(--color-text-dark,      #040404);
+  --zf-text-light:   var(--color-text-light,     #717171);
+  --zf-border:       var(--color-border,         #eaeaea);
+  --zf-light:        var(--color-light,          #f6f6f6);
+  --zf-pill:        var(--color-pill,          rgb(190, 171, 224, 0.7));
+  --zf-default:        var(--color-default,          #000000);
+  --zf-default-reverse:        var(--color-default,          #ffffff);
+
+  /* ---- Derived tints (color-mix is Baseline 2023) ---- */
+  --zf-primary-soft: color-mix(in srgb, var(--zf-primary) 12%, transparent);
+  --zf-primary-tint: color-mix(in srgb, var(--zf-primary) 35%, transparent);
+}
+
+.dark {
+  --zf-primary:    var(--color-darkmode-primary,    #d8b4fe);
+  --zf-body:       var(--color-darkmode-body,       #1c1c1c);
+  --zf-text:       var(--color-darkmode-text,       #b4afb6);
+  --zf-text-dark:  var(--color-darkmode-text-dark,  #ffffff);
+  --zf-text-light: var(--color-darkmode-text-light, #b4afb6);
+  --zf-border:     var(--color-darkmode-border,     #3e3e3e);
+  --zf-light:      var(--color-darkmode-light,      #222222);
+  --zf-pill:      var(--color-darkmode-pill,      rgb(250, 250, 250,0.8));
+  --zf-default:      var(--color-darkmode-default,      #ffffff);
+  --zf-default-reverse:      var(--color-darkmode-default,      #000000);
+}
+
+
+/* Light mode configuration */
 .content :where(h3):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
   font-size: 2.1em;
 }
 
 
-/* Light mode */
+/* 
+=================================================================
+                  Light mode  Config
+=================================================================
+*/
 .content {
   color: #4c4c4c;
 }
@@ -24,7 +73,28 @@
 }
 
 
-/* Dark mode */
+
+.btn-primary{ /*button configuration for light mode */
+  color:var(--color-body);   
+  background-color:var(--color-black);
+  border-color: var(--color-black);
+}
+
+
+/* 
+=================================================================
+                  Dark mode  Config
+=================================================================
+*/
+
+/*white button black text*/
+.btn-primary:where(.dark, .dark *){ 
+  color:var(--color-darkmode-black);   
+  background-color:var(--color-darkmode-white);
+  border-color: var(--color-darkmode-white);
+
+}
+
 .content:where(.dark, .dark *) {
   color: #bbb;
 }
@@ -57,6 +127,14 @@
 .content:where(.dark, .dark *) :where(a, ul, ol):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
   color: #bbb;
 }
+
+
+
+.content:where(.dark, .dark *) :where(p):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+            color: var(--zf-default);
+}
+
+
 
 
 /* ===== Links row ===== */
@@ -286,8 +364,8 @@
 
 .skill-card:hover {
   transform: translateY(-3px);
-  border-color: rgb(var(--accent));
-  box-shadow: 0 10px 25px -10px rgba(var(--accent), 0.5);
+  /*border-color: yellow;*/
+  box-shadow: 0 10px 25px -10px var(--zf-default-reverse);
 }
 
 .skill-badge {
@@ -441,40 +519,6 @@ background: linear-gradient(135deg, #818cf8 0%, #4f46e5 50%, #312e81 100%);
 
 
 
-/* ==========================================================
-   zerofrost / custom.css
-   ----------------------------------------------------------
-   Pirsch-style editorial sections, drop into any Hugo theme.
-
-   Dynamic primary: reads --color-primary from your theme
-   (Hugoplate ships it via assets/css/generated-theme.css).
-   Dark mode swaps automatically when `.dark` is on <html>.
-   ========================================================== */
-
-:root {
-  /* ---- Pull theme tokens, with safe fallbacks ---- */
-  --zf-primary:      var(--color-primary,        #7c3aed);
-  --zf-body:         var(--color-body,           #ffffff);
-  --zf-text:         var(--color-text,           #444444);
-  --zf-text-dark:    var(--color-text-dark,      #040404);
-  --zf-text-light:   var(--color-text-light,     #717171);
-  --zf-border:       var(--color-border,         #eaeaea);
-  --zf-light:        var(--color-light,          #f6f6f6);
-
-  /* ---- Derived tints (color-mix is Baseline 2023) ---- */
-  --zf-primary-soft: color-mix(in srgb, var(--zf-primary) 12%, transparent);
-  --zf-primary-tint: color-mix(in srgb, var(--zf-primary) 35%, transparent);
-}
-
-.dark {
-  --zf-primary:    var(--color-darkmode-primary,    #d8b4fe);
-  --zf-body:       var(--color-darkmode-body,       #1c1c1c);
-  --zf-text:       var(--color-darkmode-text,       #b4afb6);
-  --zf-text-dark:  var(--color-darkmode-text-dark,  #ffffff);
-  --zf-text-light: var(--color-darkmode-text-light, #b4afb6);
-  --zf-border:     var(--color-darkmode-border,     #3e3e3e);
-  --zf-light:      var(--color-darkmode-light,      #222222);
-}
 
 /* ==========================================================
    EDITORIAL SECTION WRAPPER
@@ -538,6 +582,8 @@ background: linear-gradient(135deg, #818cf8 0%, #4f46e5 50%, #312e81 100%);
   max-width: 16ch;
 }
 
+
+
 /* The signature highlight sweep — animates in on mount */
 .zf-hl {
   position: relative;
@@ -563,7 +609,7 @@ background: linear-gradient(135deg, #818cf8 0%, #4f46e5 50%, #312e81 100%);
 .zf-subhead {
   font-size: 1.075rem;
   line-height: 1.55;
-  color: var(--zf-text-light);
+  color: var(--zf-text-dark);
   max-width: 60ch;
   margin: 0 auto 3rem !important;
   text-align: justify; 
@@ -592,7 +638,7 @@ background: linear-gradient(135deg, #818cf8 0%, #4f46e5 50%, #312e81 100%);
   flex-direction: column;
   padding: 1.75rem;
   border: 1px solid var(--zf-text-dark);
-  border-radius: 24px;
+  border-radius: 8px;
   background: transparent;
   position: relative;
   overflow: hidden;
@@ -619,23 +665,25 @@ background: linear-gradient(135deg, #818cf8 0%, #4f46e5 50%, #312e81 100%);
 .skill-pill {
   align-self: flex-start;
   padding: 5px 14px;
-  border: 1px solid var(--zf-text-dark);
+  /*border: 1px solid var(--zf-text-dark);*/
   border-radius: 9999px;
   font-size: 0.66rem;
   font-weight: 700;
   letter-spacing: 0.26em;
   text-transform: uppercase;
-  color: var(--zf-text-dark);
-  background: transparent;
+  color: var(--zf-default-reverse); /*cats*/
+  background: var(--zf-pill);
+  /*background: rgb(41, 116, 231,0.3);*/
+
   margin-bottom: 0.9rem;
   line-height: 1;
   transition: background-color .3s ease, color .3s ease, border-color .3s;
 }
-.skill-card:hover .skill-pill {
+/*.skill-card:hover .skill-pill {
   background: var(--zf-primary);
   color: var(--zf-body);
   border-color: var(--zf-primary);
-}
+}*/
 
 .skill-card h3 {
   font-size: 1.35rem !important;
@@ -648,7 +696,7 @@ background: linear-gradient(135deg, #818cf8 0%, #4f46e5 50%, #312e81 100%);
 .skill-card p {
   font-size: 0.98rem !important;
   line-height: 1.55 !important;
-  color: var(--zf-text-light) !important;
+  color: var(--zf-default) !important;
   margin: 0.55rem 0 0 !important;
 }
 
@@ -680,7 +728,7 @@ background: linear-gradient(135deg, #818cf8 0%, #4f46e5 50%, #312e81 100%);
   max-width: 1000px;
   margin: 2rem auto;
   border: 1px solid var(--zf-text-dark);
-  border-radius: 24px;
+  border-radius: 8px;
   overflow: hidden;
   text-align: left;
 }
@@ -819,7 +867,7 @@ background: linear-gradient(135deg, #818cf8 0%, #4f46e5 50%, #312e81 100%);
   align-items: baseline;
   padding: 0.9rem 1.2rem;
   border: 1px solid var(--zf-text-dark);
-  border-radius: 16px;
+  border-radius: 8px;
   background: transparent;
   transition: background-color .25s ease, transform .25s ease, border-color .25s ease;
 }
@@ -1061,8 +1109,8 @@ background: linear-gradient(135deg, #818cf8 0%, #4f46e5 50%, #312e81 100%);
   font-size: 0.92rem;
   font-weight: 600;
   text-decoration: none !important;
-  color: var(--zf-text-dark);
-  background: transparent;
+  color: var(--zf-default-reverse);/*dogs*/
+  background: var(--zf-default);;
   transition: background-color .25s ease,
               color .25s ease,
               border-color .25s ease,
