@@ -25,7 +25,7 @@ showFullContent: false
 
 ## Extreme Red Team Labs Review
 
-Recently I had the opportunity to go through several labs from [Extreme Red Team Labs](https://extremeredteam.0x29a.it/). The labs offer realistic, multi-layered red teaming attack chains that simulate real-world enterprise environments. The labs are designed to test not just your ability to exploit a single vulnerability, but to chain multiple techniques across different platforms and trust boundaries. 
+Recently I had the opportunity to go through several labs from [Extreme Red Team Labs](https://extremeredlab.0x29a.it/). The labs offer realistic, multi-layered red teaming attack chains that simulate real-world enterprise environments. The labs are designed to test not just your ability to exploit a single vulnerability, but to chain multiple techniques across different platforms and trust boundaries. 
 
 What initially enticed me was the try-first, pay-later model. You can start the labs for free and only pay if you want the badge and certification (25 euros). It is a clever use of the foot-in-the-door technique. Once you've invested the time to complete the labs, you're much more likely to pay for the badge and certification, putting the sunk cost fallacy in play.
 
