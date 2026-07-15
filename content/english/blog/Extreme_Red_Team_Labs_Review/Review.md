@@ -125,18 +125,18 @@ The defense bypass sections are particularly well done. What makes this lab stan
 ### Pros & Cons
 I generally liked the labs and I would recommend them to anyone interested in red team/cloud exploitation. These were the things I liked about the labs:
 
-- **Realistic scenarios**: The labs mirror real enterprise environments with multi-domain trusts, cloud integrations, and proper security controls.
-- **Diverse techniques**: You get exposure to on-prem AD, cloud, Linux pivoting, database abuse, and Kerberos attacks all in one lab.
-- **No hand-holding**: The labs provide minimal guidance, forcing you to enumerate thoroughly, research and think critically.
-- **Staff support**: If you are truly stuck, the staff can provide hints to point you in the right direction without giving away the answer.
-- **Good difficulty curve**: The labs range from Medium to Hard, giving a solid learning progression.
+- Realistic scenarios:  The labs mirror real enterprise environments with multi-domain trusts, cloud integrations, and proper security controls.
+- Diverse techniques: You get exposure to on-prem AD, cloud, Linux pivoting, database abuse, and Kerberos attacks all in one lab.
+- No hand-holding: The labs provide minimal guidance, forcing you to enumerate thoroughly, research and think critically.
+- Staff support: If you are truly stuck, the staff can provide hints to point you in the right direction without giving away the answer.
+- Good difficulty curve: The labs range from Medium to Hard, giving a solid learning progression.
 
 
 Even though the labs were solid, there are some things I did not like about them that leave room for improvement. Below are some of the issues encountered.
 
-- **Shared instance pollution**: The labs run on a shared infrastructure, meaning other players' files, tools, and credentials can remain in the environment, which is both annoying and spoiling. Considering the price, this is not a major issue. 
+- Shared instance pollution: The labs run on a shared infrastructure, meaning other players' files, tools, and credentials can remain in the environment, which is both annoying and spoiling. Considering the price, this is not a major issue. 
 
-- **No reset mechanism**: There is no easy way to reset the lab state if something breaks or if the environment gets polluted. Resets also require three votes from players which can be difficult to coordinate, especially in off-peak hours. 
+- No reset mechanism: There is no easy way to reset the lab state if something breaks or if the environment gets polluted. Resets also require three votes from players which can be difficult to coordinate, especially in off-peak hours. 
 
 ### Should you Try the Labs?
 
