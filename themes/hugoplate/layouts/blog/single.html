@@ -68,6 +68,24 @@
           </div>
 
            <div class="row items-start justify-between">
+
+              <!-- Buy Me a Coffee (Left) -->
+              <div class="lg:col-6 flex justify-start">
+                <a
+                  href="https://buymeacoffee.com/allannjuguna"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-2 rounded-lg border border-border px-4 py-2 text-sm font-medium transition hover:border-primary hover:text-primary dark:border-darkmode-border">
+                  <img
+                    src="https://cdn.buymeacoffee.com/buttons/bmc-new-btn-logo.svg"
+                    alt="Buy Me a Coffee"
+                    class="h-5 w-5" />
+                  <span>Buy me a coffee</span>
+                </a>
+              </div>
+
+
+            
             <div class="lg:col-12 flex items-center lg:justify-end">
               <h5>{{ T "share" }} :</h5>
               {{ partial "social-share" (dict "Context" . "Class" "share-icons" "Title" .Title "Whatsapp" false "Telegram" false "Linkedin" false "Pinterest" false "Tumblr" false "Vk" false "Reddit" false) }}

@@ -1,6 +1,11 @@
 {
   "main": [
     {
+      "name": "buymeacoffee",
+      "icon": "fas fa-mug-hot",
+      "link": "https://buymeacoffee.com/allannjuguna"
+    },
+    {
       "name": "facebook",
       "icon": "fab fa-facebook",
       "link": "https://www.facebook.com/"
