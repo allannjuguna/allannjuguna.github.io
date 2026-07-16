@@ -23,8 +23,6 @@ difficulty: Medium
 showFullContent: false
 ---
 
-## Extreme Red Team Labs Review
-
 Recently I had the opportunity to go through several labs from [Extreme Red Team Labs](https://extremeredlab.0x29a.it/). The labs offer realistic, multi-layered red teaming attack chains that simulate real-world enterprise environments. The labs are designed to test not just your ability to exploit a single vulnerability, but to chain multiple techniques across different platforms and trust boundaries. 
 
 What initially enticed me was the try-first, pay-later model. You can start the labs for free and only pay if you want the badge and certification (25 euros). It is a clever use of the foot-in-the-door technique. Once you've invested the time to complete the labs, you're much more likely to pay for the badge and certification, putting the sunk cost fallacy in play.
@@ -37,17 +35,16 @@ The labs cover a wide range of topics requiring you to work your way through Lin
 
 A jump box is provided but is not necessary; you can work from your own attacker machine via VPN except in a few specific scenarios where direct access to certain networks is restricted.
 
-It is recommended to start with the AD Chains/Cloud Labs before finalizing with Summus, which is a combination of the two. However, in my case I started with Summus since it was the first lab by ERTL that I came across, after which I then proceeded with the AD Chains. Going backwards up the difficulty curve was an interesting experience. After Summus, everything else felt like a gentle downhill stroll. 
+
+It is recommended to start with the [AD Chains](https://extremeredlab.0x29a.it/chains) before proceeding to the [Red Team Labs](https://extremeredlab.0x29a.it/redteamlabs), which are a combination of the two. However, in my case I started with the Summus Red Team Lab, since it was the first lab by ERTL that I came across, after which I then proceeded with the AD Chains. Going backwards up the difficulty curve was an interesting experience. After Summus, everything else felt like a gentle downhill stroll. 
 
 I have some experience with Active Directory. I know my way around Bloodhound, Kerberos delegations, and the usual AD abuse primitives. But when it comes to Cloud on the other hand, I am not the brightest crayon in the box. These labs force you to confront that gap regardless, which is exactly why they are valuable.
 
 #### Summus
 
-Summus was the most challenging lab for me and the one I learned the most from by a wide margin mainly because I did not have a lot of experience in cloud exploitation. The lab was huge. I had to compromise 12 machines across multiple domains, forests, trusts, and hybrid cloud environments. 
+Summus was the most challenging lab for me and the one I learnt the most from by a wide margin mainly because I did not have a lot of experience in cloud exploitation. The lab was huge. I had to compromise 12 machines across multiple domains, forests, trusts, and hybrid cloud environments. 
 
 ![](/images/erlt/summus_map.png)
-
-The lab rewards thorough enumeration. 
 
 Topics covered include:
 - Domain enumeration and privilege escalation
@@ -122,6 +119,13 @@ The defense bypass sections are particularly well done. What makes this lab stan
 ![](/images/erlt/ifix_badge.jpg)
 
 
+
+A friend of mine has written individual reviews for the AD chains which you can find below.
+
+* [Mail Service Review](https://sploitony.com/blog/extreme-red-team-mailservice.html)
+* [Calipendula Review](https://sploitony.com/blog/extreme-red-team-lab-calipendula.html)
+
+
 ### Pros & Cons
 I generally liked the labs and I would recommend them to anyone interested in red team/cloud exploitation. These were the things I liked about the labs:
 
@@ -147,9 +151,3 @@ Although I completed the labs without using a C2, I highly recommend it as an ex
 I would recommend these labs to anyone interested in red team/cloud stuff. If you are preparing for certifications like CRTO or CRTE, or just want to level up your red teaming/cloud game, these labs are worth the time.
 
 
-
-### References
-A good friend of mine has written individual reviews for the AD chains which you can find below.
-
-* [Mail Service Review](https://sploitony.com/blog/extreme-red-team-mailservice.html)
-* [Calipendula Review](https://sploitony.com/blog/extreme-red-team-lab-calipendula.html)
