@@ -19,7 +19,7 @@ author: "zerofrost"
 draft: false
 ---
 
-This challenge was one of the Pwn challenges created for [PerfectRoot Ctf 2024](https://ctf.perfectroot.wiki/). This challenge had a difficulty rating of `hard`.
+This post walks through a `hard` rated Pwn challenge from [PerfectRoot Ctf 2024](https://ctf.perfectroot.wiki/). The binary has a buffer overflow and a restrictive seccomp filter. In this post, we will explore how to bypass these restrictions using alternative syscalls to get a file descriptor to the flag file and read its contents.
 
 
 ### Challenge

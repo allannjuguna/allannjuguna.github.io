@@ -18,7 +18,7 @@ draft: false
 
 
 
-This is a challenge from  DG'hAck 2022 CTF which involves chasing down a pop gadget and building a pop chain to achieve arbitrary file read.
+This post covers a PHP insecure deserialization challenge from DG'hAck 2022 that involves chasing down a POP gadget and building a chain from scratch. We trace __destruct through __call and trait inheritance, then bypass __wakeup restrictions and forbidden attributes to call getContents for arbitrary file read on the flag.
 
 
 #### Challenge Introduction

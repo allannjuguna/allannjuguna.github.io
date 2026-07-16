@@ -11,12 +11,13 @@ tags:
   - HouseofHusk
   - LibcGotOverwrite
   - StackLeak
-image: "https://imgcdn.stablediffusionweb.com/2025/2/7/43af290a-fdbf-45eb-9144-731fe2ed39ad.jpg"
+image: "/images/ImaginaryCTF_-_Argv/banner.jpg"
 author: "zerofrost"
 draft: false
 ---
 
-This blog post is a walkthrough of an interesting pwn challenge I came across in the imaginary ctf discord challenge.
+This post covers a pwn challenge from the ImaginaryCTF discord where a buffer overflow in gets is converted into a format string vulnerability by overwriting the argv[0] pointer on the stack. We walk through leaking libc and stack addresses, then explore two methods to get a shell.
+
 
 ### Binary Information
 Checking the file type of the binary, we can confirm that the file is a `64bit` executable which is dynamically linked and the libc file is provided. We can also see that the binary has `No Canary` and `No PIE`. 
