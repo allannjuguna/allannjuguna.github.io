@@ -44,7 +44,7 @@ I have some experience with Active Directory. I know my way around Bloodhound, K
 
 Summus was the most challenging lab for me and the one I learnt the most from by a wide margin mainly because I did not have a lot of experience in cloud exploitation. The lab was huge. I had to compromise 12 machines across multiple domains, forests, trusts, and hybrid cloud environments. 
 
-![](/images/erlt/summus_map.png)
+![](https://extremeredlab.0x29a.it/static/images/lab-diagrams/ertl1-network-diagram.png)
 
 Topics covered include:
 - Domain enumeration and privilege escalation
