@@ -36,7 +36,7 @@ The labs cover a wide range of topics requiring you to work your way through Lin
 A jump box is provided but is not necessary; you can work from your own attacker machine via VPN except in a few specific scenarios where direct access to certain networks is restricted.
 
 
-It is recommended to start with the [AD Chains](https://extremeredlab.0x29a.it/chains) before proceeding to the [Red Team Labs](https://extremeredlab.0x29a.it/redteamlabs), which are a combination of the two. However, in my case I started with the Summus Red Team Lab, since it was the first lab by ERTL that I came across, after which I then proceeded with the AD Chains. Going backwards up the difficulty curve was an interesting experience. After Summus, everything else felt like a gentle downhill stroll. 
+It is recommended to start with the [AD Chains](https://extremeredlab.0x29a.it/chains) before proceeding to the [Red Team Labs](https://extremeredlab.0x29a.it/redteamlabs), which are a combination of Active Directory and Cloud Exploitation. However, in my case I started with the Summus Red Team Lab, since it was the first lab by ERTL that I came across, after which I then proceeded with the AD Chains. Going backwards up the difficulty curve was an interesting experience. After Summus, everything else felt like a gentle downhill stroll. 
 
 I have some experience with Active Directory. I know my way around Bloodhound, Kerberos delegations, and the usual AD abuse primitives. But when it comes to Cloud on the other hand, I am not the brightest crayon in the box. These labs force you to confront that gap regardless, which is exactly why they are valuable.
 
