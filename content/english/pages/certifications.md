@@ -41,7 +41,7 @@ draft: false
 
 
   <a href="https://credsverse.com/credentials/7eb40cd9-94ef-4178-a0f7-f5a66c44b578?preview=1" class="cert-card" target="_blank" rel="noopener">
-    <img class="cert-badge" src="/images/Certs/xrt-icon.png" alt="XRT badge" width="64" height="64" loading="lazy">
+    <img class="cert-badge" src="/images/Certs/xrt-msvc.png" alt="XRT badge" width="64" height="64" loading="lazy">
     <div class="cert-body">
       <h3 class="cert-title">Extreme Red Teamer</h3>
       <p class="cert-issuer">MAILSERVICE LAB - Extreme Red Team Laboratories</p>
@@ -49,14 +49,23 @@ draft: false
   </a>
 
 
-
-  <a href="https://eu.badgr.com/public/assertions/T5sdl7LOQp-0Ii2boajapA" class="cert-card" target="_blank" rel="noopener">
-    <img class="cert-badge" src="/images/Certs/red_team_lab.png" alt="CRTE badge" width="64" height="64" loading="lazy">
+  <a href="https://credsverse.com/credentials/6c3be8c0-1ff3-4b3b-a8b9-082f82620e7d?preview=1" class="cert-card" target="_blank" rel="noopener">
+    <img class="cert-badge" src="/images/Certs/xrt-fix.png" alt="XRT badge" width="64" height="64" loading="lazy">
     <div class="cert-body">
-      <h3 class="cert-title">Red Team Lab Completion</h3>
-      <p class="cert-issuer">Altered Security</p>
+      <h3 class="cert-title">Extreme Red Teamer</h3>
+      <p class="cert-issuer">IFIX LAB - Extreme Red Team Laboratories</p>
     </div>
   </a>
+
+  <a href="#" class="cert-card" target="_blank" rel="noopener">
+    <img class="cert-badge" src="/images/Certs/xrt-cal.png" alt="XRT badge" width="64" height="64" loading="lazy">
+    <div class="cert-body">
+      <h3 class="cert-title">Extreme Red Teamer</h3>
+      <p class="cert-issuer">CALIPENDULA LAB - Extreme Red Team Laboratories</p>
+    </div>
+  </a>
+
+
 
 
 
@@ -67,8 +76,6 @@ draft: false
       <p class="cert-issuer">Red Team Leaders</p>
     </div>
   </a>
-
-
 
   <a href="https://www.credential.net/1f144acc-b764-430d-ae13-7287ea413d69#acc.4x3MB2Hz" class="cert-card" target="_blank" rel="noopener">
     <img class="cert-badge" src="/images/Certs/crta-icon.png" alt="CRTA badge" width="64" height="64" loading="lazy">
@@ -83,15 +90,6 @@ draft: false
     <div class="cert-body">
       <h3 class="cert-title">Multi-Cloud Red Teaming Analyst (MCRTA)</h3>
       <p class="cert-issuer">CyberWarFare Labs</p>
-    </div>
-  </a>
-
-
-  <a href="https://eu.badgr.com/public/assertions/EbRikIjhS4CVqL6JQgeGQg" class="cert-card" target="_blank" rel="noopener">
-    <img class="cert-badge" src="/images/Certs/azure-rt.png" alt="Azure Red Teaming badge" width="64" height="64" loading="lazy">
-    <div class="cert-body">
-      <h3 class="cert-title">Introduction to Azure Red Teaming</h3>
-      <p class="cert-issuer">Altered Security</p>
     </div>
   </a>
 
@@ -111,6 +109,15 @@ draft: false
     </div>
   </a>
 
+  <a href="https://eu.badgr.com/public/assertions/EbRikIjhS4CVqL6JQgeGQg" class="cert-card" target="_blank" rel="noopener">
+    <img class="cert-badge" src="/images/Certs/azure-rt.png" alt="Azure Red Teaming badge" width="64" height="64" loading="lazy">
+    <div class="cert-body">
+      <h3 class="cert-title">Introduction to Azure Red Teaming</h3>
+      <p class="cert-issuer">Altered Security</p>
+    </div>
+  </a>
+
+
 
   <a href="https://drive.google.com/file/d/1Nowgqw0ZVPYgRUxQ4VIZ2v8H8XX-dDSL/view" class="cert-card" target="_blank" rel="noopener">
     <img class="cert-badge" src="/images/Certs/mhl-android.png" alt="Mobile Hacking Lab badge" width="64" height="64" loading="lazy">
@@ -129,6 +136,14 @@ draft: false
     </div>
   </a>
 
+
+  <a href="https://eu.badgr.com/public/assertions/T5sdl7LOQp-0Ii2boajapA" class="cert-card" target="_blank" rel="noopener">
+    <img class="cert-badge" src="/images/Certs/red_team_lab.png" alt="CRTE badge" width="64" height="64" loading="lazy">
+    <div class="cert-body">
+      <h3 class="cert-title">Red Team Lab Completion</h3>
+      <p class="cert-issuer">Altered Security</p>
+    </div>
+  </a>
 
 
 
