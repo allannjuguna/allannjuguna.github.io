@@ -25,13 +25,6 @@ Here is an example of headings. You can use this heading by the following markdo
 ###### Heading 6
 
 
-
-Trigger cache for cert images
-![](/images/Certs/xrt-msvc.png)
-![](/images/Certs/xrt-fix.png)
-![](/images/Certs/xrt-cal.png)
-
-
 <hr>
 
 ### Emphasis
@@ -209,6 +202,17 @@ int main(void)
     return 0;
 }
 ```
+
+
+```mermaid
+sequenceDiagram
+	Alice->>Bob: Hello, Bob
+	Alice->>Alice: SSRF
+	Bob-->>Alice: Hello back
+	Alice->>Server: POST /api/login
+	Server--xAlice: 401 Unauthorized
+```
+
 
 ```mermaid
 flowchart TD
