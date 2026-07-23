@@ -233,6 +233,11 @@ flowchart TD
 
 {{< image src="images/image-placeholder.png" caption="" alt="alter-text" height="" width="" position="center" command="fill" option="q100" class="img-fluid" title="image title"  webp="false" >}}
 
+
+![](/images/Certs/xrt-xcal.png)
+![](/images/Certs/xrt-fix.png)
+![](/images/Certs/xrt-msvc.png)
+
 <hr>
 
 ### Gallery
