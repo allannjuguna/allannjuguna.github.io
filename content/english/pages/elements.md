@@ -246,9 +246,9 @@ flowchart TD
 {{< image src="images/image-placeholder.png" caption="" alt="alter-text" height="" width="" position="center" command="fill" option="q100" class="img-fluid" title="image title"  webp="false" >}}
 
 
-![image](/Images/Certs/xrt-cal.png)
-![image](/Images/Certs/xrt-msvc.png)
-![image](/Images/Certs/xrt-fix.png)
+![](/images/Certs/xrt-cal.png)
+![](/images/Certs/xrt-msvc.png)
+![](/images/Certs/xrt-fix.png)
 
 <hr>
 
