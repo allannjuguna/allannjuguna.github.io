@@ -116,6 +116,9 @@
 }
 
 
+
+
+
 /* BOLD TEXT IN TABLE - LIGHT MODE */
 .content :is(:where(strong):not(:where([class~="not-prose"], [class~="not-prose"] *))) {
   color: var(--color-text-dark);
@@ -128,6 +131,26 @@
   /*color: yellow;*/
 
 }
+
+/*
+.content {
+    :where(thead th:last-child):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+        padding-inline-end: 0;
+    }
+}
+*/
+
+
+/* FIRST HEADER CELL - LIGHT MODE */
+.content :where(thead th):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+  color: var(--color-text-dark);
+}
+
+/* FIRST HEADER CELL - DARK MODE */
+.content:where(.dark, .dark *) :where(thead th):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+  color: var(--color-darkmode-text-dark);
+}
+
 
 
 /*.content :is(:where(code):not(:where([class~="not-prose"], [class~="not-prose"] *))) {
