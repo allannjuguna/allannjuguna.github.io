@@ -50,6 +50,9 @@
 }
 
 
+
+
+
 /* 
 =================================================================
                   Light mode  Config
@@ -71,6 +74,7 @@
 .content :where(blockquote):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
   color: #4c4c4c;
 }
+
 
 
 
@@ -112,9 +116,23 @@
 }
 
 
-.content :is(:where(code):not(:where([class~="not-prose"], [class~="not-prose"] *))) {
-  color: #aab1be;
+/* BOLD TEXT IN TABLE - LIGHT MODE */
+.content :is(:where(strong):not(:where([class~="not-prose"], [class~="not-prose"] *))) {
+  color: var(--color-text-dark);
+  /*color: red;*/
 }
+
+/*BOLD TEXT IN TABLE - DARK MODE*/
+.content:where(.dark, .dark *) :is(:where(strong):not(:where([class~="not-prose"], [class~="not-prose"] *))) {
+  color: var(--color-darkmode-text-dark);
+  /*color: yellow;*/
+
+}
+
+
+/*.content :is(:where(code):not(:where([class~="not-prose"], [class~="not-prose"] *))) {
+  color: #aab1be;
+}*/
 
 
 
@@ -1236,3 +1254,5 @@ a.rounded:hover,span.rounded:hover {
     border-color: var(--zf-primary);
     transform: translateY(-2px);
 }
+
+
