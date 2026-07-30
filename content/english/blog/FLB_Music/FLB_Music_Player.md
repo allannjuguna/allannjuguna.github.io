@@ -29,7 +29,7 @@ showFullContent: false
 
 
 
-A while back while going through my files, I came across a [FLB-Music-Player](https://github.com/FLB-Music/FLB-Music-Player), which I was using a while back before switching to a self-hosted alternative called Navidrome, which I run on my raspberry pi. I decided to take a look at it from a security point of view to try and identify any vulnerabilities in it. This blogpost will be a walkthrough of an interesting vulnerability I found in FLB-Music-Player 1.2.1, that could be abused to achieve RCE.
+A while back while going through my files, I came across [FLB-Music-Player](https://github.com/FLB-Music/FLB-Music-Player), which I was using a while back before switching to a self-hosted alternative called Navidrome, which I run on my raspberry pi. I decided to take a look at it from a security point of view to try and identify any vulnerabilities in it. This blogpost will be a walkthrough of an interesting vulnerability I found in FLB-Music-Player 1.2.1, that could be abused to achieve RCE.
 
 
 
@@ -37,7 +37,7 @@ A while back while going through my files, I came across a [FLB-Music-Player](ht
 FLB Music is an open-source music player created using Vue JS and packaged as an electron application that works in Windows, Mac and Linux. The music player offers a ton of features you expect in a music player and I would recommend you give it a shot. It operates in a very simple way, you add a folder with your music, and the application scans and adds your music to the collection.
 
 
-During my use case , I mostly dealt with MP3 files since there are the most common format for audio files. MP3 stands for MPEG-1 Audio Layer 3. It is a widely used digital audio compression format that reduces file size while maintaining high-quality sound. Some MP3 files have metadata information embedded in them such as track title, artist, album, cover art for the song, as well as the mime type for the cover art file. Consider the following example 
+During my use case , I mostly dealt with MP3 files since they are the most common format for audio files. MP3 stands for MPEG-1 Audio Layer 3. It is a widely used digital audio compression format that reduces file size while maintaining high-quality sound. Some MP3 files have metadata information embedded in them such as track title, artist, album, cover art for the song, as well as the mime type for the cover art file. Consider the following example 
 ```c
 $ exiftool /tmp/test.mp3     
 ExifTool Version Number         : 12.40
