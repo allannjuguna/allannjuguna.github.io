@@ -138,7 +138,7 @@ Basically, the application:
 Below is a diagram to visualize how the album art is constructed and stored.
 
 
-![](/images/FLB_Music/valid_image.png)
+![](/images/FLB_Music/valid_file.png)
 
 ### Root Cause
 We note that we can control `tags.image.mime` which is not sanitized. The app trusts the MIME type from the MP3 file to be a simple image format like `image/png`, but an attacker can inject `../` sequences into it. The `.replace(/image\//g, '')` only removes the literal word `image/` and leaves everything else including path traversal characters untouched. The result is then passed to `path.join()`, which resolves `../` segments during normalization, allowing an attacker to write files anywhere on the file system. 
