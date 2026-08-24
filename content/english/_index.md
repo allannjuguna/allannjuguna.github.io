@@ -2,68 +2,23 @@
 # Banner
 banner:
   title: "zerofrost"
-  content: "Cyber Security Enthusiast,Purple Teamer,Gamer,Coder"
+  content: "Security Researcher & Offensive Security Engineer"
   button:
     enable: true
-    label: "Read My Blog"
+    label: "Explore My Work"
     link: "/blog"
-  image: "https://readme-typing-svg.herokuapp.com/?font=Fira+Code&size=22&color=%23BEABE0&center=true&lines=Hi+%2C+I+am+Allan;I+am+a+Student+%F0%9F%A7%91%E2%80%8D%F0%9F%8E%93;I+%E2%9D%A4+Coding+%F0%9F%92%BB;I+%E2%9D%A4+Learning+new+stuff+%F0%9F%8C%B1;I+%E2%9D%A4+Cyber+Security+%F0%9F%95%B5%EF%B8%8F;I+%E2%9D%A4+Automating+Stuff+%F0%9F%94%A7;I+%E2%9D%A4+Collaborating+on+projects+%F0%9F%91%AF"
+  image: "https://readme-typing-svg.herokuapp.com/?font=Fira+Code&size=22&color=%23BEABE0&center=true&lines=Hi+%2C+I+am+Allan;I+am+a+Security+Researcher+%F0%9F%95%B5%EF%B8%8F;I+%E2%9D%A4+Coding+%F0%9F%92%BB;I+%E2%9D%A4+Learning+new+stuff+%F0%9F%8C%B1;I+%E2%9D%A4+Cyber+Security+%F0%9F%95%B5%EF%B8%8F;I+%E2%9D%A4+Automating+Stuff+%F0%9F%94%A7;I+%E2%9D%A4+Collaborating+on+projects+%F0%9F%91%AF"
 
 ---
 
 <div class="zf-section">
-
   <div class="step-badge">
     <span class="step-num">01</span>
-    <span class="step-name">SKILLS</span>
+    <span class="step-name">About</span>
   </div>
 
-  <h2>What I <span class="zf-hl">work on</span>.</h2>
-
-  <p class="zf-subhead">Cybersecurity professional with 5+ years of experience securing applications, networks, systems, and data across cloud and on-premise environments. Skilled in Web Security, API and Mobile security, Penetration testing, Active Directory exploitation, Red teaming, reverse engineering, and binary exploitation.</p>
-
-<!--   <figure class="image-frame">
-    <img src="/images/skill-matrix.svg" alt="Skill matrix scorecard" />
-  </figure> -->
-
-  <div class="skill-grid">
-    <article class="skill-card">
-      <span class="skill-pill">Web / API</span>
-      <h3>Web &amp; API Security</h3>
-      <p>BurpSuite Pro, Caido, Nuclei, SQLMap, Ffuf.</p>
-    </article>
-    <article class="skill-card">
-      <span class="skill-pill">AD</span>
-      <h3>Active Directory</h3>
-      <p>BloodHound, BloodyAD, Impacket, NetExec,Certipy.</p>
-    </article>
-    <article class="skill-card">
-      <span class="skill-pill">Mobile</span>
-      <h3>Mobile Security</h3>
-      <p>Frida, Jadx, Drozer, MobSF, ApkTool, HttpToolkit, Objection.</p>
-    </article>
-    <article class="skill-card">
-      <span class="skill-pill">Cloud</span>
-      <h3>Cloud Security</h3>
-      <p>Pacu, Prowler, ScoutSuite, AWS-Enumerator.</p>
-    </article>
-    <article class="skill-card">
-      <span class="skill-pill">Binary</span>
-      <h3>Binary Exploitation</h3>
-      <p>Pwntools, GDB (Gef/Pwndbg), Radare.</p>
-    </article>
-    <article class="skill-card">
-      <span class="skill-pill">RE</span>
-      <h3>Reverse Engineering</h3>
-      <p>Ghidra, IDA Pro, Binary Ninja, Hopper, dnSpy, Uncompyle6.</p>
-    </article>
-  </div>
-
-  <p class="zf-cta-row">
-    <a href="/about" class="zf-cta">View my full skills <span aria-hidden="true">&rarr;</span></a>
-  </p>
-
-</div>
+  <!-- <h2>About <span class="zf-hl">Me</span>.</h2> -->
+  <p class="zf-subhead">Security researcher and offensive security engineer focused on vulnerability discovery, exploit development, reverse engineering, and real-world attack chains across web applications, APIs, mobile, Active Directory, cloud environments, and native binaries.</p>
 
 <div class="zf-section">
 
@@ -74,7 +29,7 @@ banner:
 
   <h2><span class="zf-hl">Discovered</span> CVEs.</h2>
 
-  <p class="zf-subhead">Some of the CVEs that I have discovered.</p>
+  <p class="zf-subhead">Selected vulnerability research and publicly disclosed CVEs.</p>
 
   <div class="cve-table-wrap">
     <div class="cve-table-scroll">
@@ -141,16 +96,75 @@ banner:
 
 </div>
 
-<div class="zf-section">
 
   <div class="step-badge">
     <span class="step-num">03</span>
-    <span class="step-name">RECOGNITION</span>
+    <span class="step-name">SKILLS</span>
+  </div>
+
+
+
+  <h2>What I <span class="zf-hl">work on</span>.</h2>
+<!--   <figure class="image-frame">
+    <img src="/images/skill-matrix.svg" alt="Skill matrix scorecard" />
+  </figure> -->
+
+  <div class="skill-grid">
+    <article class="skill-card">
+      <span class="skill-pill">Web / API</span>
+      <h3>Web &amp; API Security</h3>
+      <p>Vulnerability discovery, application security testing, API security,
+    authentication, authorization, injection, and exploit development.</p>
+    </article>
+    <article class="skill-card">
+      <span class="skill-pill">AD</span>
+      <h3>Active Directory</h3>
+      <p>Kerberos attacks, delegation abuse, credential attacks, privilege
+    escalation, lateral movement, and domain compromise.</p>
+    </article>
+    <article class="skill-card">
+      <span class="skill-pill">Mobile</span>
+      <h3>Mobile Security</h3>
+      <p>Android application analysis, reverse engineering, IPC and intent
+    abuse, runtime instrumentation, and mobile exploit development.</p>
+    </article>
+    <article class="skill-card">
+      <span class="skill-pill">Cloud</span>
+      <h3>Cloud Security</h3>
+      <p>AWS, Azure, and GCP security assessment, identity abuse, privilege
+    escalation, and cloud attack-path analysis.</p>
+    </article>
+    <article class="skill-card">
+      <span class="skill-pill">Binary</span>
+      <h3>Binary Exploitation</h3>
+      <p>Memory corruption, heap exploitation, ROP, format strings and exploit development.</p>
+    </article>
+    <article class="skill-card">
+      <span class="skill-pill">RE</span>
+      <h3>Reverse Engineering</h3>
+      <p>Static and dynamic analysis, patch diffing, vulnerability discovery,
+    binary analysis, and exploit research.</p>
+    </article>
+  </div>
+
+  <p class="zf-cta-row">
+    <a href="/about" class="zf-cta">View my full skills <span aria-hidden="true">&rarr;</span></a>
+  </p>
+
+</div>
+
+
+
+<div class="zf-section">
+
+  <div class="step-badge">
+    <span class="step-num">04</span>
+    <span class="step-name">AWARDS</span>
   </div>
 
   <h2><span class="zf-hl">Achievements</span> &amp; Awards.</h2>
 
-  <p class="zf-subhead">CTF placements for various ctfs.</p>
+  <p class="zf-subhead">Selected results from CTFs and cybersecurity competitions..</p>
 
   <div class="record-grid">
     <div class="record-card">
@@ -207,7 +221,7 @@ banner:
 <div class="zf-section">
 
   <div class="step-badge">
-    <span class="step-num">04</span>
+    <span class="step-num">05</span>
     <span class="step-name">Certifications</span>
   </div>
   <h2>Certifications</h2>
@@ -220,15 +234,8 @@ banner:
     <span class="cert-pill">MCRTA</span>
     <span class="cert-pill">CEH</span>
     <span class="cert-pill">Security+</span>
-    <span class="cert-pill">Extreme Red Teamer</span>
-    <span class="cert-pill">Off Dev Win v1</span>
-    <span class="cert-pill">Azure RT</span>
-    <span class="cert-pill">API Security</span>
-    <span class="cert-pill">Linux Heap Exploitation</span>
-    <span class="cert-pill">NSE 1 &amp; 2</span>
-    <span class="cert-pill">HTB POO Pro</span>
-    <span class="cert-pill">HTB Puppet Pro</span>
-    <span class="cert-pill">CCNA</span>
+    <span class="cert-pill">ERTL - SUMMUS</span>
+    <span class="cert-pill">ERTL - MAILSERVICE</span>
   </div>
   <p class="zf-cta-row">
     <a href="/certifications" class="zf-cta">View all certifications <span aria-hidden="true">&rarr;</span></a>
