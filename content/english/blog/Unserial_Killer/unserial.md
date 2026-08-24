@@ -1,6 +1,6 @@
 ---
 layout: post
-title: DG'hAck 2022 - Unserial Killer
+title: Exploiting PHP Deserialization - Building a POP Chain to RCE
 date: 2023-08-26
 categories:
   - Ctf
@@ -8,6 +8,7 @@ tags:
   - Linux
   - Deserialization
   - PHP
+  - RCE
 keywords:
   - ""
   - ""
