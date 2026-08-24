@@ -1,6 +1,6 @@
 ---
 layout: post
-title: ImaginaryCTF Argv Pwn Writeup
+title: Turning a Stack Overflow into a Format String Primitive
 date: 2024-02-11
 categories:
   - Pwn

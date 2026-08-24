@@ -1,6 +1,6 @@
 ---
 layout: post
-title: PerfectRoot Ctf 2024 - Pwn
+title: Escaping Seccomp Using Linux File-Handle Syscalls — PerfectRoot CTF
 date: 2025-02-04
 categories:
   - Pwn
