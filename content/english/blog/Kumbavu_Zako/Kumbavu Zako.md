@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Escaping Seccomp Using Linux File-Handle Syscalls — PerfectRoot CTF
+title: Escaping Seccomp Restrictions Using Uncommon Linux File-Handle Syscalls - PerfectRoot CTF
 date: 2025-02-04
 categories:
   - Pwn
