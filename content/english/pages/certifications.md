@@ -50,7 +50,7 @@ draft: false
 
 
   <a href="https://credsverse.com/credentials/6c3be8c0-1ff3-4b3b-a8b9-082f82620e7d?preview=1" class="cert-card" target="_blank" rel="noopener">
-    <img class="cert-badge" src="/images/Certs/xrt-fix.png" alt="XRT badge" width="64" height="64" loading="lazy">
+    <img class="cert-badge" src="/images/Certs/xrt-fix.png" alt="XRT badge" width="64" height="64">
     <div class="cert-body">
       <h3 class="cert-title">Extreme Red Teamer</h3>
       <p class="cert-issuer">IFIX LAB - Extreme Red Team Laboratories</p>
@@ -65,17 +65,6 @@ draft: false
     </div>
   </a>
 
-
-
-
-
-  <a href="https://redteamleaders.coursestack.com/completion/a794af9d4e009bd3" class="cert-card" target="_blank" rel="noopener">
-    <img class="cert-badge" src="/images/Certs/offdev-windows.png" alt="Offensive Development badge" width="84" height="84" loading="lazy">
-    <div class="cert-body">
-      <h3 class="cert-title">Offensive Development for Windows v1</h3>
-      <p class="cert-issuer">Red Team Leaders</p>
-    </div>
-  </a>
 
   <a href="https://www.credential.net/1f144acc-b764-430d-ae13-7287ea413d69#acc.4x3MB2Hz" class="cert-card" target="_blank" rel="noopener">
     <img class="cert-badge" src="/images/Certs/crta-icon.png" alt="CRTA badge" width="64" height="64" loading="lazy">
@@ -92,6 +81,17 @@ draft: false
       <p class="cert-issuer">CyberWarFare Labs</p>
     </div>
   </a>
+
+
+  <a href="https://labs.cyberwarfare.live/credential/achievement/6ab7970ace6365c3b495d0a7" class="cert-card" target="_blank" rel="noopener">
+    <img class="cert-badge" src="https://cyberwarfare.live/wp-content/uploads/2025/11/ADRTS.webp" alt="ADRTS badge" width="64" height="64" loading="lazy">
+    <div class="cert-body">
+      <h3 class="cert-title">Active Directory Red Team Specialist (AD-RTS)</h3>
+      <p class="cert-issuer">CyberWarFare Labs</p>
+    </div>
+  </a>
+
+
 
   <a href="https://aspen.eccouncil.org/VerifyBadge?type=certification&a=peKAhTIhQoM/qfbVs1D9COg2FmpT2//N73hs1uR23MQ=" class="cert-card" target="_blank" rel="noopener">
     <img class="cert-badge" src="/images/Certs/ceh.png" alt="CEH badge" width="64" height="64" loading="lazy">
@@ -117,7 +117,13 @@ draft: false
     </div>
   </a>
 
-
+  <a href="https://redteamleaders.coursestack.com/completion/a794af9d4e009bd3" class="cert-card" target="_blank" rel="noopener">
+    <img class="cert-badge" src="/images/Certs/offdev-windows.png" alt="Offensive Development badge" width="84" height="84" loading="lazy">
+    <div class="cert-body">
+      <h3 class="cert-title">Offensive Development for Windows v1</h3>
+      <p class="cert-issuer">Red Team Leaders</p>
+    </div>
+  </a>
 
   <a href="https://drive.google.com/file/d/1Nowgqw0ZVPYgRUxQ4VIZ2v8H8XX-dDSL/view" class="cert-card" target="_blank" rel="noopener">
     <img class="cert-badge" src="/images/Certs/mhl-android.png" alt="Mobile Hacking Lab badge" width="64" height="64" loading="lazy">
@@ -163,7 +169,7 @@ draft: false
     </div>
   </a>
 
-  <a href="#" class="cert-card" target="_blank" rel="noopener">
+  <a href="https://drive.google.com/file/d/1PTF0He7o_VYQV0cFBD0HZXVKiXBYJGoz/view" class="cert-card" target="_blank" rel="noopener">
     <img class="cert-badge" src="/images/Certs/udemy.png" alt="Linux Heap Exploitation badge" width="64" height="64" loading="lazy">
     <div class="cert-body">
       <h3 class="cert-title">Linux Heap Exploitation – Part 1</h3>
@@ -176,7 +182,7 @@ draft: false
     <img class="cert-badge" src="/images/Certs/udemy.png" alt="Exploit Dev x64 badge" width="64" height="64" loading="lazy">
     <div class="cert-body">
       <h3 class="cert-title">Exploit Development for Linux (x86_x64)</h3>
-      <p class="cert-issuer">—</p>
+      <p class="cert-issuer">Srinivas</p>
     </div>
   </a>
 
@@ -184,7 +190,7 @@ draft: false
     <img class="cert-badge" src="/images/Certs/udemy.png" alt="Exploit Dev x86 badge" width="64" height="64" loading="lazy">
     <div class="cert-body">
       <h3 class="cert-title">Exploit Development for Linux (x86)</h3>
-      <p class="cert-issuer">—</p>
+      <p class="cert-issuer">Srinivas</p>
     </div>
   </a>
 

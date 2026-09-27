@@ -24,7 +24,6 @@ Here is an example of headings. You can use this heading by the following markdo
 
 ###### Heading 6
 
-
 <hr>
 
 ### Emphasis
@@ -203,17 +202,6 @@ int main(void)
 }
 ```
 
-
-```mermaid
-sequenceDiagram
-	Alice->>Bob: Hello, Bob
-	Alice->>Alice: SSRF
-	Bob-->>Alice: Hello back
-	Alice->>Server: POST /api/login
-	Server--xAlice: 401 Unauthorized
-```
-
-
 ```mermaid
 flowchart TD
     A[Start] --> B{Is it?}
@@ -245,11 +233,6 @@ flowchart TD
 
 {{< image src="images/image-placeholder.png" caption="" alt="alter-text" height="" width="" position="center" command="fill" option="q100" class="img-fluid" title="image title"  webp="false" >}}
 
-
-![](/images/Certs/xrt-cal.png)
-![](/images/Certs/xrt-msvc.png)
-![](/images/Certs/xrt-fix.png)
-
 <hr>
 
 ### Gallery
@@ -273,3 +256,29 @@ flowchart TD
 ### Custom video
 
 {{< video src="https://www.w3schools.com/html/mov_bbb.mp4" width="100%" height="auto" autoplay="false" loop="false" muted="false" controls="true" class="rounded-lg" >}}
+
+```mermaid
+sequenceDiagram
+    participant MP3 as Normal MP3 File
+    participant Meta as music-metadata
+    participant App as FLB App
+    participant FS as Filesystem
+
+    MP3->>Meta: APIC MIME type = "image/jpeg"
+    MP3->>Meta: APIC picture data = "JPEG image bytes"
+    Meta->>App: metadata.common.picture[0].format = "image/jpeg"
+    Meta->>App: metadata.common.picture[0].data = "JPEG bytes"
+    Note over App: format.replace(/image\//g, '') -> "jpeg"
+    Note over App: path.join(albumArtFolder, "song.jpeg")
+    Note over App: Resolved path: ~/.config/flbmusic/Album Art/song.jpeg
+    App->>FS: writeFileSync(".../Album Art/song.jpeg", "JPEG")
+    Note over FS: Album art saved safely in the intended directory
+```
+
+
+![](/images/Certs/xrt-fix.png)
+![](/images/Certs/xrt-cal.png)
+![](/images/Certs/xrt-msvc.png)
+![](/images/Certs/mhl-android.png)
+
+https://cyberwarfare.live/wp-content/uploads/2025/11/ADRTS.webp

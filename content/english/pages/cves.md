@@ -9,6 +9,48 @@ A list of CVEs I've discovered and responsibly disclosed. Click any card for the
 
 <div class="cve-grid">
 
+
+ <!--  <a href="https://www.cve.org/CVERecord?id=CVE-2026-xxxx" class="cve-card" target="_blank" rel="noopener">
+    <div class="cve-badge cve-badge--crit">
+      <span class="cve-badge__year">2026</span>
+      <span class="cve-badge__label">CVE</span>
+    </div>
+    <div class="cve-body">
+      <h3 class="cve-title">Unauthenticated SQL Injection</h3>
+      <p class="cve-meta">SuiteCRM <span class="cve-sep">•</span> CVE-2026-xxxxx</p>
+      <p class="cve-source">MITRE / CVE.org</p>
+    </div>
+  </a>
+
+
+  <a href="https://www.cve.org/CVERecord?id=CVE-2026-xxxx" class="cve-card" target="_blank" rel="noopener">
+    <div class="cve-badge cve-badge--crit">
+      <span class="cve-badge__year">2026</span>
+      <span class="cve-badge__label">CVE</span>
+    </div>
+    <div class="cve-body">
+      <h3 class="cve-title">Unauthenticated XSS</h3>
+      <p class="cve-meta">SuiteCRM <span class="cve-sep">•</span> CVE-2026-xxxxx</p>
+      <p class="cve-source">MITRE / CVE.org</p>
+    </div>
+  </a> -->
+
+
+
+  <a href="https://www.cve.org/CVERecord?id=CVE-2026-96751" class="cve-card" target="_blank" rel="noopener">
+    <div class="cve-badge cve-badge--crit">
+      <span class="cve-badge__year">2026</span>
+      <span class="cve-badge__label">CVE</span>
+    </div>
+    <div class="cve-body">
+      <h3 class="cve-title">PmTicket Unauthenticated SQL Injection via setSync</h3>
+      <p class="cve-meta">PMTicket <span class="cve-sep">•</span> CVE-2026-96751</p>
+      <p class="cve-source">MITRE / CVE.org</p>
+    </div>
+  </a>
+
+
+
   <a href="https://www.cve.org/CVERecord?id=CVE-2025-64488" class="cve-card" target="_blank" rel="noopener">
     <div class="cve-badge cve-badge--crit">
       <span class="cve-badge__year">2025</span>
@@ -27,11 +69,14 @@ A list of CVEs I've discovered and responsibly disclosed. Click any card for the
       <span class="cve-badge__label">CVE</span>
     </div>
     <div class="cve-body">
-      <h3 class="cve-title">Authentication Bypass</h3>
+      <h3 class="cve-title">Authentication Bypass via Insecure Deserialization</h3>
       <p class="cve-meta">PMTicket <span class="cve-sep">•</span> CVE-2025-11135</p>
       <p class="cve-source">MITRE / CVE.org</p>
     </div>
   </a>
+
+
+
 
   <a href="https://www.cve.org/CVERecord?id=CVE-2025-7886" class="cve-card" target="_blank" rel="noopener">
     <div class="cve-badge cve-badge--high">
