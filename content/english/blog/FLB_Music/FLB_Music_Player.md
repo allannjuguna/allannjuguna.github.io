@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Exploiting an Arbitrary File Write via MIME Type Misparsing"
+title: "Exploiting an Arbitrary File Write via MIME Type Misparsing - CVE-2026-101036"
 date: 2026-07-24
 categories:
   - Research
@@ -14,6 +14,7 @@ tags:
   - Research
   - CVE
   - PTH
+  - CVE-2026-101036
 keywords:
   - ""
   - ""
@@ -32,7 +33,7 @@ showFullContent: false
 
 
 
-A while back while going through my files, I came across a [FLB-Music-Player](https://github.com/FLB-Music/FLB-Music-Player), which I was using a while back before switching to a self-hosted alternative called Navidrome, which I run on my raspberry pi. I decided to take a look at it from a security point of view to try and identify any vulnerabilities in it. This blogpost will be a walkthrough of an interesting vulnerability I found in FLB-Music-Player 1.2.1, that could be abused to achieve RCE.
+A while back while going through my files, I came across a [FLB-Music-Player](https://github.com/FLB-Music/FLB-Music-Player), which I was using a while back before switching to a self-hosted alternative called Navidrome. I decided to take a look at it from a security point of view to try and identify any vulnerabilities in it. This blogpost will be a walkthrough of an interesting vulnerability I found in FLB-Music-Player 1.2.1(CVE-2026-101036), that could be abused to achieve RCE.
 
 
 
@@ -290,7 +291,7 @@ Once loaded, our file is created proving we have an arbitrary file write primiti
 
 
 ### Achieving Code Execution
-This vulnerability can also be used to code execution. The reason we are not calling it remote code execution is because this vulnerability is triggered locally, making it a local code execution. There are several interesting ways of getting code execution, for example:
+This vulnerability can also be used to achieve code execution. The reason we are not calling it remote code execution is because this vulnerability is triggered locally, making it a local code execution. There are several interesting ways of getting code execution, for example:
 
 * Writing an attacker's SSH Key and using it to authenticate
 * Overwriting terminal files such as `~/.bashrc`
