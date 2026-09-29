@@ -90,6 +90,20 @@ A list of CVEs I've discovered and responsibly disclosed. Click any card for the
     </div>
   </a>
 
+
+  <a href="https://www.cve.org/CVERecord?id=CVE-2026-101036" class="cve-card" target="_blank" rel="noopener">
+    <div class="cve-badge cve-badge--med">
+      <span class="cve-badge__year">2026</span>
+      <span class="cve-badge__label">CVE</span>
+    </div>
+    <div class="cve-body">
+      <h3 class="cve-title">Path Traversal Leading to Code Execution</h3>
+      <p class="cve-meta">FLB Music Player <span class="cve-sep">•</span> CVE-2026-101036</p>
+      <p class="cve-source">MITRE / CVE.org</p>
+    </div>
+  </a>
+
+
   <a href="https://www.cve.org/CVERecord?id=CVE-2024-10195" class="cve-card" target="_blank" rel="noopener">
     <div class="cve-badge cve-badge--high">
       <span class="cve-badge__year">2024</span>

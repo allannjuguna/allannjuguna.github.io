@@ -45,13 +45,21 @@ banner:
           </tr>
         </thead>
         <tbody>
+            <tr>
+            <td class="cve-table__cve"><a href="/blog/flb_music/flb_music_player/" target="_blank" rel="noopener">CVE-2026-101036</a></td>
+            <td class="cve-table__year">2026</td>
+            <td><strong>FLB Music Player</strong></td>
+            <td class="cve-table__title">Path Traversal leading to Code Execution</td>
+            <td><span class="sev sev--med">Medium</span></td>
+            <td class="cve-table__source"><a href="https://www.cve.org/CVERecord?id=CVE-2026-101036" target="_blank" rel="noopener">MITRE <span aria-hidden="true">&rarr;</span></a></td>
+          </tr>
           <tr>
             <td class="cve-table__cve"><a href="https://www.cve.org/CVERecord?id=CVE-2025-64488" target="_blank" rel="noopener">CVE-2025-64488</a></td>
             <td class="cve-table__year">2025</td>
             <td><strong>SuiteCRM</strong></td>
             <td class="cve-table__title">Authenticated SQL Injection</td>
             <td><span class="sev sev--high">High</span></td>
-            <td class="cve-table__source"><a href="https://github.com/advisories" target="_blank" rel="noopener">GitHub <span aria-hidden="true">&rarr;</span></a></td>
+            <td class="cve-table__source"><a href="https://github.com/SuiteCRM/SuiteCRM/security/advisories/GHSA-5v53-v44q-ww2c" target="_blank" rel="noopener">GitHub <span aria-hidden="true">&rarr;</span></a></td>
           </tr>
           <tr>
             <td class="cve-table__cve"><a href="https://www.cve.org/CVERecord?id=CVE-2025-11135" target="_blank" rel="noopener">CVE-2025-11135</a></td>
