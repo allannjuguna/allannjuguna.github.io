@@ -33,7 +33,7 @@ showFullContent: false
 
 
 
-A while back while going through my files, I came across a [FLB-Music-Player](https://github.com/FLB-Music/FLB-Music-Player), which I was using a while back before switching to a self-hosted alternative called Navidrome. I decided to take a look at it from a security point of view to try and identify any vulnerabilities in it. This blogpost will be a walkthrough of an interesting vulnerability I found in FLB-Music-Player 1.2.1(**CVE-2026-101036**), that could be abused to achieve RCE.
+A while back while going through my files, I came across [FLB-Music-Player](https://github.com/FLB-Music/FLB-Music-Player), which I was using a while back before switching to a self-hosted alternative called Navidrome. I decided to take a look at it from a security point of view to try and identify any vulnerabilities in it. This blogpost will be a walkthrough of an interesting vulnerability I found in FLB-Music-Player 1.2.1 (assigned **CVE-2026-101036**), that could be abused to achieve RCE.
 
 
 
