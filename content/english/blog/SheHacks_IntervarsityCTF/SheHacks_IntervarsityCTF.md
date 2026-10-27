@@ -4,7 +4,7 @@ title: "SheHacks-IntervarsityCTF"
 date: 2022-07-19
 categories: [ctf, shehacks]
 tags: [Ctf]
-image: "/images/kcactf/1.png"
+image: "/images/kcactf/banner.png"
 author: "zerofrost"
 draft: false
 ---
@@ -13,6 +13,7 @@ draft: false
 This past weekend I got the opportunity to participate in the #ShehacksKEintervasityCTF which was amazing. I played as Team BitClan with my teammates and we managed to scoop second position. The challenges were amazing and I got to learn a thing or two.In this writeup,I will be explaining how I solved the challenges. Note that this is the approach I took to solve the challenges and not necessarily how they are supposed to be solved.
 
 
+![image](/images/kcactf/1.png)
 
 
 

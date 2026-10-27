@@ -11,7 +11,7 @@ tags:
   - HouseofHusk
   - LibcGotOverwrite
   - StackLeak
-image: "/images/ImaginaryCTF_-_Argv/banner.jpg"
+image: "/images/ImaginaryCTF_-_Argv/banner.png"
 author: "zerofrost"
 draft: false
 ---

@@ -4,7 +4,7 @@ title: "CyberConKE Finals CTF"
 date: 2022-11-15
 categories: [ctf, CyberConKE]
 tags: [Ctf, CyberConKE]
-image: "/images/CyberConKE/scoreboard.png"
+image: "/images/CyberConKE/banner.png"
 author: "zerofrost"
 draft: false
 ---

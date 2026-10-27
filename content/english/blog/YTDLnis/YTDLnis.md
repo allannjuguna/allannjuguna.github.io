@@ -14,7 +14,7 @@ tags:
   - RCE
   - Python
 author: "zerofrost"
-image: "/images/YTDLnis/banner_black.png"
+image: "/images/YTDLnis/banner.png"
 draft: false
 ---
 

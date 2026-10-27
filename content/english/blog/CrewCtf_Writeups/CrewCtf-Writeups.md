@@ -4,7 +4,7 @@ title: "CrewCtf Writeups"
 date: 2023-07-11
 categories: [ctf, crewctf]
 tags: [Linux, Volatility, Forensics, Truecrypt]
-image: "/images/CrewCtf_Writeups/01.jpg"
+image: "/images/CrewCtf_Writeups/banner.png"
 author: "zerofrost"
 draft: false
 ---

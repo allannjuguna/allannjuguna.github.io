@@ -12,7 +12,7 @@ tags:
 keywords:
   - ""
   - ""
-image: "https://imgcdn.stablediffusionweb.com/2025/10/7/c5d70241-e289-46af-87a9-12f8dc2d07d9.jpg"
+image: "/images/Unserial_Killer/banner.png"
 author: "zerofrost"
 draft: false
 ---
