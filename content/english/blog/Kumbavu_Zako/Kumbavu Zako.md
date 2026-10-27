@@ -14,7 +14,7 @@ tags:
   - name_to_handle_at
   - open_by_handle_at
   - Hard
-image: "/images/Kumbavu_Zako/code.jpg"
+image: "/images/Kumbavu_Zako/banner.jpg"
 author: "zerofrost"
 draft: false
 ---

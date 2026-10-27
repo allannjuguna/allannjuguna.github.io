@@ -8,7 +8,7 @@ tags:
   - Linux
   - CasaOs
   - RCE
-image: "/images/CasaOs/Pasted_20241009150352.png"
+image: "/images/CasaOs/banner.png"
 author: "zerofrost"
 draft: false
 ---

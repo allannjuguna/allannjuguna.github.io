@@ -13,7 +13,7 @@ tags:
 keywords:
   - ""
   - ""
-image: "/images/ShmooconCTF/Pasted image 20240113184503.png"
+image: "/images/ShmooconCTF/banner.png"
 author: "zerofrost"
 draft: false
 ---
