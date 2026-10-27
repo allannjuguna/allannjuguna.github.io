@@ -1,8 +1,8 @@
 <div class="bg-body dark:bg-darkmode-body">
   {{ $image:= .Params.image }}
   {{ if $image }}
-    <!-- {{ partial "image" (dict "Src" $image "Context" .Page "Alt" .Title "Class" "mb-6 w-full rounded" "Webp" false) }} -->
-    {{ with resources.Get $image }}<img src="{{ .RelPermalink }}" alt="{{ $.Title }}" class="mb-6 w-full rounded">{{ else }}<img src="{{ $image | relURL }}" alt="{{ $.Title }}" class="mb-6 w-full rounded">{{ end }}
+    {{ partial "image" (dict "Src" $image "Context" .Page "Alt" .Title "Class" "mb-6 w-full rounded" "Webp" false) }}
+    <!-- {{ with resources.Get $image }}<img src="{{ .RelPermalink }}" alt="{{ $.Title }}" class="mb-6 w-full rounded">{{ else }}<img src="{{ $image | relURL }}" alt="{{ $.Title }}" class="mb-6 w-full rounded">{{ end }} -->
 
   {{ end }}
   <h4 class="mb-3">
