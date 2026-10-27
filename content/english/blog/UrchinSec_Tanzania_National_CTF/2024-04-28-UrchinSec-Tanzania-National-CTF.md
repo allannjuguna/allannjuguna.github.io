@@ -12,7 +12,7 @@ tags:
 keywords:
   - ""
   - ""
-image: "/images/UrchinSec_Tanzania_National_CTF/banner.png"
+image: "/images/UrchinSec_Tanzania_National_CTF/banner.jpg"
 author: "zerofrost"
 draft: false
 ---

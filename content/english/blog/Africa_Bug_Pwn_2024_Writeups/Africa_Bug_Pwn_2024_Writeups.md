@@ -12,7 +12,7 @@ tags:
   - Pwn
   - FormatString
   - Seccomp
-image: "/images/Africa_Bug_Pwn_2024_Writeups/banner.png"
+image: "/images/Africa_Bug_Pwn_2024_Writeups/banner.jpg"
 author: "zerofrost"
 draft: false
 ---
