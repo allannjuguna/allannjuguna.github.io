@@ -12,7 +12,7 @@ tags:
 keywords:
   - ""
   - ""
-image: "/images/No_hash_No_Problem/banner.jpg"
+image: "/images/No_hash_No_Problem/banner.png"
 author: "zerofrost"
 draft: false
 description: ""
